@@ -1,0 +1,83 @@
+﻿<div class="app-page">
+    <div class="app-noheader" ng-class="panel.color">
+        <div datapanel="panel-links"></div>
+        <div class="rside" ng-hide="panel.detail">
+            <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="load();">
+                <i class="material-icons mdl-color-text--blue-grey-300">search</i>
+            </button>
+            <!--<div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input mdl-color--blue-grey-100 mdl-color-text--indigo" type="text" id="fldKbsearch" 
+                       ng-model="panel.search" ng-keydown="pressKey($event)" 
+                       style="padding-left: 2px; border-radius: 2px;">
+                <label class="mdl-textfield__label" for="fldKbsearch"> Search in Knowledge base</label>
+            </div>-->
+        </div>
+        <h3 class="mdl-color-text--white">{{panel.title}}</h3>
+        <h4 class="mdl-color-text--blue-grey-100">New documents in Knowledge Base.</h4>
+    </div>
+
+    <div class="app-kbnewcontent">
+
+        <div ng-repeat="newitem in newlist">
+            <a href="javascript:void(0)" ng-click="newKbItem(newitem)" slide-up-toggle="kbdetail">{{newitem.title}}</a>
+        </div>
+        <!--<pre>{{newlist | json}}</pre>-->
+    </div>
+
+
+
+    <div id="kbdetail" slideable-up="kbdetail">
+        <div class="app-content">
+            <form name="updateFormArt">
+                <div class="app-table mdl-cell--12-col" style="margin: 10% auto 0 auto; width: 50% !important;">
+                    <div class="app-dlg">
+                        <div class="mdl-cell--12-col mdl-color--lime">
+                            <button id="detCloseArt" class="mdl-button mdl-js-button mdl-button--icon app-dimmed rside" slide-up-toggle="kbdetail">
+                                <i class="material-icons">cancel</i>
+                            </button>
+                            <div class="mdl-tooltip" for="detCloseArt">
+                                Close with no update
+                            </div>
+                            <h3 class="mdl-cell--12-col">
+                                <span class="mdl-cell--9-col">Select category</span>
+                            </h3>
+                        </div>
+
+                        <div class="app-grid mdl-cell--12-col" style="overflow-x:hidden; overflow-y: auto;max-height: 70vh;">
+                            <!--<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--8-col">
+                                <input class="mdl-textfield__input" type="text" ng-model="detail.title" readonly />
+                                <label class="mdl-textfield__label" for="dettitle">Title</label>
+                            </div>-->
+                            <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                                <select class="dropfocus mdl-textfield__input" type="text" id="detname" ng-model="detail.refCateg" ng-options="o._id as o.name for o in catlist" required></select>
+                                <label class="mdl-textfield__label">{{detail.title}}</label>
+                                <span class="mdl-tooltip mdl-tooltip--validation" for="detname" ng-show="!updateFormArt.refCateg">
+                                    <span>Required.</span>
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <div class="mdl-cell--12-col app-dlgfoot  mdl-color--lime">
+                            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-cell--2-col" slide-up-toggle="kbdetail">
+                                Cancel
+                            </button>
+                            <div class="rside">
+
+                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect" ng-click="saveNewKbItem()" ng-disabled="updateFormArt.$invalid">
+                                    Save data
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<pre>{{catlist | json}}-->
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+

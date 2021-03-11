@@ -1,0 +1,112 @@
+﻿<div class="app-page">
+    <div class="app-header" ng-class="panel.color">
+        <div datapanel="panel-links"></div>
+        <h3 class="mdl-color-text--white">{{panel.title}}</h3>
+        <h4 class="mdl-color-text--blue-grey-100">Organizations of ticket workflows</h4>
+    </div>
+    <div class="app-content mdl-grid">
+
+        <div class="app-desc mdl-cell mdl-cell--3-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+            <!--<h3><i class="material-icons">store</i>&nbsp;Organizations</h3>
+            <div ng-repeat="li in userTypes">
+                <i class="material-icons">label_outline</i>
+                <a ng-href="#">
+                    <strong>
+                        {{li.name}}
+                    </strong>
+                </a>
+                {{li.code}}{{li.name}}
+            </div>-->
+            <p>
+            <div class="mdl-typography--title-color-contrast">Description</div>
+            <p class="mdl-typography--subhead-color-contrast">
+                It brings together users, based on e-mail adries.Organization always creates an automatic (administrator or VIP), you can select the profile IMAP and SMTP server to send and receive.
+            </p>
+            </p>
+        </div>
+
+        <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+            <div class="app-table">
+
+                <div class="app-table_title">
+                    <div class="display-1">Organizations</div>
+                    <div ng-show="processData" class="mdl-spinner mdl-js-spinner mdl-spinner--single-color is-active"></div>
+                    <div class="app-table_options">
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                            <label class="mdl-button mdl-js-button mdl-button--icon" for="pgSearch{{panel.pgId}}">
+                                <i id="pgIconSearch{{panel.pgId}}" class="material-icons">search</i>
+                            </label>
+                            <div class="mdl-textfield__expandable-holder">
+                                <input class="mdl-textfield__input" type="text" id="pgSearch{{panel.pgId}}" ng-model="panel.search" ng-keydown="pressSearch($event)">
+                                <label class="mdl-textfield__label" for="pgSearch{{panel.pgId}}">Enter your query...</label>
+                            </div>
+
+                        </div>
+                        <div class="mdl-tooltip" for="pgIconSearch{{panel.pgId}}">
+                            Search Open/Close
+                        </div>
+
+                    </div>
+
+                </div>
+                <table class="mdl-data-table mdl-js-data-table mdl-cell--12-col" ng-if="panel.acc.read">
+                    <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Name</th>
+                            <th class="mdl-data-table__cell--non-numeric mdl-cell--hide-phone">Domains</th>
+                            <th class="mdl-data-table__cell--non-numeric mdl-cell--hide-phone">ICO</th>
+                            <th class="app-table_but">
+                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" ng-show="panel.acc.create" ng-if="!expandedNew" ng-click="openDetail()">
+                                    <i id="pgNewItem{{panel.pgId}}" class="material-icons app-dimmed">add</i>
+                                </button>
+                                <div class="mdl-tooltip" for="pgNewItem{{panel.pgId}}">
+                                    New
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="expandedNew">
+                            <td colspan="100" class="mdl-data-table__cell--non-numeric mdl-color--teal-100">
+                                <div ng-include="'partials/organ/organ_det.tpl.html'"></div>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="item in items">
+                            <td ng-if="item._expanded" ng-mouseover="hover = true" ng-mouseout="hover = false" colspan="100" class="mdl-data-table__cell--non-numeric mdl-color--teal-100">
+                                <div ng-include="'partials/organ/organ_det.tpl.html'"></div>
+                            </td>
+                            <td ng-if="!item._expanded" class="mdl-data-table__cell--non-numeric" ng-click="openDetail(item)">{{item.name}}</td>
+                            <td ng-if="!item._expanded" class="mdl-data-table__cell--non-numeric mdl-cell--hide-phone" ng-click="openDetail(item)"><span ng-repeat="itm in item.domains" repeat-Delimiter>{{itm}}</span></td>
+                            <td ng-if="!item._expanded" class="mdl-data-table__cell--non-numeric mdl-cell--hide-phone" ng-click="openDetail(item)">{{item.ico}}</td>
+                            <td ng-if="!item._expanded">
+                                <div ng-if="panel.acc.delete" datapanel="panel-del"></div>
+                                <div ng-if="!panel.acc.delete && (panel.acc.create||panel.acc.update)" datapanel="panel-upd"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot datapanel="panel-fot"></tfoot>
+                </table>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div id="modalview" modalview="modalview" ng-class="{short: !$parent.largeMenu}">
+        <div ng-include="'partials/organ/ticketview.tpl.html'"></div>
+    </div>
+
+    <dialog class="mdl-dialog">
+        <div class="mdl-dialog__content">
+            <p>
+                Press Yes to delete the record from the database.
+            </p>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button pgDelButton">Delete</button>
+            <button type="button" class="mdl-button pgDelButtonClose">Close</button>
+        </div>
+    </dialog>
+</div>

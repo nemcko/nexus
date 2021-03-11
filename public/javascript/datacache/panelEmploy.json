@@ -1,0 +1,20 @@
+﻿{
+  "title": "Employ",
+  "links": [
+    {
+      "href": "#/dashboard",
+      "icon": "dashboard",
+      "name": "Dashboard"
+    },
+    {
+      "href": "#/login",
+      "icon": "account_box",
+      "name": "Login"
+    },
+    {
+      "href": "#/user",
+      "icon": "perm_identity",
+      "name": "Users"
+    }
+  ]
+}

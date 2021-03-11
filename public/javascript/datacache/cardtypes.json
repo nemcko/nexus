@@ -1,0 +1,77 @@
+﻿[
+  {
+    "cardtype": "3col2row",
+    "name": "3col X 2row",
+    "position": [
+      {
+        "code": "row1col1",
+        "label": "Row 1, Column 1",
+        "title": "",
+        "anyof": [],
+        "allof": [],
+        "field": "",
+        "accumfn": "sum"
+      },
+      {
+        "code": "row1col2",
+        "label": "Row 1, Column 2",
+        "title": "",
+        "anyof": [],
+        "allof": [],
+        "field": "",
+        "accumfn": "sum"
+      },
+      {
+        "code": "row1col3",
+        "label": "Row 1, Column 3",
+        "title": "",
+        "anyof": [],
+        "allof": [],
+        "field": "",
+        "accumfn": "sum"
+      },
+      {
+        "code": "row2col1",
+        "label": "Row 2, Column 1",
+        "title": "",
+        "anyof": [],
+        "allof": [],
+        "field": "",
+        "accumfn": "sum"
+      },
+      {
+        "code": "row2col2",
+        "label": "Row 2, Column 2",
+        "title": "",
+        "anyof": [],
+        "allof": [],
+        "field": "",
+        "accumfn": "sum"
+      },
+      {
+        "code": "row2col3",
+        "label": "Row 2, Column 3",
+        "title": "",
+        "anyof": [],
+        "allof": [],
+        "field": "",
+        "accumfn": "sum"
+      }
+    ]
+  },
+  {
+    "cardtype": "value",
+    "name": "Value",
+    "position": [
+      {
+        "code": "val",
+        "label": "Value",
+        "title": "",
+        "anyof": [],
+        "allof": [],
+        "field": "",
+        "accumfn": "sum"
+      }
+    ]
+  }
+]

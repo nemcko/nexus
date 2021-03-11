@@ -1,0 +1,120 @@
+﻿<form id="updateForm" name="updateForm">
+    <br />
+    <div ng-switch on="detailtype" class="mdl-cell--12-cole">
+        <div ng-switch-when="detail">
+            <img ng-srcset="/api/image/{{rowdata._id}}?ms={{random}}" id="imgavatar" name="imgavatar" class="mdl-cell--1-col mdl-color--white">
+
+            <div class="mdl-button mdl-button--icon mdl-button--file"
+                 ngf-select="upload(rowdata._id,$file,updateForm.avatar)" ng-model="avatar" id="avatar" name="avatar"
+                 ngf-pattern="'image/*'" ngf-multiple="false"
+                 ngf-accept="'image/*'" ngf-max-size="1MB">
+                <i class="material-icons app-dimmed">publish</i>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+                <input class="mdl-textfield__input" type="email" id="username" name="username" focusme ng-pattern="/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i" ng-model="rowdata.username" ng-disabled="!expandedNew" ng-required="true" />
+                <label class="mdl-textfield__label" for="user">Email*</label>
+                <span class="mdl-tooltip mdl-tooltip--validation" for="username" ng-show="updateForm.username.$invalid && updateForm.username.$touched">
+                    <span ng-show="updateForm.username.$error.required">Required.</span>
+                    <span ng-show="updateForm.username.$error.pattern">Please enter a valid email address!</span>
+                </span>
+            </div>
+            <br class="mdl-cell--hide-desktop mdl-cell--hide-tablet" />
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+                <input class="mdl-textfield__input" type="text" id="fullname" name="fullname" ng-model="rowdata.fullname" ng-required="true" />
+                <label class="mdl-textfield__label" for="fullname">Full name</label>
+                <span class="mdl-tooltip mdl-tooltip--validation" for="fullname" ng-show="updateForm.fullname.$invalid && updateForm.fullname.$touched">
+                    <span ng-show="updateForm.fullname.$error.required">Required.</span>
+                </span>
+
+            </div>
+            <br class="mdl-cell--hide-desktop mdl-cell--hide-tablet" />
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--2-col">
+                <input class="mdl-textfield__input" type="text" id="phone" name="phone" ng-model="rowdata.phone" />
+                <label class="mdl-textfield__label" for="phone">Phone</label>
+            </div>
+            <br />
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                <input class="mdl-textfield__input" type="text" id="notes" name="notes" ng-model="rowdata.notes" />
+                <label class="mdl-textfield__label" for="notes">Notes</label>
+            </div>
+            <br />
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--6-col">
+                <input class="mdl-textfield__input" type="text" id="tags" name="tags" ng-model="rowdata.tags" />
+                <label class="mdl-textfield__label" for="tags">Tags</label>
+            </div>
+            <br />
+            <br />
+            <h6>User role:</h6>
+            <div class="mdl-grid">
+                <!--<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--3-col" ng-repeat="utype in userTypes" for="acc_{{utype.code}}">
+                    <input type="radio" id="acc_{{utype.code}}" class="mdl-radio__button" value="{{utype.code}}"
+                           ng-model="rowdata.role" name="role" ng-click="setUsertype()">
+                    <span class="mdl-radio__label">{{utype.name}} <small>/{{utype.type}}</small></span>
+                </label>-->
+                <div class="mdl-cell--3-col" ng-repeat="utype in userTypes" for="acc_{{utype.code}}">
+                    <input type="radio" id="acc_{{utype.code}}" value="{{utype.code}}"
+                           ng-model="rowdata.role" name="role" ng-click="setUsertype()">
+                    <span>{{utype.name}} <small>/{{utype.type}}</small></span>
+                </div>
+            </div>
+            <input type="hidden" id="usertype" name="usertype" ng-model="rowdata.usertype" />
+            <div class="mdl-cell--8-col">
+                <br />
+                <button class="mdl-button mdl-js-button" ng-click="showDetailType('pwd')" ng-show="canChangePwd(rowdata.username)">
+                    Change password
+                </button>
+                <button class="mdl-button mdl-js-button" ng-click="showTickets()">
+                    Show tickets
+                </button>
+
+                <button id="pgClose{{panel.pgId}}" class="mdl-button mdl-js-button mdl-cell--7-offset" ng-click="closeDetail(item)">
+                    Cancel
+                </button>
+                <button id="pgSave{{panel.pgId}}" class="mdl-button mdl-js-button mdl-button--accent" ng-show="panel.acc.create || panel.acc.update" ng-disabled="updateForm.$invalid" ng-click="save()">
+                    Save
+                </button>
+            </div>
+
+        </div>
+        <div ng-switch-when="pwd">
+            <img ng-srcset="/api/image/{{rowdata._id}}?ms={{random}}" id="imgavatar" name="imgavatar" class="mdl-cell--1-col mdl-color--white" style="margin-right:10px;">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+                <input class="mdl-textfield__input" type="password" id="password" name="password" ng-model="rowdata.password" ng-required="true" pw-check="password2">
+                <label class="mdl-textfield__label" for="password">Password</label>
+                <span class="mdl-tooltip mdl-tooltip--validation" for="Password" ng-show="updateForm.password.$error">
+                    <span ng-show="updateForm.password.$error.required">Required.</span>
+                </span>
+            </div>
+
+            <br class="mdl-cell--hide-desktop mdl-cell--hide-tablet" />
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+                <input class="mdl-textfield__input" type="password" id="password2" name="password2" ng-model="data.password2" ng-required="true">
+                <label class="mdl-textfield__label" for="password2">Confirm</label>
+                <span class="mdl-tooltip mdl-tooltip--validation" for="password2" ng-show="updateForm.password.$error.pwmatch || updateForm.password2.$error.required">
+                    <span ng-show="updateForm.password2.$error.required">Required.</span>
+                    <span ng-show="updateForm.password.$error.pwmatch">Passwords don't match.</span>
+                </span>
+            </div>
+
+            <div class="mdl-cell--8-col">
+                <br />
+                <button class="mdl-button mdl-js-button" ng-click="showDetailType('detail')">
+                    Detail
+                </button>
+
+                <button id="pgClose{{panel.pgId}}" class="mdl-button mdl-js-button mdl-cell--10-offset" ng-click="closeDetail(item)">
+                    Cancel
+                </button>
+                <button id="pgSave{{panel.pgId}}" class="mdl-button mdl-js-button mdl-button--accent" ng-show="panel.acc.update" ng-disabled="updateForm.$invalid" ng-click="changePassword(item)">
+                    Change
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--<pre>{{currentUser | json}}</pre>-->
+
+    <br />
+</form>

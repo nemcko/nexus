@@ -1,0 +1,43 @@
+﻿{
+  "title": "Manage Views",
+  "color": "mdl-color--purple-400",
+  "icon": "settings",
+  "name": "Settings",
+  "links": [
+    {
+      "href": "#/bpos",
+      "icon": "dashboard",
+      "name": "Dashboards"
+    },
+    {
+      "href": "#/tables",
+      "icon": "view_list",
+      "name": "Views"
+    },
+    {
+      "href": "#/charts",
+      "icon": "equalizer",
+      "name": "Charts"
+    },
+    {
+      "href": "#/cards",
+      "icon": "chrome_reader_mode",
+      "name": "Cards"
+    },
+    {
+      "href": "#/searchs",
+      "icon": "pageview",
+      "name": "Search panel"
+    },
+    {
+      "href": "#/ausr",
+      "icon": "settings_applications",
+      "name": "User macros"
+    },
+    {
+      "href": "#/accview",
+      "icon": "assignment_turned_in",
+      "name": "Access for view"
+    }
+  ]
+}

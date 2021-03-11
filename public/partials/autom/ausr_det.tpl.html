@@ -1,0 +1,62 @@
+﻿<form name="updateForm">
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--6-col">
+        <input focusme class="mdl-textfield__input" type="text" id="name" name="name" ng-model="rowdata.name" ng-required="true" />
+        <label class="mdl-textfield__label" for="user">Macro Name</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="name" ng-show="updateForm.name.$invalid && updateForm.name.$touched">
+            <span ng-show="updateForm.name.$error.required">Required.</span>
+        </span>
+    </div>
+
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-cell--2-col" for="active">
+        <input type="checkbox" id="active" class="mdl-checkbox__input" ng-model="rowdata.active">
+        <span class="mdl-checkbox__label">Active</span>
+    </label>
+
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-cell--2-col" for="shared">
+        <input type="checkbox" id="shared" class="mdl-checkbox__input" ng-model="rowdata.shared">
+        <span class="mdl-checkbox__label">Shared</span>
+    </label>
+
+    <br />
+
+
+    <div class="mdl-grid">
+        <span class="mdl-typography--body-2-force-preferred-font mdl-cell--12-col">Content of the macro:</span>
+        <div class="mdl-cell--12-col">
+            <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+                <select class="mdl-textfield__input" type="text" ng-model="newitem.field" ng-options="o.name as (o.label+(o.exlabel?' ('+o.exlabel+')':'') ) group by o.grp for o in vwflds"></select>
+                <label class="mdl-textfield__label">Assign field</label>
+            </div>
+            <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+                <input ng-if="getListType(newitem.field)" class="mdl-textfield__input mdl-cell--12-col" type="text" ng-model="newitem.value" />
+                <select ng-if="!getListType(newitem.field)" class="mdl-textfield__input mdl-cell--12-col" type="text" ng-model="newitem.value" ng-options="o.key as o.name for o in getListValues(newitem.field)"></select>
+                <label class="mdl-textfield__label">Assign value</label>
+            </div>
+
+            <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-cell--12-offset mdl-color--teal-50" ng-click="addActionItem(newitem,rowdata.fields)">
+                <i class="material-icons">add</i>
+            </button>
+
+            <div class="mdl-grid mdl-color--teal-50" ng-repeat="item in rowdata.fields">
+                <select class="mdl-textfield__input mdl-cell--4-col" type="text" ng-change="setListMessage(item)" ng-model="item.field" ng-options="o.name as o.label for o in vwflds"></select>
+                <input ng-if="getListType(item.field)" class="mdl-textfield__input mdl-cell--4-col" type="text" ng-model="item.value" />
+                <select ng-if="!getListType(item.field)" class="mdl-textfield__input mdl-cell--4-col" type="text" ng-model="item.value" ng-options="o.key as o.name for o in getListValues(item.field)"></select>
+                <div clss="mdl-cell--4-col"></div>
+                <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-cell--12-offset mdl-color--teal-100" ng-click="delListItem(item,rowdata.fields)">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <div class="mdl-grid mdl-color--teal-50">
+                <div class="mdl-cell--12-col mdl-color--grey-50">
+                    <label class="mdl-cell mdl-cell--12-col mdl-color-text--blue-grey-400">Title</label>
+                    <input class="mdl-textfield__input mdl-cell mdl-cell--11-col" type="text" ng-model="item.message.title" />
+                    <label class="mdl-cell mdl-cell--12-col mdl-color-text--blue-grey-400">Description</label>
+                    <textarea class="mdl-textfield__input mdl-cell mdl-cell--11-col" type="text" id="msgbody{{$index}}" rows="3" ng-model="item.message.body"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<pre>{{rowdata | json}}</pre>-->
+    <div datapanel="panel-det2" class="mdl-cell--12-col"></div>
+</form>

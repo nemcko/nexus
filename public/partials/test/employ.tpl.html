@@ -1,0 +1,93 @@
+﻿<div class="app-content">
+    <div class="app-table mdl-cell--12-col">
+        <div class="app-table_title">
+            <div class="display-1">Employee</div>
+            <div ng-show="processData" class="mdl-spinner mdl-js-spinner mdl-spinner--single-color is-active"></div>
+            <div class="app-table_options">
+
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                    <label class="mdl-button mdl-js-button mdl-button--icon" for="pgSearch{{panel.pgId}}">
+                        <i id="pgIconSearch{{panel.pgId}}" class="material-icons">search</i>
+                    </label>
+                    <div class="mdl-textfield__expandable-holder">
+                        <input class="mdl-textfield__input" type="text" id="pgSearch{{panel.pgId}}" ng-model="panel.search" ng-keydown="pressSearch($event)">
+                        <label class="mdl-textfield__label" for="pgSearch{{panel.pgId}}">Enter your query...</label>
+                    </div>
+
+                </div>
+                <div class="mdl-tooltip" for="pgIconSearch{{panel.pgId}}">
+                    Search Open/Close
+                </div>
+
+                <button class="hide-tabphone mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="pgOption{{panel.pgId}}">
+                    <i class="material-icons">more_vert</i>
+                </button>
+                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-left" for="pgOption{{panel.pgId}}">
+                    <li class="mdl-menu__item">
+                        <a class="mdl-navigation__link" href="#/dashboard">Dashboard</a>
+                    </li>
+                    <li class="mdl-menu__item">
+                        <a class="mdl-navigation__link" href="#/login">Login</a>
+                    </li>
+                    <li class="mdl-menu__item">Legal information</li>
+                </ul>
+                <div class="mdl-tooltip" for="pgOption{{panel.pgId}}">
+                    Settings
+                </div>
+            </div>
+
+        </div>
+
+        <table class="mdl-data-table mdl-js-data-table  mdl-cell--12-col  xxxmdl-color--blue-50" ng-if="panel.acc.read">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Name</th>
+                    <th class="mdl-data-table__cell--non-numeric">Surename</th>
+                    <th class="mdl-cell--hide-phone">Phone</th>
+                    <th class="mdl-cell--hide-phone">Zip</th>
+                    <th class="app-table_but">
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" ng-show="panel.acc.create" ng-if="!expandedNew" ng-click="openDetail()">
+                            <i id="pgNewItem{{panel.pgId}}" class="material-icons app-dimmed">add</i>
+                        </button>
+                        <div class="mdl-tooltip" for="pgNewItem{{panel.pgId}}">
+                            New
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-if="expandedNew">
+                    <td colspan="100" class="mdl-data-table__cell--non-numeric mdl-color--teal-100">
+                        <div ng-include="'partials/test/employ_det.tpl.html'"></div>
+                    </td>
+                </tr>
+                <tr ng-repeat="item in items">
+                    <td ng-if="item._expanded" ng-mouseover="hover = true" ng-mouseout="hover = false" colspan="100" class="mdl-data-table__cell--non-numeric mdl-color--teal-100">
+                        <div ng-include="'partials/test/employ_det.tpl.html'"></div>
+                    </td>
+
+                    <td ng-if="!item._expanded" class="mdl-data-table__cell--non-numeric" ng-click="openDetail(item)">{{item.name}}</td>
+                    <td ng-if="!item._expanded" class="mdl-data-table__cell--non-numeric" ng-click="openDetail(item)">{{item.surname}}</td>
+                    <td ng-if="!item._expanded" class="mdl-cell--hide-phone" ng-click="openDetail(item)">{{item.phone}}</td>
+                    <td ng-if="!item._expanded" class="mdl-cell--hide-phone" ng-click="openDetail(item)">{{item.zip}}</td>
+                    <td ng-if="!item._expanded">
+                        <div ng-if="panel.acc.delete" datapanel="panel-del"></div>
+                        <div ng-if="!panel.acc.delete && (panel.acc.create||panel.acc.update)" datapanel="panel-upd"></div>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot datapanel="panel-fot"></tfoot>
+        </table>
+
+        <dialog class="mdl-dialog">
+            <div class="mdl-dialog__content">
+                <p>
+                    Press Yes to delete the record from the database.
+                </p>
+            </div>
+            <div class="mdl-dialog__actions">
+                <button type="button" class="mdl-button pgDelButton">Delete</button>
+                <button type="button" class="mdl-button pgDelButtonClose">Close</button>
+            </div>
+        </dialog>
+    </div>

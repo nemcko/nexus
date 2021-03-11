@@ -1,0 +1,26 @@
+﻿[
+  {
+    "name": "Equal",
+    "key": "d_eq"
+  },
+  {
+    "name": "Not equal",
+    "key": "d_ne"
+  },
+  {
+    "name": "Less than",
+    "key": "d_lt"
+  },
+  {
+    "name": "Greater than",
+    "key": "d_gt"
+  },
+  {
+    "name": "Less than or equal",
+    "key": "d_lte"
+  },
+  {
+    "name": "Greater than or equal",
+    "key": "d_gte"
+  }
+]

@@ -1,0 +1,47 @@
+﻿<form name="updateForm">
+  
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--9-col">
+        <input focusme class="mdl-textfield__input" type="text" id="name" name="name" ng-model="rowdata.name" xxxng-disabled="!expandedNew" ng-required="true" />
+        <label class="mdl-textfield__label" for="user">Panel Name</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="name" ng-show="updateForm.name.$invalid && updateForm.name.$touched">
+            <span ng-show="updateForm.name.$error.required">Required.</span>
+        </span>
+    </div>
+
+    <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+        <select class="mdl-textfield__input" type="text" ng-model="rowdata.accid" ng-options="o._id as o.name for o in accids" required></select>
+        <label class="mdl-textfield__label">Access type</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="name" ng-show="!updateForm.accid">
+            <span>Required.</span>
+        </span>
+    </div>
+
+    <br />
+
+    <div class="mdl-grid">
+            <div class="mdl-cell--7-col">
+                <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                    <select class="mdl-textfield__input" type="text" ng-model="newitem" ng-options="o.name as (o.label+(o.exlabel?' ('+o.exlabel+')':'') ) group by o.grp for o in vwflds"></select>
+                    <label class="mdl-textfield__label">Field</label>
+                </div>
+                <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-color--teal-50" ng-click="addFieldsItem(newitem,rowdata.fields)">
+                    <i class="material-icons">add</i>
+                </button>
+
+                <dir class="mdl-grid mdl-color--teal-50" ng-repeat="item in rowdata.fields">
+                    <span class="mdl-textfield__input mdl-cell--11-col">{{getFieldsItemLabel(item)}}</span>
+                    <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-color--teal-100" ng-click="delFieldsItem(item,rowdata.fields)">
+                        <i class="material-icons">close</i>
+                    </button>
+                </dir>
+            </div>
+            <div class="mdl-cell--5-col">
+                <br /><br /><br /><br />
+
+            </div>
+
+    </div>
+
+        <!--<pre>{{rowdata | json}}</pre>-->
+        <div datapanel="panel-det"></div>
+</form>

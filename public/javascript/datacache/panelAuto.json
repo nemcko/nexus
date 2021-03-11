@@ -1,0 +1,18 @@
+﻿{
+  "title": "Manage Automation",
+  "color": "mdl-color--indigo-400",
+  "icon": "extension",
+  "name": "Automation",
+  "links": [
+    {
+      "href": "#/automs",
+      "icon": "flash_on",
+      "name": "Triggers"
+    },
+    {
+      "href": "#/svcs",
+      "icon": "build",
+      "name": "Services"
+    }
+  ]
+}

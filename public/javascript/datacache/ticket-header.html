@@ -1,0 +1,43 @@
+
+<span class="mdl-cell--9-col">Ticket #{{rowdata.ticnum}}&nbsp;<small>{{rowdata.status}}</small></span>
+<div class="mdl-cell--5-col" style="text-align:right;">
+
+    <button id="bthShowComment1" class="mdl-button mdl-js-button mdl-button--icon app-dimmed" ng-click="ticketExt='comment';$parent.refresh();" 
+            ng-show="rowdataPanel && rowdataPanel.acc.viewacc.substring(0, 2)=='ag' || searchPanelData && searchPanelData.acc.viewacc.substring(0, 2)=='ag'">
+        <i class="material-icons">chat_bubble_outline</i>
+    </button>
+    <div class="mdl-tooltip" for="bthShowComment1">
+        Show Comments
+    </div>
+
+    <button id="bthShowComment2" class="mdl-button mdl-js-button mdl-button--icon app-dimmed" ng-click="ticketExt='all';$parent.refresh();" 
+            ng-show="rowdataPanel && rowdataPanel.acc.viewacc.substring(0, 2)=='ag' || searchPanelData && searchPanelData.acc.viewacc.substring(0, 2)=='ag'">
+        <i class="material-icons">message</i>
+    </button>
+    <div class="mdl-tooltip" for="bthShowComment2">
+        Show All
+    </div>
+
+    <button id="bthShowComment5" ng-show="rowdataPanel.hasbookmarks && rowdataPanel.pageMarked && !rowdata.mergedto" class="mdl-button mdl-js-button mdl-button--icon app-dimmed" ng-click="mergeTickets(rowdataPanel,rowdata)">
+        <i class="material-icons app-dimmed">call_merge</i>
+    </button>
+    <div class="mdl-tooltip" for="bthShowComment5">
+        Merge marked tickets
+    </div>
+
+
+    <button id="bthShowComment3" xxxng-hide="searchPanelData" class="mdl-button mdl-js-button mdl-button--icon app-dimmed" ng-click="getNextTicket(rowdataPanel,rowdata)">
+        <i class="material-icons">theaters</i>
+    </button>
+    <div class="mdl-tooltip" for="bthShowComment3">
+        Show next ticket
+    </div>
+
+    <button id="bthShowComment4" class="mdl-button mdl-js-button mdl-button--icon app-dimmed" slide-up-toggle="ticketdetail">
+        <i class="material-icons">cancel</i>
+    </button>
+    <div class="mdl-tooltip" for="bthShowComment4">
+        Close with no update
+    </div>
+
+</div>

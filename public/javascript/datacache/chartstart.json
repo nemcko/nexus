@@ -1,0 +1,18 @@
+﻿[
+  {
+    "code": "year1",
+    "name": "First day of this year"
+  },
+  {
+    "code": "month1",
+    "name": "First day of month"
+  },
+  {
+    "code": "year-1",
+    "name": "F.d.previous year"
+  },
+  {
+    "code": "month-1",
+    "name": "F.d.of month prev.year"
+  }
+]

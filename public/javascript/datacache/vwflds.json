@@ -1,0 +1,341 @@
+﻿[
+  {
+    "name": "ticnum",
+    "label": "Ticket Nr.",
+    "grp": "Ticket fields",
+    "type": "Number",
+    "size": 6
+  },
+
+  {
+    "name": "status",
+    "label": "Status",
+    "grp": "Ticket fields",
+    "oid": "optticstatus",
+    "size": 4
+  },
+
+  {
+    "name": "assignee",
+    "label": "Assignee",
+    "grp": "Ticket fields",
+    "oid": "optassignee"
+  },
+
+  {
+    "name": "priority",
+    "label": "Priority",
+    "grp": "Ticket fields",
+    "cache": "optpriority",
+    "size": 5,
+    "formfun": "priority"
+  },
+
+  {
+    "name": "dueDate",
+    "label": "Due Date",
+    "grp": "Ticket fields",
+    "type": "Date",
+    "size": 8,
+    "formfun": "dmy"
+  },
+
+  {
+    "name": "requester",
+    "label": "Requester",
+    "grp": "Ticket fields",
+    "oid": "optrequester"
+  },
+
+  {
+    "name": "requestcc",
+    "label": "CC",
+    "grp": "Ticket fields",
+    "oid": "optrequester"
+  },
+
+  {
+    "name": "requestbc",
+    "label": "BC",
+    "grp": "Ticket fields",
+    "oid": "optrequester"
+  },
+
+  {
+    "name": "service",
+    "label": "Service",
+    "grp": "Ticket fields",
+    "cache": "optservice",
+    "size": 5
+  },
+
+  {
+    "name": "time",
+    "label": "Time",
+    "grp": "Ticket fields",
+    "cache": "opttime",
+    "align": "right",
+    "size": 3
+  },
+
+  {
+    "name": "transport",
+    "label": "Transport",
+    "grp": "Ticket fields",
+    "cache": "opttransp",
+    "align": "right",
+    "size": 4
+  },
+
+  {
+    "name": "purchase",
+    "label": "purchase",
+    "grp": "Ticket fields",
+    "type": "Number",
+    "align": "right",
+    "size": 4
+  },
+
+  {
+    "name": "price",
+    "label": "Price VAT incl.",
+    "grp": "Ticket fields",
+    "type": "Number",
+    "align": "right",
+    "size": 4
+  },
+
+  {
+    "name": "reimburse",
+    "label": "Reimburse",
+    "grp": "Ticket fields",
+    "type": "Boolean",
+    "size": 1
+  },
+
+  {
+    "name": "requital",
+    "label": "Requital",
+    "grp": "Ticket fields",
+    "cache": "optrequital"
+  },
+
+  {
+    "name": "subject",
+    "label": "Subject",
+    "grp": "Ticket fields",
+    "type": "String",
+    "size": 25
+  },
+
+  //{
+  //  "name": "message",
+  //  "label": "Message",
+  //  "grp": "Ticket fields",
+  //  "type": "String"
+  //},
+
+  {
+    "name": "tags",
+    "label": "Tags",
+    "grp": "Ticket fields",
+    "type": "String"
+
+  },
+
+  {
+    "name": "comment",
+    "label": "Comment",
+    "grp": "Ticket fields",
+    "type": "String",
+    "size": 20
+  },
+
+  {
+    "name": "hidden",
+    "label": "Hidden",
+    "grp": "Ticket fields",
+    "type": "Boolean",
+    "size": 1
+  },
+
+
+
+
+  {
+    "name": "strOrgan",
+    "label": "Organization",
+    "grp": "Extended fields",
+    "type": "String",
+    "size": 8
+  },
+  {
+    "name": "strGroup",
+    "label": "Group",
+    "grp": "Extended fields",
+    "type": "String",
+    "size": 5
+  },
+  {
+    "name": "requestDate",
+    "label": "Requested",
+    "grp": "Extended fields",
+    "type": "Date",
+    "size": 6,
+    "formfun": "requested"
+  },
+  {
+    "name": "updateDate",
+    "label": "Updated",
+    "grp": "Extended fields",
+    "type": "Date",
+    "size": 6,
+    "formfun": "dmy"
+  },
+  {
+    "name": "notifyAtDate",
+    "label": "Notify at Date",
+    "grp": "Extended fields",
+    "oid": "automat",
+    "size": 8
+  },
+  {
+    "name": "reopenAtDate",
+    "label": "Reopen at Date",
+    "grp": "Extended fields",
+    "oid": "automat",
+    "size": 8
+  },
+  {
+    "name": "updaterType",
+    "label": "Updater type",
+    "grp": "Extended fields",
+    "cache": "optupdater",
+    "size": 4
+  },
+
+  {
+    "name": "requestDate#unasigned",
+    "label": "Age",
+    "exlabel": "unasigned",
+    "grp": "Extended fields",
+    "formfun": "unasigned",
+    "oid": "optover",
+    "size": 4
+  },
+  {
+    "name": "requestDate#bookmarks",
+    "label": "Age",
+    "exlabel": "bookmarks",
+    "grp": "Extended fields",
+    "formfun": "bookmarks",
+    "oid": "optover",
+    "size": 4
+  },
+  {
+    "name": "requestDate#overdue",
+    "label": "Age",
+    "exlabel": "overdue",
+    "grp": "Extended fields",
+    "formfun": "overdue",
+    "oid": "optover",
+    "size": 4
+  },
+  {
+    "name": "requestDate#oldtickets",
+    "label": "Age",
+    "exlabel": "oldtickets",
+    "grp": "Extended fields",
+    "formfun": "oldtickets",
+    "oid": "optover",
+    "size": 4
+  },
+  {
+    "name": "dueDate#overdate",
+    "label": "Over",
+    "grp": "Extended fields",
+    "formfun": "overdate",
+    "oid": "optover",
+    "size": 4
+  }
+
+  //{
+  //  "name": "v__live",
+  //  "label": "Live",
+  //  "grp": "Virtual fields",
+  //  "cache": "opttruefalse"
+  //}
+
+
+  //{
+  //  "name": "v__ageUnasigned",
+  //  "label": "Age",
+  //  "exlabel": "unasigned",
+  //  "grp": "Virtual fields",
+  //  "datafield": "requestDate",
+  //  "formfun": "unasigned",
+  //  "oid": "optover",
+  //  "size": 4
+  //},
+  //{
+  //  "name": "v__ageBookmarks",
+  //  "label": "Age",
+  //  "exlabel": "bookmarks",
+  //  "grp": "Virtual fields",
+  //  "datafield": "requestDate",
+  //  "formfun": "bookmarks",
+  //  "oid": "optover",
+  //  "size": 4
+  //},
+  //{
+  //  "name": "v__ageOverdue",
+  //  "label": "Age",
+  //  "exlabel": "overdue",
+  //  "grp": "Virtual fields",
+  //  "datafield": "requestDate",
+  //  "formfun": "overdue",
+  //  "oid": "optover",
+  //  "size": 4
+  //},
+  //{
+  //  "name": "v__ageKnowledge",
+  //  "label": "Age",
+  //  "exlabel": "update",
+  //  "grp": "Virtual fields",
+  //  "datafield": "requestDate",
+  //  "formfun": "knowledge",
+  //  "oid": "optover",
+  //  "size": 4
+  //},
+  //{
+  //  "name": "v__ageOldtickets",
+  //  "label": "Age",
+  //  "exlabel": "old tickets",
+  //  "grp": "Virtual fields",
+  //  "datafield": "requestDate",
+  //  "formfun": "oldtickets",
+  //  "oid": "optover",
+  //  "size": 4
+  //},
+
+
+  //{
+  //  "name": "v__assignedDate",
+  //  "label": "Assign time",
+  //  "grp": "Virtual fields",
+  //  "oid": "optover"
+  //},
+  //{
+  //  "name": "v__updateDate",
+  //  "label": "Update time",
+  //  "grp": "Virtual fields",
+  //  "oid": "optover"
+  //},
+  //{
+  //  "name": "v__dueDate",
+  //  "label": "Overdue time",
+  //  "grp": "Virtual fields",
+  //  "oid": "optover"
+  //}
+
+]

@@ -1,0 +1,13 @@
+﻿<form name="updateForm">
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--9-col">
+        <input focusme class="mdl-textfield__input" type="text" id="name" name="name" ng-model="rowdata.name" xxxng-disabled="!expandedNew" ng-required="true" />
+        <label class="mdl-textfield__label" for="user">Category Name</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="name" ng-show="updateForm.name.$invalid && updateForm.name.$touched">
+            <span ng-show="updateForm.name.$error.required">Required.</span>
+        </span>
+    </div>
+
+    <!--<pre>{{rowdata | json}}</pre>-->
+    <div datapanel="panel-det" class="mdl-cell--12-col"></div>
+</form>

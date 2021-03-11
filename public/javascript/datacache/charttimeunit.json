@@ -1,0 +1,14 @@
+﻿[
+  {
+    "code": "day",
+    "name": "Day"
+  },
+  {
+    "code": "week",
+    "name": "Week"
+  },
+  {
+    "code": "month",
+    "name": "Month"
+  }
+]

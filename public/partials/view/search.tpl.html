@@ -1,0 +1,84 @@
+﻿<div class="app-page">
+    <div class="app-header" ng-class="panel.color">
+        <div datapanel="panel-links"></div>
+        <h3 class="mdl-color-text--white">{{panel.title}}</h3>
+        <h4 class="mdl-color-text--blue-grey-100">Manage panels in application</h4>
+    </div>
+    <div class="app-content mdl-grid">
+
+        <div class="app-desc mdl-cell mdl-cell--3-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+            <h3><i class="material-icons">pageview</i> Type of panels</h3>
+            <p>
+            <a href="javascript:void(0)" ng-click="setQueryParam('read')"><strong>Shared</strong></a>&nbsp;see panels for agents who have access.
+                <br class="hide-tabphone" /><br class="hide-tabphone" />
+            <a href="javascript:void(0)" ng-click="setQueryParam('created')"><strong>My chart</strong></a>&nbsp;receives panels created by the current user.
+                <br class="hide-tabphone" /><br class="hide-tabphone" />
+            <a href="javascript:void(0)" ng-click="setQueryParam('')"><strong>All</strong></a>&nbsp;available panels accessible to the current user.
+            </p>
+        </div>
+
+        <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+            <div class="app-table">
+
+                <div class="app-table_title">
+                    <div class="display-1">Search panels</div>
+                    <div ng-show="processData" class="mdl-spinner mdl-js-spinner mdl-spinner--single-color is-active"></div>
+                    <div class="app-table_options">
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                            <label class="mdl-button mdl-js-button mdl-button--icon" for="pgSearch{{panel.pgId}}">
+                                <i id="pgIconSearch{{panel.pgId}}" class="material-icons">search</i>
+                            </label>
+                            <div class="mdl-textfield__expandable-holder">
+                                <input class="mdl-textfield__input" type="text" id="pgSearch{{panel.pgId}}" ng-model="panel.search" ng-keydown="pressSearch($event)">
+                                <label class="mdl-textfield__label" for="pgSearch{{panel.pgId}}">Enter your query...</label>
+                            </div>
+
+                        </div>
+                        <div class="mdl-tooltip" for="pgIconSearch{{panel.pgId}}">
+                            Search Open/Close
+                        </div>
+                    </div>
+                </div>
+                <table class="mdl-data-table mdl-js-data-table mdl-cell--12-col" ng-if="panel.acc.read">
+                    <tbody>
+                        <tr ng-if="expandedNew">
+                            <td colspan="100" class="mdl-data-table__cell--non-numeric mdl-color--teal-100">
+                                <div ng-include="'partials/view/search_det.tpl.html'"></div>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="item in items">
+                            <td ng-if="item._expanded" ng-mouseover="hover = true" ng-mouseout="hover = false" colspan="100" class="mdl-data-table__cell--non-numeric mdl-color--teal-100">
+                                <div ng-include="'partials/view/search_det.tpl.html'"></div>
+                            </td>
+                            <td ng-if="!item._expanded" class="mdl-data-table__cell--non-numeric" ng-click="openDetail(item)">{{item.name}}</td>
+                            <td ng-if="!item._expanded">
+                                <div ng-if="panel.acc.delete" datapanel="panel-del"></div>
+                                <div ng-if="!panel.acc.delete && (panel.acc.create||panel.acc.update)" datapanel="panel-upd"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot datapanel="panel-fot2"></tfoot>
+                </table>
+            </div>
+        </div>
+
+
+
+    </div>
+    <dialog class="mdl-dialog">
+        <div class="mdl-dialog__content">
+            <p>
+                Press Yes to delete the record from the database.
+            </p>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button pgDelButton">Delete</button>
+            <button type="button" class="mdl-button pgDelButtonClose">Close</button>
+        </div>
+    </dialog>
+</div>
+
+
+
+

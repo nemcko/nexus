@@ -1,0 +1,110 @@
+﻿<div class="app-page2 md-grid">
+    <div class="app-header mdl-color--blue">
+        <div datapanel="panel-links"></div>
+        <h3 class="mdl-color-text--white">Dashboard</h3>
+        <h4 class="mdl-color-text--blue-grey-100">User tickets send into application</h4>
+    </div>
+    <!--<div class="content mdl-js-ripple-effect">
+        <span class="mdl-ripple"></span>
+    </div>-->
+    <div class="app-desk2 mdl-cell--7-col" xstyle="width:63%">
+        <div class="app-table2 ">
+            <table class="">
+                <caption class="mdl-color--blue-400">My unsolbed tasks (20)</caption>
+                <thead>
+                    <tr class="mdl-color--blue-400">
+                        <th class="">Subject</th>
+                        <th class="">Priority</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in panels.panel1.items" slide-up-toggle="ticketdetail" ng-click="OpenTicket($index)">
+                        <td class="">{{item.subject}}</td>
+                        <td class="">{{item.priority}}</td>
+                    </tr>
+                </tbody>
+                <tfoot datapanel="panel-nav" dataname="panel1"></tfoot>
+            </table>
+        </div>
+    </div>
+    <div class="app-desk2 mdl-cell--5-col" style="width:40%">
+        <div class="app-table2 ">
+            <table class="">
+                <caption class="mdl-color--indigo-200">Unassigned tickets  (20)</caption>
+                <thead>
+                    <tr class="mdl-color--indigo-200">
+                        <th class="">Name</th>
+                        <th class="">Surename</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="" ng-repeat="item in panels.panel2.items">
+                        <td class="">{{item.name}}</td>
+                        <td class="">{{item.surname}}</td>
+                    </tr>
+                </tbody>
+                <tfoot datapanel="panel-nav" dataname="panel2"></tfoot>
+            </table>
+        </div>
+
+        <div class="app-table2 ">
+            <table class="">
+                <caption class="mdl-color--purple-200">Unassigned tickets  (20)</caption>
+                <thead>
+                    <tr class="mdl-color--purple-200">
+                        <th class="">Name</th>
+                        <th class="">Surename</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="" ng-repeat="item in panels.panel3.items">
+                        <td class="">{{item.name}}</td>
+                        <td class="">{{item.surname}}</td>
+                    </tr>
+                </tbody>
+                <tfoot datapanel="panel-nav" dataname="panel3"></tfoot>
+            </table>
+        </div>
+
+        <div class="app-table2 ">
+            <table class="">
+                <caption class="mdl-color--indigo-200">Unassigned tickets  (20)</caption>
+                <thead>
+                    <tr class="mdl-color--indigo-200">
+                        <th class="">Name</th>
+                        <th class="">Surename</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="" ng-repeat="item in panels.panel4.items">
+                        <td class="">{{item.name}}</td>
+                        <td class="">{{item.surname}}</td>
+                    </tr>
+                </tbody>
+                <tfoot datapanel="panel-nav" dataname="panel4"></tfoot>
+            </table>
+        </div>
+
+    </div>
+</div>
+<!--<pre>{{optpending | json}}</pre>-->
+
+<i class="material-icons">dashboard</i>
+<i class="material-icons">view_comfy</i>
+<i class="material-icons">view_compact</i>
+<i class="material-icons">view_agenda</i>
+<i class="material-icons">view_array</i>
+<i class="material-icons">view_column</i>
+<i class="material-icons">view_carousel</i>
+<i class="material-icons">view_day</i>
+<i class="material-icons">view_headline</i>
+<i class="material-icons">view_list</i>
+<i class="material-icons">view_module</i>
+<i class="material-icons">view_quilt</i>
+<i class="material-icons">view_stream</i>
+<i class="material-icons">view_week</i>
+
+
+<div id="ticketdetail" slideable-up="ticketdetail">
+    <div ng-include="'partials/ticket/ticket.tpl.html'"></div>
+</div>

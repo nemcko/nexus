@@ -1,0 +1,185 @@
+﻿<div class="app-page">
+    <div class="app-noheader" ng-class="panel.color">
+        <div datapanel="panel-links"></div>
+        <div class="rside" ng-hide="panel.detail">
+            <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="load();">
+                <i class="material-icons mdl-color-text--blue-grey-300">search</i>
+            </button>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input mdl-color--blue-grey-100 mdl-color-text--indigo" type="text" id="fldKbsearch" 
+                       ng-model="panel.search" ng-keydown="pressKey($event)" 
+                       style="padding-left: 2px; border-radius: 2px;">
+                <label class="mdl-textfield__label" for="fldKbsearch"> Search in Knowledge base</label>
+            </div>
+        </div>
+        <h3 class="mdl-color-text--white">{{panel.title}}</h3>
+        <h4 class="mdl-color-text--blue-grey-100">Documentation of client and user experience.</h4>
+    </div>
+    <div class="app-kbcontent">
+
+
+        <div ng-if="!panel.detail" class="app-kbcateg" ng-repeat="category in panel.items">
+            <h3>{{category.name}}
+                <button class="mdl-button mdl-js-button mdl-button--icon" slide-up-toggle="kbdetail" ng-click="newArticle(category)">
+                    <i class="material-icons app-dimmed">playlist_add</i>
+                </button>
+
+            </h3>
+            <h4 ng-repeat="article in category.articles">
+                <a ng-href="#/kbase/{{article.slug}}">{{article.title}}</a>
+            </h4>
+        </div>
+
+         <div ng-if="panel.detail" class=""  style="width:100%;">
+             <div ng-repeat="article in panel.detail" class="app-grid mdl-cell--12-col app-kbase-detail">
+                 <div class="mdl-typography--title-color-contrast mdl-cell mdl-cell--12-col">{{article.title}}
+                     <a class="mdl-navigation__link" ng-href="#/kbase" id="kbaseback"><i class="material-icons app-dimmed">reply</i></a>
+                     <div class="mdl-tooltip" for="kbaseback">
+                         Return back
+                     </div>
+
+                 </div>
+                 <div class="">
+                     <img ng-srcset="/api/image/{{article.refAuthor._id}}" class="app-photo" />
+                 </div>
+                 <div class="mdl-cell mdl-cell--11-col">
+                     <div class="mdl-typography--menu">
+                         {{article.refAuthor.fullname}}
+                     </div>
+                     <div class="mdl-typography--caption">
+                         {{article.lastUpdater}} on {{article.lastUpdated | date: 'dd.MM.yyyy HH:mm'}}
+                     </div>
+                     <div class="mdl-cell mdl-cell--12-col"></div>
+
+                     <button id="btnNewComment{{article._id}}" class="mdl-button mdl-js-button mdl-button--icon rside" slide-up-toggle="kbcdetail" ng-click="newComment(article)">
+                         <i class="material-icons app-dimmed">speaker_notes</i>
+                     </button>
+                     <div class="mdl-tooltip" for="btnNewComment{{article._id}}">
+                         New Comment
+                     </div>
+
+                     <button id="btnDelArticle{{article._id}}" class="mdl-button mdl-js-button mdl-button--icon rside" ondlgclick="doModalDlg('dlgDelArticle', delArticle, article)">
+                         <i class="material-icons app-dimmed">delete_forever</i>
+                     </button>
+                     <div class="mdl-tooltip" for="btnDelArticle{{article._id}}">
+                         Delete Article
+                     </div>
+
+                     <button id="btnUpdArticle{{article._id}}" class="mdl-button mdl-js-button mdl-button--icon rside" slide-up-toggle="kbdetail" ng-click="updArticle(article)">
+                         <i class="material-icons app-dimmed">mode_edit</i>
+                     </button>
+                     <div class="mdl-tooltip" for="btnUpdArticle{{article._id}}">
+                         Update Article
+                     </div>
+
+
+                     <div class="mdl-grid mdl-color--grey-50">
+                         <div ng-bind-html="article.article"></div>
+                     </div>
+
+                     <div class="app-loglist mdl-cell--10-col mdl-typography--caption">
+                         <div class="app-attachment" ng-repeat="file in article.attachment">
+                             <a target="_blank" class="app-logref" ng-href="kbattach/{{article.attachment_id}}/{{file.uri}}">
+                                 <img ng-src="{{getFileicon(file.filename)}}" style="height:12px;" />
+                                 <span>{{file.filename}}{{(!$last?',':'')}}</span>
+                             </a>
+                         </div>
+                     </div>
+                     <!--<pre>{{article | json}}</pre>-->
+
+                     <div class="app-logbr"></div>
+
+                     <div class="app-grid mdl-cell--12-col" ng-repeat="comment in article.comments">
+                         <div class="">
+                             <img ng-srcset="/api/image/{{comment.refAgent._id}}" class="app-photo" />
+                         </div>
+                         <div class="mdl-cell mdl-cell--11-col">
+                             <div class="mdl-typography--menu">
+                                 {{comment.refAgent.fullname}}
+                             </div>
+                             <div class="mdl-typography--caption">
+                                 {{comment.refAgent.username}} on {{comment.posted | date: 'dd.MM.yyyy HH:mm'}}
+                             </div>
+
+                             <button id="btnDelComment{{comment._id}}" class="mdl-button mdl-js-button mdl-button--icon rside" ondlgclick="doModalDlg('dlgDelComment', delComment, { article: article, comment: comment })">
+                                 <i class="material-icons app-dimmed">speaker_notes_off</i>
+                             </button>
+                             <div class="mdl-tooltip" for="btnDelComment{{comment._id}}">
+                                 Delete Article
+                             </div>
+
+                             <button id="btnUpdComment{{comment._id}}" class="mdl-button mdl-js-button mdl-button--icon rside" slide-up-toggle="kbcdetail" ng-click="updComment(article,comment)">
+                                 <i class="material-icons app-dimmed">rate_review</i>
+                             </button>
+                             <div class="mdl-tooltip" for="btnUpdComment{{comment._id}}">
+                                 Update Article
+                             </div>
+
+
+                             <div class="mdl-cell mdl-cell--12-col"></div>
+                             <div class="mdl-grid mdl-color--grey-50">
+                                 <div ng-bind-html="comment.comment"></div>
+                             </div>
+                             <div class="app-loglist mdl-cell--10-col mdl-typography--caption">
+                                 <div class="app-attachment" ng-repeat="file in comment.attachment">
+                                     <a target="_blank" class="app-logref" ng-href="kbattach/{{comment.attachment_id}}/{{file.uri}}">
+                                         <img ng-src="{{getFileicon(file.filename)}}" style="height:12px;" />
+                                         <span>{{file.filename}}{{(!$last?',':'')}}</span>
+                                     </a>
+                                 </div>
+                             </div>
+
+                         </div>
+                         <!--<pre>{{comment | json}}</pre>-->
+
+                     </div>
+
+                 </div>
+
+             </div>
+             <!--<pre>{{panel.detail | json}}</pre>-->
+
+         </div>
+
+    </div>
+
+
+    <!--<pre>{{panel.items | json}}</pre>-->
+
+
+
+    <div id="kbdetail" slideable-up="kbdetail">
+        <div ng-include="'partials/kbase/detail.tpl.html'"></div>
+    </div>
+    <div id="kbcdetail" slideable-up="kbcdetail">
+        <div ng-include="'partials/kbase/cdetail.tpl.html'"></div>
+    </div>
+
+    <dialog id="dlgDelArticle" class="mdl-dialog">
+        <div class="mdl-dialog__content">
+            <p>
+                Press DELETE to remove the Article.
+            </p>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button pgDelButton">Delete</button>
+            <button type="button" class="mdl-button pgDelButtonClose">Close</button>
+        </div>
+    </dialog>
+
+    <dialog id="dlgDelComment" class="mdl-dialog">
+        <div class="mdl-dialog__content">
+            <p>
+                Press DELETE to remove the Comment.
+            </p>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button pgDelButton">Delete</button>
+            <button type="button" class="mdl-button pgDelButtonClose">Close</button>
+        </div>
+    </dialog>
+
+</div>
+
+
+

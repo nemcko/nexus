@@ -1,0 +1,130 @@
+﻿<!--<div class="mdl-typography--subhead">Detail of fields</div>-->
+<form name="updateForm">
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+        <input class="mdl-textfield__input" type="text" id="user" name="user" pattern="[A-Za-z\s]*" ng-model="rowdata.user" ng-disabled="!expandedNew" ng-required="true" />
+        <label class="mdl-textfield__label" for="user">User name*</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="user" ng-show="updateForm.user.$invalid && updateForm.user.$touched">
+            <span ng-show="updateForm.user.$error.required">Required.</span>
+            <span ng-show="updateForm.name.$error.pattern">Invalid pattern.</span>
+        </span>
+    </div>
+
+    <br />
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--2-col">
+        <input class="mdl-textfield__input" type="text" id="title" name="Street" ng-model="rowdata.title" />
+        <label class="mdl-textfield__label" for="title">Title</label>
+    </div>
+    <br class="mdl-cell--hide-desktop" />
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+        <input class="mdl-textfield__input" type="text" id="name" name="name" ng-model="rowdata.name" />
+        <label class="mdl-textfield__label" for="name">Name</label>
+    </div>
+    <br class="mdl-cell--hide-desktop mdl-cell--hide-tablet" />
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--6-col">
+        <input class="mdl-textfield__input" type="text" id="surname" name="surname" ng-model="rowdata.surname" />
+        <label class="mdl-textfield__label" for="surname">Surname</label>
+    </div>
+    <br />
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+        <input class="mdl-textfield__input" type="text" id="company" name="company" ng-model="rowdata.company" />
+        <label class="mdl-textfield__label" for="company">Company</label>
+    </div>
+
+    <br />
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--5-col">
+        <input class="mdl-textfield__input" type="text" id="street" name="street" ng-model="rowdata.street" />
+        <label class="mdl-textfield__label" for="street">Street</label>
+    </div>
+    <br class="mdl-cell--hide-desktop" />
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--1-col">
+        <input class="mdl-textfield__input" type="text" id="zip" name="zip" ng-model="rowdata.zip" />
+        <label class="mdl-textfield__label" for="zip">Zip</label>
+    </div>
+    <br class="mdl-cell--hide-desktop mdl-cell--hide-tablet" />
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+        <input class="mdl-textfield__input" type="text" id="city" name="city" ng-model="rowdata.city" />
+        <label class="mdl-textfield__label" for="city">City</label>
+    </div>
+    <br class="mdl-cell--hide-desktop mdl-cell--hide-tablet" />
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--2-col">
+        <input class="mdl-textfield__input" type="text" id="phone" name="phone" ng-model="rowdata.phone" />
+        <label class="mdl-textfield__label" for="phone">Phone</label>
+    </div>
+
+    <br />
+
+
+
+
+
+        <!--<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--6-col">
+            <input class="mdl-textfield__input" type="text" id="companyName" name="companyName" ng-model="rowdata.companyName" ng-required="true" />
+            <label class="mdl-textfield__label" for="companyName">Company name*</label>
+            <span class="mdl-tooltip mdl-tooltip--validation" for="companyName" ng-show="updateForm.companyName.$invalid && updateForm.companyName.$touched">
+                <span ng-show="updateForm.companyName.$error.required">Required.</span>
+            </span>
+        </div>
+        <br class="mdl-cell--hide-desktop" />
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--2-col">
+            <input class="mdl-textfield__input" type="text" id="name" name="name" pattern="[A-Za-z\s]*" ng-model="rowdata.name" ng-required="true" />
+            <label class="mdl-textfield__label" for="name">Full name*</label>
+            <span class="mdl-tooltip mdl-tooltip--validation" for="name" ng-show="updateForm.name.$invalid && updateForm.name.$touched">
+                <span ng-show="updateForm.name.$error.required">Required.</span>
+                <span ng-show="updateForm.name.$error.pattern">Invalid pattern.</span>
+            </span>
+        </div>
+        <br class="mdl-cell--hide-desktop mdl-cell--hide-tablet" />
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+            <input class="mdl-textfield__input" type="email" id="email" name="email" ng-model="rowdata.email" ng-required="true" />
+            <label class="mdl-textfield__label" for="email">Email*</label>
+            <span class="mdl-tooltip mdl-tooltip--validation" for="email" ng-show="updateForm.email.$invalid && updateForm.email.$touched">
+                <span ng-show="updateForm.email.$error.required">Required.</span>
+                <span ng-show="updateForm.email.$error.email">Invalid email.</span>
+            </span>
+        </div>
+        <br />-->
+
+    <!--<fieldset>
+        <ul class="list-unstyled">
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="login" name="login" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]*" minlength="3" ng-model="rowdata.login" ng-required="true" />
+                    <label class="mdl-textfield__label" for="login">Login*</label>
+                    <span class="mdl-tooltip mdl-tooltip--validation" for="login" ng-show="updateForm.login.$invalid && updateForm.login.$touched">
+                        <span ng-show="updateForm.login.$error.required">Required.</span>
+                        <span ng-show="updateForm.login.$error.pattern">Invalid pattern.</span>
+                        <span ng-show="updateForm.login.$error.minlength">Minimum of three characters.</span>
+                    </span>
+                </div>
+            </li>
+            <li>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="password" id="password" name="password" ng-model="rowdata.password" ng-required="true" />
+                    <label class="mdl-textfield__label" for="password">Password*</label>
+                    <span class="mdl-tooltip mdl-tooltip--validation" for="password" ng-show="updateForm.password.$invalid && updateForm.password.$touched">
+                        <span ng-show="updateForm.password.$error.required">Required.</span>
+                    </span>
+                </div>
+            </li>
+            <li>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="password" id="confirmPassword" name="confirmPassword" ng-model="rowdata.confirmPassword" ng-required="true" field-match="rowdata.password" />
+                    <label class="mdl-textfield__label" for="confirmPassword">Confirm Password*</label>
+                    <span class="mdl-tooltip mdl-tooltip--validation" for="confirmPassword" ng-show="updateForm.confirmPassword.$invalid && updateForm.confirmPassword.$touched">
+                        <span ng-show="updateForm.confirmPassword.$error.required">Required.</span>
+                        <span ng-show="updateForm.confirmPassword.$error.fieldmatch">Passwords do not match.</span>
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </fieldset>-->
+    
+    
+    <div datapanel="panel-det"></div>
+</form>

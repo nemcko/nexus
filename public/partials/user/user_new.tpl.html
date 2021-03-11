@@ -1,0 +1,51 @@
+﻿
+<form name="updateForm">
+    <img src="images/lock.svg" alt="Login" class="mdl-cell mdl-cell--1-col mdl-cell--hide-phone">
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+        <input class="mdl-textfield__input" type="email" id="username" name="username" focusme ng-pattern="/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i" ng-model="rowdata.username" ng-disabled="!expandedNew" ng-required="true" />
+        <label class="mdl-textfield__label" for="user">Email*</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="username" ng-show="updateForm.username.$invalid && updateForm.username.$touched">
+            <span ng-show="updateForm.username.$error.required">Required.</span>
+            <span ng-show="updateForm.username.$error.pattern">Please enter a valid email address!</span>
+        </span>
+    </div>
+
+    <br class="mdl-cell--hide-desktop mdl-cell--hide-tablet" />
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+        <input class="mdl-textfield__input" type="password" id="password" name="password" ng-model="rowdata.password" ng-required="true" pw-check="password2">
+        <label class="mdl-textfield__label" for="password">Password</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="Password" ng-show="updateForm.password.$error">
+            <span ng-show="updateForm.password.$error.required">Required.</span>
+        </span>
+    </div>
+
+    <br class="mdl-cell--hide-desktop mdl-cell--hide-tablet" />
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+        <input class="mdl-textfield__input" type="password" id="password2" name="password2" ng-model="data.password2" ng-required="true">
+        <label class="mdl-textfield__label" for="password2">Confirm</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="password2" ng-show="updateForm.password.$error.pwmatch || updateForm.password2.$error.required">
+            <span ng-show="updateForm.password2.$error.required">Required.</span>
+            <span ng-show="updateForm.password.$error.pwmatch">Passwords don't match.</span>
+        </span>
+    </div>
+    
+    <div class="mdl-cell--11-col">
+        <br />
+        <button id="pgClose{{panel.pgId}}" class="mdl-button mdl-js-button mdl-button--icon mdl-cell--11-offset" ng-click="closeDetail(item)">
+            <i class="material-icons">close</i>
+        </button>
+        <div class="mdl-tooltip" for="pgClose{{panel.pgId}}">
+            Close
+        </div>
+        <button id="register" class="mdl-button mdl-js-button" ng-show="panel.acc.create" ng-disabled="updateForm.$invalid" ng-click="register()">
+            <i class="material-icons">perm_identity</i>
+        </button>
+        <div class="mdl-tooltip" for="register">
+            Register
+        </div>
+    </div>
+</form>
+

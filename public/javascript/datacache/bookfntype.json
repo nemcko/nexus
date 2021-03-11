@@ -1,0 +1,18 @@
+﻿[
+  {
+    "name": "No function",
+    "bookfn": ""
+  },
+  {
+    "name": "Assign marked tickets",
+    "bookfn": "assign"
+  },
+  {
+    "name": "Ticket marker",
+    "bookfn": "bookmark"
+  },
+  {
+    "name": "Bookmark consumer",
+    "bookfn": "marked"
+  }
+]

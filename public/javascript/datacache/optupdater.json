@@ -1,0 +1,10 @@
+﻿[
+  {
+    "name": "Agent",
+    "key": "agent"
+  },
+  {
+    "name": "Client",
+    "key": "client"
+  }
+]

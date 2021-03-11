@@ -1,0 +1,18 @@
+﻿[
+  {
+    "code": "month1",
+    "name": "Month"
+  },
+  {
+    "code": "month3",
+    "name": "Quarter"
+  },
+  {
+    "code": "month6",
+    "name": "Half year"
+  },
+  {
+    "code": "year",
+    "name": "Year"
+  }
+]

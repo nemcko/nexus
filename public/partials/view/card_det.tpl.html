@@ -1,0 +1,133 @@
+﻿<form name="updateForm">
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--6-col">
+        <input focusme class="mdl-textfield__input" type="text" id="name" name="name" ng-model="rowdata.name" xxxng-disabled="!expandedNew" ng-required="true" />
+        <label class="mdl-textfield__label" for="user">Panel Name</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="name" ng-show="updateForm.name.$invalid && updateForm.name.$touched">
+            <span ng-show="updateForm.name.$error.required">Required.</span>
+        </span>
+    </div>
+
+    <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+        <select class="mdl-textfield__input" type="text" id="accid" name="accid" ng-model="rowdata.accid" ng-options="o._id as o.name for o in accids" required></select>
+        <label class="mdl-textfield__label">Access type</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="accid" ng-show="!updateForm.accid">
+            <span>Required.</span>
+        </span>
+    </div>
+
+    <div ng-class="{'select-wrap': expandedNew}" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+        <select ng-disabled="!expandedNew" ng-if="expandedNew" class="mdl-textfield__input" type="text" id="cardtype" name="cardtype" ng-model="rowdata.cardtype" ng-change="setCardtype(rowdata.cardtype,cardtypes)" ng-options="o.cardtype as o.name for o in cardtypes" required></select>
+        <input ng-disabled="true" ng-if="!expandedNew" class="mdl-textfield__input" type="text" id="cardtype" name="cardtype" ng-model="rowdata.cardtype" />
+        <label class="mdl-textfield__label">Type</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="cardtype" ng-show="!updateForm.cardtype">
+            <span>Required.</span>
+        </span>
+    </div>
+
+    <br />
+
+
+    <div class="mdl-grid" ng-init="iniCardtype(rowdata.position,rowdata.cardtype,cardtypes)">
+        <div class="mdl-cell--12-col">
+            <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--5-col">
+                <select class="mdl-textfield__input" type="text" ng-model="curPosition" ng-options="o.label for o in rowdata.position"></select>
+                <label class="mdl-textfield__label">Position</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+                <input class="mdl-textfield__input" type="text" id="title" name="title" ng-model="curPosition.title" />
+                <label class="mdl-textfield__label" for="title">Title</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+                <input class="mdl-textfield__input" type="text" id="subtitle" name="title" ng-model="curPosition.subtitle" />
+                <label class="mdl-textfield__label" for="subtitle">Subtitle</label>
+            </div>
+
+
+
+
+        </div>
+        <div class="app-grid mdl-color--teal-50 mdl-cell--12-col">
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--4-col" for="allof">
+                <input type="radio" id="allof" class="mdl-radio__button" name="dataPage" value="allof" ng-model="dataPage" ng-click="$parent.refresh();">
+                <span class="mdl-radio__label">all of conditions</span>
+            </label>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--4-col" for="anyof">
+                <input type="radio" id="anyof" class="mdl-radio__button" name="dataPage" value="anyof" ng-model="dataPage" ng-click="$parent.refresh();">
+                <span class="mdl-radio__label">any of conditions</span>
+            </label>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--4-col" for="selflds">
+                <input type="radio" id="selflds" class="mdl-radio__button" name="dataPage" value="selflds" ng-model="dataPage" ng-click="$parent.refresh();">
+                <span class="mdl-radio__label">settings</span>
+            </label>
+
+
+            <div class="app-grid mdl-cell--12-col" ng-switch on="dataPage">
+                <div class="mdl-cell--12-col" ng-switch-when="anyof">
+                    <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+                        <select class="mdl-textfield__input" type="text" ng-model="newitem.field" ng-options="o.name as (o.label+(o.exlabel?' ('+o.exlabel+')':'') ) group by o.grp for o in vwflds"></select>
+                        <label class="mdl-textfield__label">Field</label>
+                    </div>
+                    <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+                        <select class="mdl-textfield__input" type="text" ng-model="newitem.oper" ng-options="o.key as o.name for o in getListOperands(newitem.field)"></select>
+                        <label class="mdl-textfield__label">Operator</label>
+                    </div>
+                    <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+                        <div selvalues="newitem" class="mdl-cell--12-col"></div>
+                        <label class="mdl-textfield__label">Value</label>
+                    </div>
+                    <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-cell--12-offset mdl-color--teal-100" ng-click="addListItem(newitem,curPosition.anyof)">
+                        <i class="material-icons">add</i>
+                    </button>
+
+                    <dir class="mdl-grid mdl-color--grey-50" ng-repeat="item in curPosition.anyof">
+                        <select class="mdl-textfield__input mdl-cell--4-col" type="text" ng-model="item.field" ng-options="o.name as (o.label+(o.exlabel?' ('+o.exlabel+')':'') ) group by o.grp for o in vwflds"></select>
+                        <select class="mdl-textfield__input mdl-cell--4-col" type="text" ng-model="item.oper" ng-options="o.key as o.name for o in getListOperands(item.field)"></select>
+                        <div selvalues="item" class="mdl-cell--4-col"></div>
+                        <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-cell--12-offset mdl-color--teal-100" ng-click="delListItem(item,curPosition.anyof)">
+                            <i class="material-icons">close</i>
+                        </button>
+                    </dir>
+                </div>
+                <div class="mdl-cell--12-col" ng-switch-when="allof">
+                    <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+                        <select class="mdl-textfield__input" type="text" ng-model="newitem.field" ng-options="o.name as (o.label+(o.exlabel?' ('+o.exlabel+')':'') ) group by o.grp for o in vwflds"></select>
+                        <label class="mdl-textfield__label">Field</label>
+                    </div>
+                    <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+                        <select class="mdl-textfield__input" type="text" ng-model="newitem.oper" ng-options="o.key as o.name for o in getListOperands(newitem.field)"></select>
+                        <label class="mdl-textfield__label">Operator</label>
+                    </div>
+                    <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+                        <div selvalues="newitem" class="mdl-cell--12-col"></div>
+                        <label class="mdl-textfield__label">Value</label>
+                    </div>
+                    <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-cell--12-offset mdl-color--teal-100" ng-click="addListItem(newitem,curPosition.allof)">
+                        <i class="material-icons">add</i>
+                    </button>
+
+                    <dir class="mdl-grid mdl-color--grey-50" ng-repeat="item in curPosition.allof">
+                        <select class="mdl-textfield__input mdl-cell--4-col" type="text" ng-model="item.field" ng-options="o.name as (o.label+(o.exlabel?' ('+o.exlabel+')':'') ) group by o.grp for o in vwflds"></select>
+                        <select class="mdl-textfield__input mdl-cell--4-col" type="text" ng-model="item.oper" ng-options="o.key as o.name for o in getListOperands(item.field)"></select>
+                        <div selvalues="item" class="mdl-cell--4-col"></div>
+                        <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-cell--12-offset mdl-color--teal-100" ng-click="delListItem(item,curPosition.allof)">
+                            <i class="material-icons">close</i>
+                        </button>
+                    </dir>
+                </div>
+                <div class="mdl-cell--12-col mdl-color--grey-50" ng-switch-when="selflds" style="padding:10px;">
+                    <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+                        <select class="mdl-textfield__input" type="text" ng-model="curPosition.field" ng-options="o.name as o.label group by o.grp for o in  vwflds"></select>
+                        <label class="mdl-textfield__label">Select field</label>
+                    </div>
+                    <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+                        <select class="mdl-textfield__input" type="text" ng-model="curPosition.accumfn" ng-options="o.code as o.name for o in  accumfns"></select>
+                        <label class="mdl-textfield__label">Aggregate function</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--<pre>{{rowdata | json}}</pre>-->
+        <div datapanel="panel-det-check"></div>
+</form>

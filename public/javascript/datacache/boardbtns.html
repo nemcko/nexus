@@ -1,0 +1,33 @@
+
+<button class="app-dimmed mdl-button mdl-js-button mdl-button--icon" id="btnNewTicket{{panel.seq}}" ng-click="runMacro((dashboard.position.left?dashboard.position.left[0]:dashboard.position.center[0]))" slide-up-toggle="ticketdetail">
+    <i class="material-icons">playlist_add</i>
+</button>
+<div class="mdl-tooltip" for="btnNewTicket{{panel.seq}}">
+    New ticket
+</div>
+
+<button id="btnRunMacro{{panel.seq}}" class="app-dimmed mdl-button mdl-js-button mdl-button--icon">
+    <i class="material-icons">playlist_play</i>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="btnRunMacro{{panel.seq}}" slide-up-toggle="ticketdetail">
+    <li ng-repeat="itm in optmacros" class="mdl-menu__item" ng-click="runMacro((dashboard.position.left?dashboard.position.left[0]:dashboard.position.center[0]),itm)" value="{{itm.code}}">{{itm.name}}</li>
+</ul>
+<div class="mdl-tooltip" for="btnRunMacro{{panel.seq}}">
+    Run macro
+</div>
+
+
+<button id="btnMarkers{{panel.seq}}" class="app-dimmed mdl-button mdl-js-button mdl-button--icon" ng-click="applyMarkers()" slide-up-toggle="changesdetail">
+    <i class="material-icons">done_all</i>
+</button>
+<div class="mdl-tooltip" for="btnMarkers{{panel.seq}}">
+    Apply to all
+</div>
+
+
+<a class="mdl-navigation__link app-dimmed " href="" id="btnCurrentDate" pikaday="currentDate" i18n="sk" on-select="onPikadaySelect(pikaday)">
+    <i class="material-icons">details</i>
+</a>
+<div class="mdl-tooltip" for="btnCurrentDate">
+    Current Date
+</div>

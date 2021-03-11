@@ -1,0 +1,147 @@
+﻿<div class="app-page2 md-grid" style="padding:40px; display: table-cell;vertical-align: middle;">   
+
+    <div class="app-table-dlg mdl-color--white" ng-Esc="closeModalView('modalview',ticketview)"> 
+        <table>
+            <caption class="mdl-color--cyan-400">
+                {{ticketview.title}}&nbsp;
+                <span ng-show="ticketview.pageTotal">
+                    ({{ticketview.pageTotal}}<small ng-show="ticketview.pageMarked">/{{ticketview.pageMarked}}</small>)
+                </span>
+                <div ng-show="ticketview.processData" class="mdl-spinner mdl-js-spinner mdl-spinner--single-color is-active"></div>
+
+                <div class="app-searchpanel">
+                    <!--<div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input mdl-color--cyan-300" focusme type="text" id="searchpanelInput" ng-model="ticketview.search" ng-keydown="pressSearchPanel($event)">
+                        <label class="mdl-textfield__label" for="searchpanelInput">Search...</label>
+                    </div>-->
+
+                    <!--<button id="bthNextTicket" class="mdl-button mdl-js-button mdl-button--icon app-dimmed" ng-click="getNextTicket(ticketview)">
+                        <i class="material-icons">theaters</i>
+                    </button>
+                    <div class="mdl-tooltip" for="bthNextTicket">
+                        Show next ticket
+                    </div>
+                    <button id="btnMarkers" class="app-dimmed mdl-button mdl-js-button mdl-button--icon" ng-click="applyMarkers(ticketview.items)" slide-up-toggle="changesdetail">
+                        <i class="material-icons">done_all</i>
+                    </button>
+                    <div class="mdl-tooltip" for="btnMarkers">
+                        Apply to all
+                    </div>-->
+
+                </div>
+
+                <div class="app-macro">
+                    <button id="searchPanelBtnClose" class="app-dimmed mdl-button mdl-js-button mdl-button--icon" ng-click="closeModalView('modalview',ticketview)">
+                        <i class="material-icons">close</i>
+                    </button>
+                    <div class="mdl-tooltip" for="searchPanelBtnClose">
+                        Close
+                    </div>
+                </div>
+            </caption>
+            <thead class="mdl-color--cyan-400">
+                <tr>
+                    <th ng-class="getColumnAlign(fld)" ng-repeat="fld in ticketview.fields" width="{{getColumnWidth(ticketview.fields,fld,ticketview.hasbookmarks || ticketview.markers)}}%">{{getColumnTitle(fld)}}</th>
+                    <th ng-if="ticketview.hasbookmarks || ticketview.markers" width="48px">
+                        <i ng-if="ticketview.hasbookmarks" class="material-icons app-smalheader4">bookmark_border</i>
+                        <div ng-if="ticketview.markers" class="app-smalheader app-bookmark" ng-switch on="getMarkerCount(ticketview)>0">
+                            <i ng-switch-when="false" class="material-icons app-smalheader3" ng-click="setMarkers(ticketview,true)">check_box_outline_blank</i>
+                            <i ng-switch-when="true" class="material-icons app-smalheader3" ng-click="setMarkers(ticketview,false)">check_box</i>
+                        </div>
+                        <i ng-if="ticketview.hasbookmarks==='marked' && ticketview.pageMarked" class="material-icons app-smalheader4">call_merge</i>
+                    </th>
+                    <th width="{{getColumnWidth100(ticketview.fields,ticketview.hasbookmarks || ticketview.markers)}}%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="nosel" ng-repeat="row in ticketview.items">
+                    <td ng-if="row._grpfld" class="app-group" colspan="20" ng-bind-html="getGroupRow(ticketview,row,$index)"></td>
+                    <td class="nosel" ng-if="!row._grpfld" ng-class="getColumnAlign(fld)"
+                        ng-repeat="fld in ticketview.fields">
+                        <!--id="{{ticketview.seq}}{{fld}}{{row._id}}"
+                        slide-up-toggle="ticketdetail"
+                        ng-click="loadTicket(row.ticnum)">-->
+                        <span ng-bind-html="getColumnValue(fld,row[fld])"></span>
+                    </td>
+                    <td ng-if="(ticketview.markers||ticketview.hasbookmarks) && !row._grpfld">
+                        <div ng-if="ticketview.hasbookmarks && !row._grpfld" class="app-bookmark" ng-switch on="row.bookmark">
+                            <i ng-switch-when="false" class="material-icons app-rowmark" ng-click="setBookmark(ticketview,row)">bookmark_border</i>
+                            <i ng-switch-when="true" class="material-icons app-rowmark mdl-color-text--cyan-500" ng-click="setBookmark(ticketview,row)">bookmark</i>
+                        </div>
+                        <input ng-if="ticketview.markers && !row._grpfld" type="checkbox" ng-model="row.marker">
+                        <i ng-if="ticketview.hasbookmarks==='marked' && ticketview.pageMarked" class="material-icons app-smalheader5 app-rowmark" ng-click="doBookmarkFunction(ticketview,ticketview.hasbookmarks,row._id)">add_circle</i>
+                    </td>
+                    <td ng-if="false && ticketview.markers && !row._grpfld" class="app-bookmark">
+                        <input type="checkbox" id="checkbox{{ticketview.seq}}{{row._id}}" ng-model="row.bookmark" ng-click="setBookmark(ticketview,row)">
+                        <i ng-if="ticketview.hasbookmarks==='bookmark' && ticketview.pageMarked" id="rowBookmarkbtn{{ticketview.seq}}{{row._id}}" class="material-icons app-rowmark" ng-click="doBookmarkFunction(ticketview,ticketview.hasbookmarks,row._id)">add_circle</i>
+                        <!--<div class="mdl-tooltip" for="rowBookmarkbtn{{ticketview.seq}}{{row._id}}">
+                        {{getBookmarkFunName(ticketview.hasbookmarks)}}
+                    </div>-->
+                    </td>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="20" class="app-dimmed">
+                        <span>Rows</span>
+                        <button id="pageitems{{ticketview.pgId}}" class="app-pageitems mdl-button mdl-js-button mdl-js-ripple-effect">
+                            <span>{{ticketview.pageLimit}}</span>
+                            <i class="material-icons app-dimmed" role="presentation">keyboard_arrow_up</i>
+                            <span class="visuallyhidden">Accounts</span>
+                        </button>
+                        <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect" for="pageitems{{ticketview.pgId}}">
+                            <li ng-repeat="itm in ticketview.pageLimits" class="mdl-menu__item" ng-click="ticketview.doCmd('pageLimit',itm)" value="{{itm}}">{{itm}} items</li>
+                        </ul>
+
+                        <button id="pagenum{{ticketview.pgId}}" class="app-pagenum mdl-button mdl-js-button mdl-js-ripple-effect">
+                            <span>{{ticketview.pageNumber}}</span>
+                            <i class="material-icons app-dimmed" role="presentation">keyboard_arrow_up</i>
+                            <span class="visuallyhidden">Accounts</span>
+                        </button>
+                        <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect" for="pagenum{{ticketview.pgId}}">
+                            <li ng-repeat="itm in ticketview.pageNumbers" class="mdl-menu__item" ng-click="ticketview.doCmd('pageNumber',itm)" value="{{itm}}">Page {{itm}}</li>
+                        </ul>
+                        of
+                        <span class="app-pagecount">{{ticketview.pageCount}}</span>
+
+                        <button id="pgFirst{{ticketview.pgId}}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" ng-click="ticketview.doCmd('pgFirst',itm)">
+                            <i class="material-icons app-dimmed">first_page</i>
+                        </button>
+                        <div class="mdl-tooltip" for="pgFirst{{ticketview.pgId}}">
+                            First page
+                        </div>
+
+                        <button id="pgUp{{ticketview.pgId}}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" ng-click="ticketview.doCmd('pgUp',itm)">
+                            <i class="material-icons app-dimmed">chevron_left</i>
+                        </button>
+                        <div class="mdl-tooltip" for="pgUp{{ticketview.pgId}}">
+                            Prev page
+                        </div>
+
+                        <button id="pgDn{{ticketview.pgId}}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" ng-click="ticketview.doCmd('pgDn',itm)">
+                            <i class="material-icons app-dimmed">chevron_right</i>
+                        </button>
+                        <div class="mdl-tooltip" for="pgDn{{ticketview.pgId}}">
+                            Next page
+                        </div>
+
+                        <button id="pgLast{{ticketview.pgId}}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" ng-click="ticketview.doCmd('pgLast',itm)">
+                            <i class="material-icons app-dimmed">last_page</i>
+                        </button>
+                        <div class="mdl-tooltip" for="pgLast{{ticketview.pgId}}">
+                            Last page
+                        </div>
+
+                    </td>
+                </tr>
+            </tfoot>
+
+        </table>
+        <!--<pre>{{ticketview | json}}</pre>-->
+
+        <div ng-repeat="row in ticketview.items" class="mdl-tooltip" for="{{ticketview.seq}}subject{{row._id}}">{{row.txt}}</div>
+
+    </div>
+</div>
+<!--<pre class="mdl-color--grey">{{ticketview | json}}</pre>-->
+
+

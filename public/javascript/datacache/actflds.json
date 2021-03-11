@@ -1,0 +1,23 @@
+﻿[
+  {
+    "name": "v__a1",
+    "label": "Send to assignee",
+    "grp": "Action fields",
+    "oid": "optassignee",
+    "msg": {
+      "title": "title of message",
+      "body": "Message body"
+    }
+  },
+  {
+    "name": "v__a2",
+    "label": "Send to ticket",
+    "grp": "Action fields",
+    "cache": "optsendto",
+    "msg": {
+      "title": "title of message",
+      "body": "Message body"
+    }
+  }
+
+]

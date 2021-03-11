@@ -1,0 +1,52 @@
+﻿[
+  {
+    "name": "Helpdesk",
+    "key": "helpdesk",
+    "icon": "face"
+  },
+  {
+    "name": "Servis",
+    "key": "service",
+    "icon": "build"
+  },
+  {
+    "name": "Tovar",
+    "key": "commodity",
+    "icon": "local_shipping"
+  },
+  {
+    "name": "Doména",
+    "key": "domain",
+    "icon": "language"
+  },
+  {
+    "name": "Program",
+    "key": "program",
+    "icon": "developer_board"
+  },
+  {
+    "name": "Projekt",
+    "key": "project",
+    "icon": "device_hub"
+  },
+  {
+    "name": "Audit",
+    "key": "audit",
+    "icon": "beenhere"
+  },
+  {
+    "name": "Prenájom",
+    "key": "lease",
+    "icon": "local_atm"
+  },
+  {
+    "name": "Licencia",
+    "key": "license",
+    "icon": "receipt"
+  },
+  {
+    "name": "Reklamácia",
+    "key": "complaint",
+    "icon": "chrome_reader_mode"
+  }
+]

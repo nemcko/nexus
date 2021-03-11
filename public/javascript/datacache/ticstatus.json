@@ -1,0 +1,195 @@
+﻿[
+  {
+    "type": "open",
+    "label": "Open",
+    "name": "Open - low",
+    "key": "open-low",
+    "options": {
+      "priority": "low"
+    }
+  },
+  {
+    "type": "open",
+    "label": "Open",
+    "name": "Open - normal",
+    "key": "open-normal",
+    "options": {
+      "priority": "normal"
+    }
+  },
+  {
+    "type": "open",
+    "label": "Open",
+    "name": "Open - high",
+    "key": "open-high",
+    "options": {
+      "priority": "high"
+    }
+  },
+  {
+    "type": "open",
+    "label": "Open",
+    "name": "Open - urgent",
+    "key": "open-urgent",
+    "options": {
+      "priority": "urgent"
+    }
+  },
+
+  {
+    "type": "on-hold",
+    "label": "Low",
+    "name": "Hold - low",
+    "key": "hold-low",
+    "options": {
+      "priority": "low",
+      "open": {
+        "label": "Open after 29d",
+        "value": "29*24*60"
+      }
+    }
+  },
+  {
+    "type": "on-hold",
+    "label": "Normal",
+    "name": "Hold - normal",
+    "key": "hold-normal",
+    "options": {
+      "priority": "normal",
+      "open": {
+        "label": "Open after 11d",
+        "value": "11*24*60"
+      }
+    }
+  },
+  {
+    "type": "on-hold",
+    "label": "High",
+    "name": "Hold - high",
+    "key": "hold-high",
+    "options": {
+      "priority": "high",
+      "open": {
+        "label": "Open after 5d",
+        "value": "5*24*60"
+      }
+    }
+  },
+  {
+    "type": "on-hold",
+    "label": "Urgent",
+    "name": "Hold - urgent",
+    "key": "hold-urgent",
+    "options": {
+      "priority": "urgent",
+      "open": {
+        "label": "Open after 32h",
+        "value": "32*60"
+      }
+    }
+  },
+
+
+
+  {
+    "type": "pending",
+    "label": "Low",
+    "name": "Pending - low",
+    "key": "pending-low",
+    "options": {
+      "priority": "low",
+      "notify": {
+        "label": "Notification after 29d",
+        "value": "29*24*60"
+      },
+      "open": {
+        "label": "Open after 35d",
+        "value": "35*24*60"
+      }
+    }
+  },
+  {
+    "type": "pending",
+    "label": "Normal",
+    "name": "Pending - normal",
+    "key": "pending-normal",
+    "options": {
+      "priority": "normal",
+      "notify": {
+        "label": "Notification after 11d",
+        "value": "11*24*60"
+      },
+      "open": {
+        "label": "Open after 18d",
+        "value": "18*24*60"
+      }
+    }
+  },
+  {
+    "type": "pending",
+    "label": "High",
+    "name": "Pending - high",
+    "key": "pending-high",
+    "options": {
+      "priority": "high",
+      "notify": {
+        "label": "Notification after 5d",
+        "value": "5*24*60"
+      },
+      "open": {
+        "label": "Open after 7d",
+        "value": "7*24*60"
+      }
+    }
+  },
+  {
+    "type": "pending",
+    "label": "Urgent",
+    "name": "Pending - urgent",
+    "key": "pending-urgent",
+    "options": {
+      "priority": "urgent",
+      "notify": {
+        "label": "Notification after 24h",
+        "value": "24*60"
+      },
+      "open": {
+        "label": "Open after 32h",
+        "value": "32*60"
+      }
+    }
+  },
+
+  {
+    "type": "solved",
+    "label": "Post to KB",
+    "name": "Post to KB",
+    "key": "solved-kb"
+  },
+  {
+    "type": "solved",
+    "label": "Mark as spam",
+    "name": "Mark as spam",
+    "key": "solved-spam"
+  },
+  {
+    "type": "solved",
+    "label": "Close ticket",
+    "name": "Close ticket",
+    "key": "solved-close"
+  },
+  {
+    "type": "solved",
+    "label": "Delete ticket",
+    "name": "Delete ticket",
+    "key": "solved-delete"
+  },
+  {
+    "type": "solved",
+    "label": "Solved",
+    "name": "Solved",
+    "key": "ok"
+  }
+
+
+]

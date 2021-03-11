@@ -1,0 +1,18 @@
+﻿[
+  {
+    "name": "Low",
+    "key": "low"
+  },
+  {
+    "name": "Normal",
+    "key": "normal"
+  },
+  {
+    "name": "High",
+    "key": "high"
+  },
+  {
+    "name": "Urgent",
+    "key": "urgent"
+  }
+]

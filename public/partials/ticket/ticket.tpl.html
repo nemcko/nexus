@@ -1,0 +1,472 @@
+﻿<div class="app-content" ng-if="!clearattachment" style="z-index:1005;">
+    <div class="app-table xxxmdl-cell--12-col">
+        <div class="app-card mdl-cell--12-col">
+            <div class="mdl-card__title mdl-color--yellow-200">
+                <h2 class="mdl-card__title-text mdl-cell--12-col" datapanel="ticket-header"></h2>
+            </div>
+
+            <div class="mdl-card__media mdl-color--white" style="overflow-x:hidden; overflow-y: auto;max-height: 98vh;">
+                <div datapanel="ticket-body"></div>
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+
+
+        <!--<div class="app-card mdl-cell--12-col">
+            <div class="mdl-card__title mdl-color--yellow-200">
+                <h2 class="mdl-card__title-text mdl-cell--12-col">
+                    <span class="mdl-cell--9-col">Ticket #{{rowdata.ticnum}}</span>
+                    <div class="mdl-cell--5-col" style="text-align:right;">
+
+                        <button id="bthShowComment1" class="mdl-button mdl-js-button mdl-button--icon app-dimmed" ng-click="ticketExt='comment';$parent.refresh();" ng-show="rowdataPanel.acc.viewacc.substring(0, 2)=='ag'">
+                            <i class="material-icons">chat_bubble_outline</i>
+                        </button>
+                        <div class="mdl-tooltip" for="bthShowComment1">
+                            Show Comments
+                        </div>
+
+                        <button id="bthShowComment2" class="mdl-button mdl-js-button mdl-button--icon app-dimmed" ng-click="ticketExt='all';$parent.refresh();" ng-show="rowdataPanel.acc.viewacc.substring(0, 2)=='ag'">
+                            <i class="material-icons">message</i>
+                        </button>
+                        <div class="mdl-tooltip" for="bthShowComment2">
+                            Show All
+                        </div>
+
+                        <button id="bthShowComment3" class="mdl-button mdl-js-button mdl-button--icon app-dimmed">
+                            <i class="material-icons">play_arrow</i>
+                        </button>
+                        <div class="mdl-tooltip" for="bthShowComment3">
+                            Show next ticket
+                        </div>
+
+                        <button id="bthShowComment4" class="mdl-button mdl-js-button mdl-button--icon app-dimmed" slide-up-toggle="ticketdetail" >
+                            <i class="material-icons">cancel</i>
+                        </button>
+                        <div class="mdl-tooltip" for="bthShowComment4">
+                            Close with no update
+                        </div>
+
+                    </div>
+                </h2>
+            </div>
+
+            <div class="mdl-card__media mdl-color--white" style="overflow-x:hidden; overflow-y: auto;max-height: 90vh;">
+                <div class="mdl-cell--12-col mdl-color--white" style="padding: 10px 20px 0px 20px">
+                    <div class="select-wrap drop mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--5-col">
+                        <input class="dropfocus mdl-textfield__input" readonly type="text" id="assignee" name="assignee" ng-model="rowdata.assignee" />
+                        <ul>
+                            <li ng-repeat="itm in optassignee">
+                                <a href="" ng-click="applyDropValue('rowdata.assignee',itm.key)"><i class="material-icons">{{itm.icon}}_outline</i>{{itm.name}}</a>
+                            </li>
+                        </ul>
+                        <label class="mdl-textfield__label" for="service">Assignee</label>
+                    </div>
+
+                    <br class="mdl-cell--hide-desktop mdl-cell--hide-tablet" />
+                    <div class="select-wrap drop mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--2-col">
+                        <input class="dropfocus mdl-textfield__input" readonly type="text" id="priority" name="priority" ng-model="rowdata.priority" />
+                        <ul>
+                            <li ng-repeat="itm in optpriority">
+                                <a href="" ng-click="applyDropValue('rowdata.priority',itm.key)">{{itm.name}}</a>
+                            </li>
+                        </ul>
+                        <label class="mdl-textfield__label" for="priority">Priority</label>
+                    </div>
+
+                    <br class="mdl-cell--hide-desktop mdl-cell--hide-tablet" />
+                    <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--2-col">
+                        <input type="text" class="mdl-textfield__input" pikaday="TicketsCtrl.rowdata.dueDate" i18n="sk" id="dueDate" name="dueDate" xxxon-select="onPikadaySelect(pikaday)"
+                               ng-model="rowdata.dueDate" pikadayfocus />
+                        <label class="mdl-textfield__label" for="dueDate">Due Date</label>
+                    </div>
+                    <br />
+
+                    <div mass-autocomplete class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--5-col">
+                        <textarea msd-elastic="\n" class="mdl-textfield__input" type="text" id="requester" name="requester"
+                                  ng-model="rowdata.requester" mass-autocomplete-item="autocomplete_options"></textarea>
+                        <label class="mdl-textfield__label" for="requester">Requester</label>
+                    </div>
+                    <br class="mdl-cell--hide-desktop" />
+                    <div mass-autocomplete class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+                        <textarea msd-elastic="\n" class="mdl-textfield__input" type="text" id="requestcc" name="requestcc"
+                                  ng-model="rowdata.requestcc" mass-autocomplete-item="autocomplete_options"></textarea>
+                        <label class="mdl-textfield__label" for="requestcc">CC</label>
+                    </div>
+                    <br class="mdl-cell--hide-desktop mdl-cell--hide-tablet" />
+                    <div mass-autocomplete class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+                        <textarea msd-elastic="\n" class="mdl-textfield__input" type="text" id="requestbc" name="requestbc"
+                                  ng-model="rowdata.requestbc" mass-autocomplete-item="autocomplete_options"></textarea>
+                        <label class="mdl-textfield__label" for="requestbc">BC</label>
+                    </div>
+                    <br />
+
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--10-col">
+                        <input class="dropfocus mdl-textfield__input" type="text" id="subject" name="subject" ng-model="rowdata.subject" />
+                        <label class="mdl-textfield__label" for="subject">Subject</label>
+                    </div>
+                    <br />
+
+                    <div class="select-wrap drop mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--2-col">
+                        <input class="dropfocus mdl-textfield__input" readonly type="text" id="service" name="service" ng-model="rowdata.service" />
+                        <ul>
+                            <li ng-repeat="itm in optservice">
+                                <a href="" ng-click="applyDropValue('rowdata.service',itm.key)">{{itm.name}}</a>
+                            </li>
+                        </ul>
+                        <label class="mdl-textfield__label" for="service">Service</label>
+                    </div>
+
+                    <div class="select-wrap drop mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--1-col">
+                        <input class="dropfocus mdl-textfield__input" pattern="-?[0-9]*(,[0-9]+)?" type="text" id="time" name="time" ng-model="rowdata.time" />
+                        <ul>
+                            <li ng-repeat="itm in opttime | filter:fopttime">
+                                <a href="" ng-click="applyDropValue('rowdata.time',itm.key)">{{itm.name}}</a>
+                            </li>
+                        </ul>
+                        <label class="mdl-textfield__label" for="time">Time (hod.)</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+
+                    <div class="select-wrap drop mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--1-col">
+                        <input class="dropfocus mdl-textfield__input" type="text" pattern="-?[0-9]*(\,[0-9]+)?" id="transport" name="transport" ng-model="rowdata.transport" />
+                        <ul>
+                            <li ng-repeat="itm in opttransp">
+                                <a href="" ng-click="applyDropValue('rowdata.transport',itm.key)">{{itm.name}}</a>
+                            </li>
+                        </ul>
+                        <label class="mdl-textfield__label" for="transport">Transp.</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label  mdl-cell--2-col">
+                        <input class="dropfocus mdl-textfield__input" type="text" pattern="-?[0-9]*(\,[0-9]+)?" id="purchase" name="purchase" ng-model="rowdata.purchase" />
+                        <label class="mdl-textfield__label" for="purchase">Purchase VAT incl.</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label  mdl-cell--2-col">
+                        <input class="dropfocus mdl-textfield__input" type="text" pattern="-?[0-9]*(\,[0-9]+)?" id="price" name="price" ng-model="rowdata.price" />
+                        <label class="mdl-textfield__label" for="price">Price VAT incl.</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+
+
+
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-cell--2-col" for="reimburse">
+                        <input class="mdl-checkbox__input" type="checkbox" id="reimburse" name="reimburse" ng-model="rowdata.reimburse" />
+                        <span class="mdl-checkbox__label">Reimburse</span>
+                    </label>
+
+
+                    <div class="select-wrap drop mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--2-col">
+                        <input class="dropfocus mdl-textfield__input" readonly type="text" id="requital" name="requital" ng-model="rowdata.requital" />
+                        <ul>
+                            <li ng-repeat="itm in optrequital">
+                                <a href="" ng-click="applyDropValue('rowdata.requital',itm.key)">{{itm.name}}</a>
+                            </li>
+                        </ul>
+                        <label class="mdl-textfield__label" for="requital">Requital</label>
+                    </div>
+
+                    <br />
+
+                    <div class="app-panel mdl-cell--10-col-desktop mdl-cell--12-col-tablet mdl-cell--10-col-phone" ng-class="{'app-privcomm': rowdata.privcomm}">
+                        <ng-wig source-mode-allowed id="comment" name="comment" ng-model="rowdata.comment"></ng-wig>
+
+                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-cell--10-col" for="privcomm" ng-show="rowdataPanel.acc.viewacc.substring(0, 2)=='ag'">
+                            <input class="mdl-checkbox__input" type="checkbox" id="privcomm" name="privcomm" ng-model="rowdata.privcomm" />
+                            <span class="mdl-checkbox__label">Private only comment</span>
+                        </label>
+
+                        <div style="padding-top:8px;">
+                            <div style="float:left;top:-4px;" class="mdl-button mdl-button--primary mdl-button--icon">
+                                <div class="mdl-button mdl-button--icon mdl-button--file"
+                                     ngf-select="upload(rowdata._id,$file,updateForm.avatar)" ng-model="files" id="files" name="files"
+                                     ngf-pattern="'*/*'" ngf-multiple="true"
+                                     ngf-accept="'*/*'" ngf-max-size="1MB">
+                                    <i class="material-icons">attach_file</i>
+                                </div>
+                            </div>
+                            <div class="app-attachment" ng-repeat="file in files">
+                                <img ng-src="{{getFileicon(file.name)}}" />
+                                <span>{{file.name}}{{(!$last?',':'')}}</span>
+                            </div>
+                      </div>
+                    </div>
+
+                    <div class="app-panel mdl-cell--2-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone" ng-if="rowdataPanel.acc.update">
+                        <div id="btnTicketOpen" class="app-button mdl-color--green-200 mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--3-col-phone">
+                            <div ng-repeat="itm in ticstatus | filter:{type: 'open'}">
+                                <a href="" ng-click="saveTicketData(itm,files)" slide-up-toggle="ticketdetail">{{itm.label}} <p>{{itm.options.open.label}}</p></a>
+                                <div class="rside" style="width:24px;">&nbsp;</div>
+                            </div>
+                        </div>
+                        <div class="mdl-tooltip mdl-tooltip--top" for="btnTicketOpen">
+                            Staff is working on the ticket
+                        </div>
+
+                        <div id="btnTicketHold" class="app-button mdl-color--yellow-200 mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--3-col-phone">
+                            <a href="" class="">On-hold</a>
+                            <div class="drop rside">
+                                <ul>
+                                    <li ng-repeat="itm in ticstatus | filter:{type: 'on-hold'}">
+                                        <a href="" ng-click="saveTicketData(itm,files)" slide-up-toggle="ticketdetail">{{itm.label}} <p>{{itm.options.open.label}}</p></a>
+                                    </li>
+                                </ul>
+                                <i class="material-icons app-dimmed">chevron_right</i>
+                            </div>
+                        </div>
+                        <div class="mdl-tooltip mdl-tooltip--top" for="btnTicketHold">
+                            Staff is waiting for a third party
+                        </div>
+
+
+                        <div id="btnTicketPending" class="app-button mdl-color--orange-200 mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--3-col-phone">
+                            <a href="">Pending</a>
+                            <div class="drop rside">
+                                <ul>
+                                    <li ng-repeat="itm in ticstatus | filter:{type: 'pending'}">
+                                        <a href="" ng-click="saveTicketData(itm,files)" slide-up-toggle="ticketdetail">{{itm.label}} <p>{{itm.options.notify.label}}<br />{{itm.options.open.label}}</p></a>
+                                    </li>
+                                </ul>
+                                <i class="material-icons app-dimmed">chevron_right</i>
+                            </div>
+                        </div>
+                        <div class="mdl-tooltip mdl-tooltip--top" for="btnTicketPending">
+                            Staff is waiting for requester to reply
+                        </div>
+
+                        <div id="btnTicketSolved" class="app-button mdl-color--blue-200 mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--3-col-phone">
+                            <a href="">Solved</a>
+                            <div class="drop rside">
+                                <ul>
+                                    <li ng-repeat="itm in ticstatus | filter:{type: 'solved'}">
+                                        <a href="" ng-click="saveTicketData(itm,files)" slide-up-toggle="ticketdetail">{{itm.label}}</a>
+                                    </li>
+                                </ul>
+                                <i class="material-icons app-dimmed">chevron_right</i>
+                            </div>
+                        </div>
+                        <div class="mdl-tooltip mdl-tooltip--top" for="btnTicketSolved">
+                            The ticket has been solved
+                        </div>
+
+                    </div>
+
+
+                    <br />
+                    <br />
+
+                </div>
+                <div style="padding: 10px 20px 0px 20px;border-top:1px solid silver;">
+                    <div ng-switch on="ticketExt">
+                        <div ng-switch-when="comment">
+                            <div ng-repeat="log in getLogs(rowdata.logs,ticketExt)"  ng-if="(log.comment||log.atid) && (!log.privcomm || log.privcomm && rowdataPanel.acc.viewacc.substring(0, 2)=='ag')">
+                                <hr ng-if="$index" />
+                                <div class="app-log">
+                                    <img ng-srcset="/api/image/{{log.logUser._id}}" class="app-photo" />
+                                </div>
+                                <div class="mdl-cell mdl-cell--11-col app-log" ng-class="{'app-privcomm-log': log.privcomm}">
+                                    <div class="mdl-typography--menu">
+                                        {{log.logUser.fullname}}
+                                    </div>
+                                    <div class="mdl-typography--caption">
+                                        {{log.logUser.username}} on {{log.logDate | date: 'dd.MM.yyyy HH:mm'}}
+                                    </div>
+                                    <div class="app-logbr"></div>
+                                    <div ng-bind-html="log.comment"></div>
+                                    <div ng-if="log.atid" class="mdl-grid mdl-cell--12-col app-loglist">
+                                        <div class="mdl-cell--1-col app-logevn">
+                                            <i class="material-icons app-logicon">attach_file</i>
+                                        </div>
+                                        <div class="app-loglist mdl-cell--10-col mdl-typography--caption">
+                                            <div class="app-attachment" ng-repeat="file in rowdata.attachments[log.atid]">
+                                                <a target="_blank" class="app-logref" ng-href="attachment/{{log.atid}}/{{file.uri}}">
+                                                    <img ng-src="{{getFileicon(file.filename)}}" style="height:12px;" />
+                                                    <span>{{file.filename}}{{(!$last?',':'')}}</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                       </div>
+                        <div ng-switch-default>
+                            <div ng-repeat="log in getLogs(rowdata.logs,ticketExt)">
+                                <hr ng-if="$index" />
+                                <div class="app-log">
+                                    <img ng-srcset="/api/image/{{log.logUser._id}}" class="app-photo" />
+                                </div>
+                                <div class="mdl-cell mdl-cell--11-col app-log">
+                                    <div class="mdl-grid" style="margin:0;padding:0;">
+                                        <div class="mdl-cell mdl-cell--12-col" style="margin:0;padding:0;">
+                                            <div class="mdl-typography--menu">
+                                                {{log.logUser.fullname}}
+                                            </div>
+                                            <div class="mdl-typography--caption">
+                                                {{log.logUser.username}} on {{log.logDate | date: 'dd.MM.yyyy HH:mm'}}
+                                            </div>
+                                            <div class="app-logbr"></div>
+                                        </div>
+
+                                        <div ng-if="log.changes" class="mdl-grid mdl-cell--12-col app-loglist" ng-repeat="(key, chg) in log.changes">
+                                            <div class="mdl-cell--1-col app-logevn">
+                                                <i class="material-icons app-logicon">swap_horiz</i>
+                                            </div>
+                                            <div class="mdl-cell--11-col mdl-typography--caption" ng-bind-html="getChangeText(key,chg)"></div>
+                                        </div>
+
+                                        <div ng-if="log.autotrg" class="mdl-grid mdl-cell--12-col app-loglist" ng-repeat="trg in log.autotrg">
+                                            <div class="mdl-grid mdl-cell--12-col app-loglist" ng-repeat="(key, chg) in trg">
+                                                <div class="mdl-cell--1-col app-logevn">
+                                                    <i class="material-icons app-logicon">trending_up</i>
+                                                </div>
+                                                <div class="mdl-cell--11-col mdl-typography--caption">
+                                                    {{key}}
+                                                    <div class="mdl-grid mdl-cell--12-col app-loglist" ng-repeat="(chk, chv) in chg.changes">
+                                                        <div class="mdl-cell--1-col app-logevn">
+                                                            <i class="material-icons app-logicon">swap_horiz</i>
+                                                        </div>
+                                                        <div class="mdl-cell--11-col mdl-typography--caption" ng-bind-html="getChangeText(chk,chv)"></div>
+                                                    </div>
+                                                    <a class="app-logref mdl-cell--12-col" ng-repeat="(chk, chv) in chg.messages">
+                                                        <div class="mdl-grid mdl-cell--12-col app-loglist" ng-click="chv.isopen=!chv.isopen||false">
+                                                            <div class="mdl-cell--1-col app-logevn">
+                                                                <i class="material-icons app-logicon">chat_bubble_outline</i>
+                                                            </div>
+                                                            <div class="mdl-cell--11-col">
+                                                                <div class="mdl-cell--11-col" ng-if="chv.isopen">
+                                                                    <b>{{chv.value}}</b>
+                                                                    <div class="mdl-cell--11-col mdl-typography--caption"><i>{{chv.title}}</i></div>
+                                                                    <div class="mdl-cell--11-col mdl-typography--caption"
+                                                                         xxxstyle="transform: scale(.9);" ng-bind-html="chv.message.body" app-logmsg></div>
+                                                                    <div class="app-logbr"></div>
+                                                                </div>
+                                                                <div class="mdl-cell--11-col" ng-if="!chv.isopen">
+                                                                    {{chv.value}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-if="log.autosvc" class="mdl-grid mdl-cell--12-col app-loglist" ng-repeat="trg in log.autosvc">
+                                            <div class="mdl-grid mdl-cell--12-col app-loglist" ng-repeat="(key, chg) in trg">
+                                                <div class="mdl-cell--1-col app-logevn">
+                                                    <i class="material-icons app-logicon">trending_up</i>
+                                                </div>
+                                                <div class="mdl-cell--11-col mdl-typography--caption">
+                                                    {{key}}
+                                                    <div class="mdl-grid mdl-cell--12-col app-loglist" ng-repeat="(chk, chv) in chg.changes">
+                                                        <div class="mdl-cell--1-col app-logevn">
+                                                            <i class="material-icons app-logicon">swap_horiz</i>
+                                                        </div>
+                                                        <div class="mdl-cell--11-col mdl-typography--caption" ng-bind-html="getChangeText(chk,chv)"></div>
+                                                    </div>
+                                                    <a class="app-logref mdl-cell--12-col" ng-repeat="(chk, chv) in chg.messages">
+                                                        <div class="mdl-grid mdl-cell--12-col app-loglist" ng-click="chv.isopen=!chv.isopen||false">
+                                                            <div class="mdl-cell--1-col app-logevn">
+                                                                <i class="material-icons app-logicon">chat_bubble_outline</i>
+                                                            </div>
+                                                            <div class="mdl-cell--11-col">
+                                                                <div class="mdl-cell--11-col" ng-if="chv.isopen">
+                                                                    <b>{{chv.value}}</b>
+                                                                    <div class="mdl-cell--11-col mdl-typography--caption"><i>{{chv.title}}</i></div>
+                                                                    <div class="mdl-cell--11-col mdl-typography--caption"
+                                                                         xxxstyle="transform: scale(.9);" ng-bind-html="chv.message.body" app-logmsg></div>
+                                                                    <div class="app-logbr"></div>
+                                                                </div>
+                                                                <div class="mdl-cell--11-col" ng-if="!chv.isopen">
+                                                                    {{chv.value}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-if="log.notifyAtDate||log.reopenAtDate" class="app-grid mdl-cell--12-col app-loglist app-logref"  ng-click="log.notify.isopen=!log.notify.isopen||false">
+                                            <div class="mdl-cell--1-col app-logevn">
+                                                <i class="material-icons app-logicon">notifications_none</i>
+                                            </div>
+                                            <div class="mdl-cell--11-col">
+                                                <div class="mdl-grid mdl-cell--12-col app-loglist" ng-if="log.notifyAtDate">
+                                                    <div class="mdl-cell--1-col app-logevn">
+                                                        <i class="material-icons app-logicon">swap_horiz</i>
+                                                    </div>
+                                                    <div class="mdl-cell--11-col" ng-bind-html="getChangeText('notifyAtDate',{ to: log.notifyAtDate})"></div>
+                                                </div>
+                                                <div class="mdl-grid mdl-cell--12-col app-loglist" ng-if="log.reopenAtDate">
+                                                    <div class="mdl-cell--1-col app-logevn">
+                                                        <i class="material-icons app-logicon">swap_horiz</i>
+                                                    </div>
+                                                    <div class="mdl-cell--11-col" ng-bind-html="getChangeText('reopenAtDate',{ to: log.reopenAtDate})"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <a ng-if="log.comment && (!log.privcomm || log.privcomm && rowdataPanel.acc.viewacc.substring(0, 2)=='ag')" class="app-logref mdl-cell--12-col">
+                                            <div class="mdl-grid app-loglist" ng-click="log.isopenComment=!log.isopenComment||false">
+                                                <div class="mdl-cell--1-col app-logevn">
+                                                    <i class="material-icons app-logicon">mail_outline</i>
+                                                </div>
+                                                <div class="mdl-cell--11-col mdl-typography--caption" ng-if="!log.isopenComment">
+                                                    {{log.subject}}
+                                                </div>
+                                                <div class="mdl-cell--11-col" ng-if="log.isopenComment" ng-class="{'app-privcomm-log': log.privcomm}">
+                                                    <div class="mdl-cell--11-col mdl-typography--caption app-logmsg">
+                                                        <div style="transform: scale(.9);" ng-bind-html="log.comment"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        <div ng-if="log.atid" class="mdl-grid mdl-cell--12-col app-loglist">
+                                            <div class="mdl-cell--1-col app-logevn">
+                                                <i class="material-icons app-logicon">attach_file</i>
+                                            </div>
+                                            <div class="app-loglist mdl-cell--10-col mdl-typography--caption">
+                                                <div class="app-attachment" ng-repeat="file in rowdata.attachments[log.atid]">
+                                                    <a target="_blank" class="app-logref" ng-href="attachment/{{log.atid}}/{{file.uri}}">
+                                                        <img ng-src="{{getFileicon(file.filename)}}" style="height:12px;" />
+                                                        <span>{{file.filename}}{{(!$last?',':'')}}</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+
+                       </div>
+                    </div>
+                </div>
+
+                <br />
+                <br />
+
+            </div>
+
+            <div class="mdl-card__supporting-text">
+                <br /><br />
+        </div>
+        <div class="mdl-card__actions mdl-color--yellow-200">
+        <div class="mdl-card__actions mdl-color--yellow-200" slide-up-toggle="ticketdetail">
+        </div>
+
+        </div>
+        </div>-->
+
+    </div>
+</div>
+
+

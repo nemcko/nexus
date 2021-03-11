@@ -1,0 +1,25 @@
+﻿
+<div style="float:right;">
+    <a ng-repeat="lnk in panel.links" class="mdl-navigation__link" ng-href="{{lnk.href}}">
+        <i ng-class="" class="material-icons" id="headlnkicon{{lnk.icon}}">
+            {{lnk.icon}}
+        </i>
+        <div class="mdl-tooltip" for="headlnkicon{{lnk.icon}}">
+            {{lnk.name}}
+        </div>
+    </a>
+
+    <a class="mdl-navigation__link" href="" ng-click="$parent.showDrawer()" ng-if="dashboard">
+        <i ng-class="" id="headdrawler{{panel.pgId}}" class="material-icons">flip</i>
+    </a>
+    <div class="mdl-tooltip" for="headdrawler{{panel.pgId}}">
+        Right panel
+    </div>
+
+    <a class="mdl-navigation__link" href="/#/login" ng-if="isLogged()" ng-click="$parent.logout()">
+        <i ng-class="" id="pgLogoff{{panel.pgId}}" class="material-icons">power_settings_new</i>
+    </a>
+    <div class="mdl-tooltip" for="pgLogoff{{panel.pgId}}">
+        Logout
+    </div>
+</div>

@@ -1,0 +1,15 @@
+﻿[
+  {
+    "label": "Left side",
+    "code": "left"
+  },
+  {
+    "label": "Right side",
+    "code": "right"
+  },
+  {
+    "label": "Center",
+    "code": "center"
+  }
+
+]

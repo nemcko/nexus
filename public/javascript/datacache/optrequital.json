@@ -1,0 +1,32 @@
+﻿[
+  {
+    "name": "Proforma FA",
+    "key": "Proforma",
+    "icon": "content_paste"
+  },
+  {
+    "name": "Hotovosť",
+    "key": "Cash",
+    "icon": "euro_symbol"
+  },
+  {
+    "name": "Účet",
+    "key": "Account",
+    "icon": "account_balance"
+  },
+  {
+    "name": "Inak",
+    "key": "Otherwise",
+    "icon": "loop"
+  },
+  {
+    "name": "Faktúra",
+    "key": "Invoice",
+    "icon": "picture_in_picture"
+  },
+  {
+    "name": "Nefakturovať",
+    "key": "NoInvoice",
+    "icon": "block"
+  }
+]

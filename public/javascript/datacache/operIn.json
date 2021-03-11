@@ -1,0 +1,10 @@
+﻿[
+  {
+    "name": "In",
+    "key": "s_in"
+  },
+  {
+    "name": "Not In",
+    "key": "s_nin"
+  }
+]

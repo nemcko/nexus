@@ -1,0 +1,30 @@
+﻿[
+  {
+    "name": "New",
+    "key": "new"
+  },
+  {
+    "name": "Open",
+    "key": "open"
+  },
+  {
+    "name": "On-hold",
+    "key": "on-hold"
+  },
+  {
+    "name": "Pending",
+    "key": "pending"
+  },
+  {
+    "name": "Solved",
+    "key": "solved"
+  },
+  {
+    "name": "Closed",
+    "key": "closed"
+  },
+  {
+    "name": "<LiveStats>",
+    "key": "new,open,on-hold,pending"
+  }
+]

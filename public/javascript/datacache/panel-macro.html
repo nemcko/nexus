@@ -1,0 +1,24 @@
+
+<div class="app-macro">
+
+    <button id="pgNavpanel{{panel.pgId}}" class="app-dimmed mdl-button mdl-js-button mdl-button--icon" ng-click="panel.visibleNavpanel=!panel.visibleNavpanel">
+        <i ng-if="panel.visibleNavpanel" class="material-icons">keyboard_capslock</i>
+        <i ng-if="!panel.visibleNavpanel" class="material-icons">power_input</i>
+    </button>
+    <div class="mdl-tooltip" for="pgNavpanel{{panel.pgId}}">
+        Show/Hide Navpanel
+    </div>
+
+    <button id="pgMacro{{panel.pgId}}" class="app-dimmed mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">playlist_add</i>
+        <!--<i class="material-icons">more_vert</i>-->
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="pgMacro{{panel.pgId}}" slide-up-toggle="ticketdetail" style="z-index:100;">
+        <li ng-repeat="itm in optmacros" class="mdl-menu__item" ng-click="runMacro(panel,itm)" value="{{itm.code}}">{{itm.name}}</li>
+    </ul>
+    <div class="mdl-tooltip" for="pgMacro{{panel.pgId}}">
+        Run macro
+    </div>
+
+
+</div>

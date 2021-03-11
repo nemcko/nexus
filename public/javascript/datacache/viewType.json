@@ -1,0 +1,32 @@
+﻿[
+  {
+    "code": "agall",
+    "name": "Access to all tickets",
+    "type": "agents"
+  },
+  {
+    "code": "aggrp",
+    "name": "Tickets from agent's group",
+    "type": "agents"
+  },
+  {
+    "code": "agorg",
+    "name": "Tickets from agent's organization",
+    "type": "agents"
+  },
+  {
+    "code": "agusr",
+    "name": "Ticket assigned to agent only",
+    "type": "agents"
+  },
+  {
+    "code": "clorg",
+    "name": "Ticket from user's organization",
+    "type": "endusers"
+  },
+  {
+    "code": "clusr",
+    "name": "Ticket requested by user only",
+    "type": "endusers"
+  }
+]

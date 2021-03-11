@@ -1,0 +1,41 @@
+﻿[
+  {
+    "name": "username",
+    "label": "User Name",
+    "grp": "User fields",
+    "size": 8
+  },
+  {
+    "name": "fullname",
+    "label": "Full Name",
+    "grp": "User fields",
+    "size": 10
+  },
+  {
+    "name": "phone",
+    "label": "Phone Number",
+    "grp": "User fields",
+    "size": 8
+  },
+  {
+    "name": "role",
+    "label": "Role",
+    "grp": "User fields",
+    "size": 8
+  },
+  {
+    "name": "usertype",
+    "label": "User Type",
+    "grp": "User fields",
+    "size": 8
+  },
+  {
+    "name": "latestAccess",
+    "label": "Last Access",
+    "grp": "Ticket fields",
+    "grp": "User fields",
+    "size": 8,
+    "formfun": "dmy"
+  }
+
+]

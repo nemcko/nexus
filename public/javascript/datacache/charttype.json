@@ -1,0 +1,30 @@
+﻿[
+  {
+    "code": "line",
+    "name": "Line Chart"
+  },
+  {
+    "code": "bpline",
+    "name": "Bi-polar line Chart"
+  },
+  {
+    "code": "bar",
+    "name": "Bar Chart"
+  },
+  {
+    "code": "hbar",
+    "name": "Horizontal bar Chart"
+  },
+  {
+    "code": "stackedbar",
+    "name": "Stacked bar Chart"
+  },
+  {
+    "code": "gauge",
+    "name": "Gauge Chart"
+  },
+  {
+    "code": "pie",
+    "name": "Pie Chart"
+  }
+]

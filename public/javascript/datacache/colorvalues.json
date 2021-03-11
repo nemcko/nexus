@@ -1,0 +1,121 @@
+﻿{
+  "unsolved": [
+    {
+      "oper": "d_lt",
+      "value": "168*60",
+      "color": "lime"
+    },
+    {
+      "oper": "d_lt",
+      "value": "720*60",
+      "color": "orange"
+    },
+    {
+      "oper": "d_gte",
+      "value": "7200*60",
+      "color": "red"
+    }
+  ],
+  "unasigned": [
+    {
+      "oper": "d_lt",
+      "value": "2*60",
+      "color": "lime"
+    },
+    {
+      "oper": "d_lt",
+      "value": "12*60",
+      "color": "orange"
+    },
+    {
+      "oper": "d_gte",
+      "value": "12*60",
+      "color": "red"
+    }
+  ],
+  "bookmarks": [
+    {
+      "oper": "d_lt",
+      "value": "168*60",
+      "color": "lime"
+    },
+    {
+      "oper": "d_lt",
+      "value": "720*60",
+      "color": "orange"
+    },
+    {
+      "oper": "d_gte",
+      "value": "7200*60",
+      "color": "red"
+    }
+  ],
+  "overdue": [
+    {
+      "oper": "d_lt",
+      "value": "0",
+      "color": "lime"
+    },
+    {
+      "oper": "d_lt",
+      "value": "24*60",
+      "color": "orange"
+    },
+    {
+      "oper": "d_gte",
+      "value": "24*60",
+      "color": "red"
+    }
+  ],
+  "knowledge": [
+    {
+      "oper": "d_lt",
+      "value": "168*60",
+      "color": "lime"
+    },
+    {
+      "oper": "d_lt",
+      "value": "720*60",
+      "color": "orange"
+    },
+    {
+      "oper": "d_gte",
+      "value": "7200*60",
+      "color": "red"
+    }
+  ],
+  "oldtickets": [
+    {
+      "oper": "d_lt",
+      "value": "90*24*60",
+      "color": "orange"
+    },
+    {
+      "oper": "d_gte",
+      "value": "90*24*60",
+      "color": "red"
+    }
+  ],
+  "priority": [
+    {
+      "oper": "s_eq",
+      "value": "low",
+      "color": "silver"
+    },
+    {
+      "oper": "s_eq",
+      "value": "normal",
+      "color": "lightgreen"
+    },
+    {
+      "oper": "s_eq",
+      "value": "high",
+      "color": "orange"
+    },
+    {
+      "oper": "s_eq",
+      "value": "urgent",
+      "color": "magenta"
+    }
+  ]
+}

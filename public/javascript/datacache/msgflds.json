@@ -1,0 +1,155 @@
+﻿[
+  {
+    "grp": "Ticket fields",
+    "source": "ticket",
+    "code": "ticnum",
+    "label": "Ticket Nr.",
+    "type": "Number"
+  },
+
+  {
+    "grp": "Ticket fields",
+    "source": "ticket",
+    "code": "status",
+    "label": "Status",
+    "type": "String"
+  },
+
+  {
+    "grp": "Ticket fields",
+    "source": "ticket",
+    "code": "assignee",
+    "label": "Assignee",
+    "type": "String"
+  },
+
+  {
+    "grp": "Ticket fields",
+    "source": "ticket",
+    "code": "priority",
+    "label": "Priority",
+    "type": "String"
+  },
+
+  {
+    "grp": "Ticket fields",
+    "source": "ticket",
+    "code": "dueDate",
+    "label": "Due Date",
+    "type": "Date"
+  },
+
+  {
+    "grp": "User data",
+    "source": "ticket",
+    "code": "requester",
+    "label": "Requester",
+    "type": "String"
+  },
+
+  {
+    "grp": "User data",
+    "source": "ticket",
+    "code": "requestcc",
+    "label": "Requester CC",
+    "type": "String"
+  },
+
+  {
+    "grp": "User data",
+    "source": "ticket",
+    "code": "requestbc",
+    "label": "Requester BC",
+    "type": "String"
+  },
+
+  {
+    "grp": "Ticket fields",
+    "source": "ticket",
+    "code": "service",
+    "label": "Service",
+    "type": "String"
+  },
+
+  {
+    "grp": "Ticket fields",
+    "source": "ticket",
+    "code": "time",
+    "label": "Time",
+    "type": "String"
+  },
+
+  {
+    "grp": "Ticket fields",
+    "source": "ticket",
+    "code": "transport",
+    "label": "Transport",
+    "type": "Number"
+  },
+
+  {
+    "grp": "Ticket fields",
+    "source": "ticket",
+    "code": "purchase",
+    "label": "purchase",
+    "type": "Number"
+  },
+
+  {
+    "grp": "Ticket fields",
+    "source": "ticket",
+    "code": "price",
+    "label": "Price VAT incl.",
+    "type": "Number"
+  },
+
+  {
+    "grp": "Ticket fields",
+    "source": "ticket",
+    "code": "reimburse",
+    "label": "Reimburse",
+    "type": "Boolean"
+  },
+
+  {
+    "grp": "Ticket fields",
+    "source": "ticket",
+    "code": "requital",
+    "label": "Requital",
+    "type": "String"
+  },
+
+  {
+    "grp": "Ticket fields",
+    "source": "ticket",
+    "code": "subject",
+    "label": "Subject",
+    "type": "String"
+  },
+
+  {
+    "grp": "Ticket fields",
+    "source": "ticket",
+    "code": "tags",
+    "label": "Tags",
+    "type": "String"
+  },
+
+  {
+    "grp": "Ticket fields",
+    "source": "ticket",
+    "code": "updaterType",
+    "label": "Updater type",
+    "type": "String"
+  },
+
+  {
+    "grp": "Ticket fields",
+    "source": "ticket",
+    "code": "updateDate",
+    "label": "Updated",
+    "type": "Date"
+  }
+
+
+]

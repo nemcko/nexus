@@ -1,0 +1,60 @@
+﻿<div class="app-page2 md-grid">
+    <div class="app-header mdl-color--blue">
+        <div datapanel="panel-links"></div>
+        <h3 class="mdl-color-text--white">{{dashboard.name}}&nbsp;</h3>
+        <h4 class="mdl-color-text--blue-grey-100">User tickets send into application</h4>
+
+        <div ng-if="!dashboard.hasSearchPanel" class="rside" datapanel="boardbtns"></div>
+        <div class="rside">
+            <span ng-show="!largeMenu && currentUser.username" class="mdl-typography--caption-force-preferred-font-color-contrast">User:&nbsp;{{currentUser.fullname}}</span>
+        </div>
+    </div>
+
+
+    <div ng-switch on="dashboard.type">
+        <div ng-switch-when="single">
+            <div class="app-desk2 mdl-cell--11-col" style="width:98%">
+                <div boardtable position="center" column="1"></div>
+            </div>
+        </div>
+        <div ng-switch-when="columns2">
+            <div class="app-desk2 mdl-cell--6-col">
+                <div boardtable position="left" column="1"></div>
+            </div>
+            <div class="app-desk2 mdl-cell--6-col" style="width:48%">
+                <div boardtable position="right" column="2"></div>
+            </div>
+        </div>
+        <div ng-switch-when="columns2l">
+            <div class="app-desk2 mdl-cell--8-col" style="width:65%">
+                <div boardtable position="left" column="1"></div>
+            </div>
+            <div class="app-desk2 mdl-cell--4-col">
+                <div boardtable position="right" column="2"></div>
+            </div>
+        </div>
+        <div ng-switch-when="columns3">
+            <div class="app-desk2 mdl-cell--4-col">
+                <div boardtable position="left" column="1"></div>
+            </div>
+            <div class="app-desk2 mdl-cell--4-col">
+                <div boardtable position="center" column="2"></div>
+            </div>
+            <div class="app-desk2 mdl-cell--4-col" xxxstyle="width:30%">
+                <div boardtable position="right" column="3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<pre>{{dashboard | json}}</pre>-->
+
+<div id="modalview" modalview="modalview" ng-class="{short: !largeMenu}">
+    <div ng-include="'partials/ticket/searchpanel.tpl.html'"></div>
+</div>
+
+<div id="ticketdetail" slideable-up="ticketdetail" ng-class="{short: !largeMenu}">
+    <div ng-include="'partials/ticket/ticket.tpl.html'"></div>
+</div>
+<div id="changesdetail" slideable-up="changesdetail" ng-class="{short: !largeMenu}">
+    <div ng-include="'partials/ticket/changes.tpl.html'"></div>
+</div>

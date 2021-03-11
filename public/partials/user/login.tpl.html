@@ -1,0 +1,54 @@
+<div class="app-grid app-fullpage" xxxxstyle="width:100% !important;height:100% !important;">
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--hide-phone"><br /><br /><br /><br /><br /><br /><br /><br /></div>
+
+    <div class="mdl-grid mdl-cell--middle mdl-grid--no-spacing mdl-card mdl-shadow--2dp mdl-cell--6-col">
+        <div class="mdl-cell--4-col mdl-cell--12-col-tablet mdl-cell--hide-phone mdl-color--teal-100 mdl-color-text--white">
+            <img src="images/lock.svg" alt="Login" class="mdl-cell mdl-cell--12-col mdl-cell--1-col-tablet mdl-cell--hide-phone">
+        </div>
+        <div class="mdl-cell--8-col mdl-cell--7-col-tablet">
+            <div class="mdl-card__supporting-text">
+                <h3>
+                    <span ng-if="!$parent.isLogged()">Login</span>
+                    <span ng-if="$parent.isLogged()">Logout</span>
+                </h3>
+                <span ng-if="!$parent.isLogged()"> Please enter your username and password.</span>
+                <span ng-if="$parent.isLogged()">Press SUBMIT to log off from the system.</span>
+                <form name="form">
+                    <div ng-if="!$parent.isLogged()">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" focusme type="text" id="username" name="username" ng-model="data.username" ng-required="true">
+                            <label class="mdl-textfield__label" for="username">User name</label>
+                            <span class="mdl-tooltip mdl-tooltip--validation" for="username" ng-show="form.username.$invalid && form.username.$touched">
+                                <span ng-show="form.username.$error.required">Required.</span>
+                            </span>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="password" id="password" name="password" ng-model="data.password">
+                            <label class="mdl-textfield__label" for="password">Password</label>
+                        </div>
+
+
+                        <div ng-show="$parent.bRunning" class="mdl-progress mdl-js-progress mdl-progress__indeterminate mdl-color--teal-100"></div>
+
+                        <div class="mdl-card__actions">
+                            <button ng-hide="$parent.bRunning" type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="float:right" ng-click="login()">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                    <div ng-if="$parent.currentUser.username">
+                        <br />
+                        <div class="mdl-card__actions">
+                            <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="float:right" ng-click="logout()">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--hide-phone"><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>
+</div>

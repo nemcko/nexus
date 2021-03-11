@@ -1,0 +1,74 @@
+﻿<form name="updateForm">
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--9-col">
+        <input class="mdl-textfield__input" type="text" id="name" name="name" ng-model="rowdata.name" ng-disabled="!expandedNew" ng-required="true" />
+        <label class="mdl-textfield__label" for="name">Organization name*</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="name" ng-show="updateForm.name.$invalid && updateForm.name.$touched">
+            <span ng-show="updateForm.name.$error.required">Required.</span>
+        </span>
+    </div>
+    <br class="mdl-cell--hide-desktop" />
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+        <input class="mdl-textfield__input" type="text" id="ico" ico="ico" ng-model="rowdata.ico" />
+        <label class="mdl-textfield__label" for="ico">ICO</label>
+    </div>
+    <br />
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+        <textarea class="mdl-textfield__input" type="text" rows="3" id="info" name="info" ng-model="rowdata.info"></textarea>
+        <label class="mdl-textfield__label" for="info">Information</label>
+    </div>
+    <br />
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+        <input class="mdl-textfield__input" type="text" ng-list id="domains" name="domains" ng-model="rowdata.domains" />
+        <label class="mdl-textfield__label" for="domains">Domains</label>
+    </div>
+    <br />
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+        <textarea class="mdl-textfield__input" type="text" rows="3" id="notes" name="notes" ng-model="rowdata.notes"></textarea>
+        <label class="mdl-textfield__label" for="notes">Notes about the organization</label>
+    </div>
+    <br />
+
+    <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--6-col">
+        <select class="mdl-textfield__input" type="text" id="defgroup" name="defgroup" ng-model="rowdata.defgroup" ng-options="o.code as o.name for o in usergroups">
+            <option value=""></option>
+        </select>
+        <label class="mdl-textfield__label" for="defgroup">Default group</label>
+    </div>
+    <br class="mdl-cell--hide-desktop mdl-cell--hide-tablet" />
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+        <input class="mdl-textfield__input" type="number" id="pricelevel" name="pricelevel" ng-model="rowdata.pricelevel" />
+        <label class="mdl-textfield__label" for="pricelevel">Price level [%]</label>
+    </div>
+    <br />
+
+    <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--6-col">
+        <select class="mdl-textfield__input" type="text" id="profile" name="profile" ng-model="rowdata.profile" ng-options="o.name as o.name for o in profiles">
+        </select>
+        <label class="mdl-textfield__label" for="profile">E-mail profile</label>
+    </div>
+    <br />
+
+
+    <div style="clear:both"></div>
+    <!--<div datapanel="panel-det"></div>-->
+    <div class="mdl-cell--12-col">
+        <br />
+        <button class="mdl-button mdl-js-button" ng-click="showUsers()">
+            Show Users
+        </button>
+        <button class="mdl-button mdl-js-button" ng-click="showTickets()">
+            Show Tickets
+        </button>
+
+        <button id="pgClose{{panel.pgId}}" class="mdl-button mdl-js-button mdl-cell--5-offset" ng-click="closeDetail(item)">
+            Cancel
+        </button>
+        <button id="pgSave{{panel.pgId}}" class="mdl-button mdl-js-button mdl-button--accent" ng-show="panel.acc.create || panel.acc.update" ng-disabled="updateForm.$invalid" ng-click="save()">
+            Save
+        </button>
+    </div>
+
+</form>

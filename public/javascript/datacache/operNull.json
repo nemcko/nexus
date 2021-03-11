@@ -1,0 +1,10 @@
+﻿[
+  {
+    "name": "Not null",
+    "key": "!null"
+  },
+  {
+    "name": "Null",
+    "key": "null"
+  }
+]

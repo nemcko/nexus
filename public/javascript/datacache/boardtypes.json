@@ -1,0 +1,27 @@
+﻿[
+
+  {
+    "type": "single",
+    "label": "Single",
+    "cache": "optbnopos"
+  },
+
+  {
+    "type": "columns2",
+    "label": "Two columns",
+    "cache": "optbposlr"
+  },
+
+  {
+    "type": "columns2l",
+    "label": "Two columns left main",
+    "cache": "optbposlr"
+  },
+
+  {
+    "type": "columns3",
+    "label": "Three columns",
+    "cache": "optbpos"
+  }
+
+]

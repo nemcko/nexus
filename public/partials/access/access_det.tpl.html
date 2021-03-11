@@ -1,0 +1,39 @@
+﻿<!--<div class="mdl-typography--subhead">Detail of fields</div>-->
+<form name="updateForm">
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+        <input class="mdl-textfield__input" type="text" id="oid" name="oid" ng-model="rowdata.oid" ng-disabled="!expandedNew" ng-required="true" />
+        <label class="mdl-textfield__label" for="user">Object ID*</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="oid" ng-show="updateForm.oid.$invalid && updateForm.oid.$touched">
+            <span ng-show="updateForm.oid.$error.required">Required.</span>
+        </span>
+    </div>
+    <br class="mdl-cell--hide-desktop" />
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--6-col">
+        <input class="mdl-textfield__input" type="text" id="name" name="name" ng-model="rowdata.name" />
+        <label class="mdl-textfield__label" for="name">Name</label>
+    </div>
+
+    <br />
+
+    <div class="mdl-grid">
+        <div class="mdl-textfield mdl-cell--2-col" ng-repeat="(index, item) in rowdata.access">
+            <span class="mdl-typography--body-2-force-preferred-font">{{item.label}}</span>
+            <div ng-repeat="utype in userTypes">
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="ch{{item.code}}-{{utype.code}}-{{$index}}">
+                    <input type="checkbox" id="ch{{item.code}}-{{utype.code}}-{{$index}}" class="mdl-checkbox__input"
+                           ng-model="can[item.code][utype.code]" ng-click="changeAccess(item,utype.code,can[item.code][utype.code])" ng-checked="item.cando.indexOf(utype.code) >= 0">
+                    <span class="mdl-checkbox__label">{{utype.name}}</span>
+                </label>
+                <br />
+            </div>
+        </div>
+    </div>
+
+
+    <div style="clear:both"></div>
+    <!--<pre>{{rowdata.access | json}}</pre>-->
+
+    <div datapanel="panel-det"></div>
+</form>

@@ -1,0 +1,28 @@
+﻿{
+  "title": "Manage Users",
+  "color": "mdl-color--teal-400",
+  "icon": "assignment_ind",
+  "name": "Users",
+  "links": [
+    {
+      "href": "#/user",
+      "icon": "person",
+      "name": "Users"
+    },
+    {
+      "href": "#/organ",
+      "icon": "store",
+      "name": "Organizations"
+    },
+    {
+      "href": "#/group",
+      "icon": "group",
+      "name": "Groups"
+    },
+    {
+      "href": "#/access",
+      "icon": "lock",
+      "name": "Access"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+﻿[
+  {
+    "name": "1 h",
+    "key": "1",
+    "dec": false
+  },
+  {
+    "name": "2 h",
+    "key": "2",
+    "dec": false
+  },
+  {
+    "name": "3 h",
+    "key": "3",
+    "dec": false
+  },
+  {
+    "name": "4 h",
+    "key": "4",
+    "dec": false
+  },
+  {
+    "name": "5 h",
+    "key": "5",
+    "dec": false
+  },
+  {
+    "name": "0,1 h",
+    "key": "0,1",
+    "dec": true
+  },
+  {
+    "name": "0,2 h",
+    "key": "0,2",
+    "dec": true
+  },
+  {
+    "name": "0,3 h",
+    "key": "0,3",
+    "dec": true
+  },
+  {
+    "name": "0,4 h",
+    "key": "0,4",
+    "dec": true
+  },
+  {
+    "name": "0,5 h",
+    "key": "0,5",
+    "dec": true
+  },
+  {
+    "name": "0,6 h",
+    "key": "0,6",
+    "dec": true
+  },
+  {
+    "name": "0,7 h",
+    "key": "0,7",
+    "dec": true
+  }
+]

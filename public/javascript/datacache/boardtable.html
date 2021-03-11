@@ -1,0 +1,290 @@
+
+<div ng-repeat="panel in dashboard.position.BOARDPOSITION" ng-init="panelIndexBOARDPOSITION = $index;">
+    <div ng-switch on="panel.vref">
+        <div class="app-table2" ng-switch-when="View" ng-show="panel.items.length">
+            <table id="paneltable{{panel.seq}}">
+                <caption ng-class="getTableColor(dashboard.type,panelIndexBOARDPOSITION,BOARDCOLUMN)">
+                    {{panel.title}}&nbsp;    
+                    <span ng-show="panel.pageTotal">
+                        ({{panel.pageTotal}}<small ng-show="panel.pageMarked">/{{panel.pageMarked}}</small>)
+                    </span>
+                    <div ng-show="panel.processData" class="mdl-spinner mdl-js-spinner mdl-spinner--single-color is-active"></div>
+                    <div class="app-macro">
+
+                        <button id="pgNavpanel{{panel.seq}}" class="app-dimmed mdl-button mdl-js-button mdl-button--icon" ng-click="panel.visibleNavpanel=!panel.visibleNavpanel">
+                            <i ng-if="panel.visibleNavpanel" class="material-icons">fullscreen_exit</i>
+                            <i ng-if="!panel.visibleNavpanel" class="material-icons">fullscreen</i>
+                        </button>
+                        <div class="mdl-tooltip" for="pgNavpanel{{panel.seq}}">
+                            Show/Hide Navpanel
+                        </div>
+
+                        <button id="pgPlay{{panel.seq}}"  class="app-dimmed mdl-button mdl-js-button mdl-button--icon" ng-click="getNextTicket(panel)">
+                            <i class="material-icons">theaters</i>
+                            <!--<i class="material-icons">replay</i>-->
+                        </button>
+                        <div class="mdl-tooltip" for="pgPlay{{panel.seq}}">
+                            Show tickets
+                        </div>
+
+
+                        <!--<button id="pgMacro{{panel.seq}}" class="app-dimmed mdl-button mdl-js-button mdl-button--icon" ng-if="panel.seq===0">
+                            <i class="material-icons">playlist_add</i>
+                        </button>-->
+
+
+                        <button ng-show="panel.hasbookmarks==='assign' && getMarkerCount(panel)" id="pgBookmarkbtn{{panel.pgId}}" class="app-dimmed mdl-button mdl-js-button mdl-button--icon" ng-click="doBookmarkFunction(panel,panel.hasbookmarks,-1)">
+                            <i class="material-icons">pan_tool</i>
+                        </button>
+                        <div class="mdl-tooltip" for="pgBookmarkbtn{{panel.pgId}}">
+                            {{getBookmarkFunName(panel.hasbookmarks)}}
+                        </div>
+
+                    </div>
+                </caption>
+                <thead>
+                    <tr ng-if="panel.visibleNavpanel || !panelIndexBOARDPOSITION" ng-class="getTableColor(dashboard.type,panelIndexBOARDPOSITION,BOARDCOLUMN)">
+                        <th ng-class="getColumnAlign(fld)" ng-repeat="fld in panel.fields" width="{{getColumnWidth(panel.fields,fld,panel.hasbookmarks || panel.markers)}}%">{{getColumnTitle(fld)}}</th>
+                        <th ng-if="panel.hasbookmarks || panel.markers" width="48px">
+                            <!--<div ng-if="panel.hasbookmarks" class="app-smalheader app-bookmark" ng-switch on="panel.pageMarked>0">
+                                <i ng-switch-when="false" class="material-icons app-smalheader2" ng-click="setBookmarkAll(panel,false)">bookmark</i>
+                                <i ng-switch-when="true" class="material-icons app-smalheader2" ng-click="setBookmarkAll(panel,true)">bookmark_border</i>
+                            </div>-->
+                            <i ng-if="panel.hasbookmarks" class="material-icons app-smalheader4">bookmark_border</i>
+                            <div ng-if="panel.markers" class="app-smalheader app-bookmark" ng-switch on="getMarkerCount(panel)>0">
+                                <i ng-switch-when="false" class="material-icons app-smalheader3" ng-click="setMarkers(panel,true)">check_box_outline_blank</i>
+                                <i ng-switch-when="true" class="material-icons app-smalheader3" ng-click="setMarkers(panel,false)">check_box</i>
+                            </div>
+                            <i ng-if="panel.hasbookmarks==='marked' && panel.pageMarked" class="material-icons app-smalheader4">call_merge</i>
+                        </th>
+                        <th width="{{getColumnWidth100(ticketview.fields,ticketview.hasbookmarks || ticketview.markers)}}%"></th>
+                    </tr>
+                    <tr ng-if="!panel.visibleNavpanel && panelIndexBOARDPOSITION">
+                        <td class="app-smalheader" ng-class="getColumnAlign(fld)" ng-repeat="fld in panel.fields" width="{{getColumnWidth(panel.fields,fld,panel.hasbookmarks || panel.markers)}}%">{{getColumnTitle(fld)}}</td>
+                        <!--<td ng-if="panel.hasbookmarks" class="app-bookmark">
+                            <i class="material-icons app-dimmed">bookmark_border</i>
+                            <i class="material-icons app-dimmed" ng-if="panel.hasbookmarks==='bookmark' && panel.pageMarked" style="margin-left:4px;">call_merge</i>
+                        </td>-->
+                        <td ng-if="panel.hasbookmarks || panel.markers" width="48px">
+                            <!--<div ng-if="panel.hasbookmarks" class="app-smalheader app-bookmark" ng-switch on="panel.pageMarked>0">
+                                <i ng-switch-when="false" class="material-icons app-dimmed app-smalheader2" ng-click="setBookmarkAll(panel,false)">bookmark</i>
+                                <i ng-switch-when="true" class="material-icons app-dimmed app-smalheader2" ng-click="setBookmarkAll(panel,true)">bookmark_border</i>
+                            </div>-->
+                            <i ng-if="panel.hasbookmarks" class="material-icons app-dimmed app-smalheader4">bookmark_border</i>
+                            <div ng-if="panel.markers" class="app-smalheader app-bookmark" ng-switch on="getMarkerCount(panel)>0">
+                                <i ng-switch-when="false" class="material-icons app-dimmed app-smalheader3" ng-click="setMarkers(panel,true)">check_box_outline_blank</i>
+                                <i ng-switch-when="true" class="material-icons app-dimmed app-smalheader3" ng-click="setMarkers(panel,false)">check_box</i>
+                            </div>
+                            <i ng-if="panel.hasbookmarks==='marked' && panel.pageMarked" class="material-icons app-dimmed app-smalheader4">call_merge</i>
+                        </td>
+                        <td width="{{getColumnWidth100(ticketview.fields,ticketview.hasbookmarks || ticketview.markers)}}%"></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in panel.items">
+                        <td ng-if="row._grpfld" class="app-group" colspan="20" ng-bind-html="getGroupRow(panel,row,$index)"></td>
+                        <td ng-if="!row._grpfld" ng-class="getColumnAlign(fld)" 
+                            ng-repeat="fld in panel.fields" 
+                            id="{{panel.seq}}{{fld}}{{row._id}}" 
+                            slide-up-toggle="ticketdetail" 
+                            ng-click="showTicketDetail(panel, row, $index)">
+                            <span ng-bind-html="getColumnValue(fld,row[fld])"></span>
+                        </td>
+                        <td ng-if="(panel.markers||panel.hasbookmarks) && !row._grpfld">
+                            <div ng-if="panel.hasbookmarks && !row._grpfld" class="app-bookmark" ng-switch on="row.bookmark">
+                                <i ng-switch-when="false" class="material-icons app-rowmark" ng-click="setBookmark(panel,row)">bookmark_border</i>
+                                <i ng-switch-when="true" class="material-icons app-rowmark mdl-color-text--teal-500" ng-click="setBookmark(panel,row)">bookmark</i>
+                            </div>
+                            <input ng-if="panel.markers && !row._grpfld" type="checkbox" ng-model="row.marker">
+                            <i ng-if="panel.hasbookmarks==='marked' && panel.pageMarked" class="material-icons app-smalheader5 app-rowmark" ng-click="doBookmarkFunction(panel,panel.hasbookmarks,row._id)">add_circle</i>
+                        </td>
+                        <td ng-if="false && panel.markers && !row._grpfld" class="app-bookmark">
+                            <input type="checkbox" id="checkbox{{panel.seq}}{{row._id}}" ng-model="row.bookmark" ng-click="setBookmark(panel,row)">
+                            <i ng-if="panel.hasbookmarks==='bookmark' && panel.pageMarked" id="rowBookmarkbtn{{panel.seq}}{{row._id}}" class="material-icons app-rowmark" ng-click="doBookmarkFunction(panel,panel.hasbookmarks,row._id)">add_circle</i>
+                            <!--<div class="mdl-tooltip" for="rowBookmarkbtn{{panel.seq}}{{row._id}}">
+                                {{getBookmarkFunName(panel.hasbookmarks)}}
+                            </div>-->
+                        </td>
+
+
+                    </td>
+                </tbody>
+                <tfoot class="app-clip">
+                    <tr ng-show="panel.visibleNavpanel">
+                        <td colspan="20" class="app-dimmed">
+
+                            <span>Rows</span>
+                            <button id="pageitems{{panel.pgId}}" class="app-pageitems mdl-button mdl-js-button mdl-js-ripple-effect">
+                                <span>{{panel.pageLimit}}</span>
+                                <i class="material-icons app-dimmed" role="presentation">keyboard_arrow_up</i>
+                                <span class="visuallyhidden">Accounts</span>
+                            </button>
+                            <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect" for="pageitems{{panel.pgId}}">
+                                <li ng-repeat="itm in panel.pageLimits" class="mdl-menu__item" ng-click="panel.doCmd('pageLimit',itm)" value="{{itm}}">{{itm}} items</li>
+                            </ul>
+
+                            <button id="pagenum{{panel.pgId}}" class="app-pagenum mdl-button mdl-js-button mdl-js-ripple-effect">
+                                <span>{{panel.pageNumber}}</span>
+                                <i class="material-icons app-dimmed" role="presentation">keyboard_arrow_up</i>
+                                <span class="visuallyhidden">Accounts</span>
+                            </button>
+                            <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect" for="pagenum{{panel.pgId}}">
+                                <li ng-repeat="itm in panel.pageNumbers" class="mdl-menu__item" ng-click="panel.doCmd('pageNumber',itm)" value="{{itm}}">Page {{itm}}</li>
+                            </ul>
+                            of
+                            <span class="app-pagecount">{{panel.pageCount}}</span>
+
+                            <button id="pgFirst{{panel.pgId}}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" ng-click="panel.doCmd('pgFirst',itm)">
+                                <i class="material-icons app-dimmed">first_page</i>
+                            </button>
+                            <div class="mdl-tooltip" for="pgFirst{{panel.pgId}}">
+                                First page
+                            </div>
+
+                            <button id="pgUp{{panel.pgId}}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" ng-click="panel.doCmd('pgUp',itm)">
+                                <i class="material-icons app-dimmed">chevron_left</i>
+                            </button>
+                            <div class="mdl-tooltip" for="pgUp{{panel.pgId}}">
+                                Prev page
+                            </div>
+
+                            <button id="pgDn{{panel.pgId}}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" ng-click="panel.doCmd('pgDn',itm)">
+                                <i class="material-icons app-dimmed">chevron_right</i>
+                            </button>
+                            <div class="mdl-tooltip" for="pgDn{{panel.pgId}}">
+                                Next page
+                            </div>
+
+                            <button id="pgLast{{panel.pgId}}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" ng-click="panel.doCmd('pgLast',itm)">
+                                <i class="material-icons app-dimmed">last_page</i>
+                            </button>
+                            <div class="mdl-tooltip" for="pgLast{{panel.pgId}}">
+                                Last page
+                            </div>
+
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            <!--<pre>{{panel.items | json}}</pre>-->
+
+            <div ng-repeat="row in panel.items" class="mdl-tooltip" for="{{panel.seq}}subject{{row._id}}">{{row.lastComment}}</div>
+
+            <!--<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="pgMacro{{panel.seq}}" slide-up-toggle="ticketdetail">
+                <li ng-repeat="itm in optmacros" class="mdl-menu__item" ng-click="runMacro(panel,itm)" value="{{itm.code}}">{{itm.name}}</li>
+            </ul>
+            <div class="mdl-tooltip" for="pgMacro{{panel.seq}}">
+                Run macro
+            </div>-->
+
+            <!--<pre>{{panelIndexBOARDPOSITION | json}}</pre>-->
+
+        </div>
+
+
+        <div class="app-table2 mdl-color--blue-200" ng-switch-when="Card" xxxng-class="getTableColor(dashboard.type,panelIndexBOARDPOSITION,BOARDCOLUMN)" ng-style="getChartHeight(panel.size,dashboard.type,panelIndexBOARDPOSITION,BOARDCOLUMN)">
+            <div class="app-caption">
+                {{panel.title}}
+            </div>
+           
+            <div ng-switch on="panel.cardtype">
+                <div class="app-cardtype" ng-switch-when="3col2row" datapanel="cardtype-3col2row"></div>
+            </div>
+            <!--<pre>{{panel | json}}</pre>-->
+       </div>
+
+
+        <div class="app-search mdl-color--blue-200" ng-switch-when="Search" xxxng-class="getTableColor(dashboard.type,panelIndexBOARDPOSITION,BOARDCOLUMN)" ng-style="getChartHeight(panel.size,dashboard.type,panelIndexBOARDPOSITION,BOARDCOLUMN)">
+            <i class="material-icons">search</i>
+            <div class="mdl-textfield mdl-js-textfield mdl-cell--7-col">
+                <input class="mdl-textfield__input mdl-color--blue-100" focusme type="text" id="searchpanel{{panel.seq}}" ng-model="dashboard.searchPanelText" ng-keydown="pressSearchPanel($event)">
+                <label class="mdl-textfield__label" for="searchpanel{{panel.seq}}">{{panel.title}}</label>
+            </div>
+
+            <!--<button class="app-dimmed mdl-button mdl-js-button mdl-button--icon" ng-show="searchPanelData" id="btnShowSearchPanel{{panel.seq}}"  show-hide-toggle="modalview">
+                <i class="material-icons">visibility</i>
+            </button>
+            <div class="mdl-tooltip" for="btnShowSearchPanel{{panel.seq}}">
+                Show last result
+            </div>-->
+
+
+
+            <div class="rside" datapanel="boardbtns"></div>
+            <!--<pre>{{dashboard.searchPanelText | json}}</pre>-->
+
+        </div>
+
+
+        <div class="app-chart" ng-switch-when="Chart" ng-class="getChartColor(dashboard.type,panelIndexBOARDPOSITION,BOARDCOLUMN)" ng-style="getChartHeight(panel.size,dashboard.type,panelIndexBOARDPOSITION,BOARDCOLUMN)">
+            <div class="app-caption">
+                {{panel.title}}
+                <small>{{getDmyValue(panel.startDate)}} - {{getDmyValue(panel.endDate)}}</small>
+                <div class="app-macro">
+                    <button id="pgNavpanel{{panel.seq}}" class="app-dimmed mdl-button mdl-js-button mdl-button--icon" ng-click="panel.visibleNavpanel=!panel.visibleNavpanel">
+                        <i ng-if="panel.visibleNavpanel" class="material-icons">fullscreen_exit</i>
+                        <i ng-if="!panel.visibleNavpanel" class="material-icons">fullscreen</i>
+                    </button>
+                    <div class="mdl-tooltip" for="pgNavpanel{{panel.seq}}">
+                        Chart Data (show/hide)
+                    </div>
+                </div>
+
+            </div>
+
+            <chartview data="panel.chartdata"
+                       options="panel.chartoptions"
+                       responsive-options="panel.chartresponsive"
+                       chartid="panel.chartid"
+                       charttype="panel.charttype"
+                       size="panel.size">
+            </chartview>
+
+            <div class="app-chartgrp" ng-hide="panel.visibleNavpanel">
+                <small ng-repeat="col in panel.tabcolnames">
+                    <span ng-style="{ 'background-color': getSeriesColor($index)}">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    {{col}}
+                </small>
+            </div>
+            
+            <div ng-show="panel.visibleNavpanel">
+                <div class="rside">
+                    <a class="mdl-navigation__link" href="" id="btnExportxls{{panel.seq}}" ng-click="toExcel('paneltable',panel.seq,'Chart Data')">
+                        <img ng-srcset="/images/fileicons/xlsx.png" />
+                    </a>
+                    <div class="mdl-tooltip" for="btnExportxls{{panel.seq}}">
+                        Export to xls
+                    </div>
+                    <a class="mdl-navigation__link" href="" id="btnExportcsv{{panel.seq}}" ng-click="toCSV('Chart Data',panel.tabcolnames,panel.tabrownames,panel.chartdata.series)">
+                        <img ng-srcset="/images/fileicons/csv.png" />
+                    </a>
+                    <div class="mdl-tooltip" for="btnExportcsv{{panel.seq}}">
+                        Export to csv
+                    </div>
+
+                </div>
+
+                <table id="paneltable{{panel.seq}}">
+                    <caption>
+                        Chart Data:
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th>{{panel.timeunit}}</th>
+                            <th ng-repeat="col in panel.tabcolnames">
+                                <span ng-style="{ 'background-color': getSeriesColor($index)}">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                {{col}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in panel.tabrownames">
+                            <td>{{row}}</td>
+                            <td ng-repeat="col in panel.tabcolnames">{{panel.chartdata.series[$index][$parent.$index]}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+</div>

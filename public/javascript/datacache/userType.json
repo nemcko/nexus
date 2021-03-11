@@ -1,0 +1,52 @@
+﻿[
+  {
+    "code": "admin",
+    "name": "Admin",
+    "type": "admins"
+  },
+  {
+    "code": "vip",
+    "name": "VIP",
+    "type": "agents"
+  },
+  {
+    "code": "senior",
+    "name": "Senior",
+    "type": "agents"
+  },
+  {
+    "code": "junior",
+    "name": "Junior",
+    "type": "agents"
+  },
+  {
+    "code": "viewer",
+    "name": "Viewer",
+    "type": "agents"
+  },
+  {
+    "code": "trainee",
+    "name": "Trainee",
+    "type": "agents"
+  },
+  {
+    "code": "manager",
+    "name": "Manager",
+    "type": "endusers"
+  },
+  {
+    "code": "employee",
+    "name": "Employee",
+    "type": "endusers"
+  },
+  {
+    "code": "supplier",
+    "name": "Supplier",
+    "type": "suppliers"
+  },
+  {
+    "code": "guest",
+    "name": "Guest",
+    "type": "suppliers"
+  }
+]

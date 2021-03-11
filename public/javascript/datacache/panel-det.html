@@ -1,0 +1,16 @@
+
+<div xstyle="float:right;" class="mdl-cell--11-col">
+    <br />
+    <button id="pgClose{{panel.pgId}}" class="mdl-button mdl-js-button mdl-button--icon mdl-cell--11-offset" ng-click="closeDetail(item)">
+        <i class="material-icons">close</i>
+    </button>
+    <div class="mdl-tooltip" for="pgClose{{panel.pgId}}">
+        Close
+    </div>
+    <button  id="pgSave{{panel.pgId}}" class="mdl-button mdl-js-button mdl-button--accent" ng-show="panel.acc.create || panel.acc.update" ng-disabled="updateForm.$invalid" ng-click="save()">
+        <i class="material-icons">check</i>
+    </button>
+    <div class="mdl-tooltip" for="pgSave{{panel.pgId}}">
+        Save
+    </div>
+</div>

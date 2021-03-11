@@ -1,0 +1,29 @@
+﻿{
+  "title": "Knowledge base",
+  "color": "mdl-color--deep-purple-400",
+  "icon": "import_contacts",
+  "name": "Knowledge base",
+  "links": [
+    {
+      "href": "#/kbase",
+      "icon": "local_library",
+      "name": "Search in KB"
+    },
+    {
+      "href": "#/kbasenew",
+      "icon": "folder_special",
+      "name": "New in KB"
+    },
+    {
+      "href": "#/kbcateg",
+      "icon": "folder",
+      "name": "Categories"
+    }
+    //,
+    //{
+    //  "href": "#/kbartic",
+    //  "icon": "import_contacts",
+    //  "name": "Articles"
+    //}
+  ]
+}

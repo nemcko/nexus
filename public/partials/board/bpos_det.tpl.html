@@ -1,0 +1,75 @@
+﻿<form name="updateForm">
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--7-col">
+        <input focusme class="mdl-textfield__input" type="text" id="name" name="name" ng-model="rowdata.name" ng-required="true" />
+        <label class="mdl-textfield__label" for="user">Board Name</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="name" ng-show="updateForm.name.$invalid && updateForm.name.$touched">
+            <span ng-show="updateForm.name.$error.required">Required.</span>
+        </span>
+    </div>
+
+    <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+        <select class="mdl-textfield__input" type="type" ng-model="rowdata.type" ng-options="o.type as o.label for o in boardtypes" required></select>
+        <label class="mdl-textfield__label">Board Type</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="name" ng-show="!updateForm.type">
+            <span>Required.</span>
+        </span>
+    </div>
+
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="shared">
+        <input type="checkbox" id="shared" class="mdl-checkbox__input" ng-model="rowdata.shared">
+        <span class="mdl-checkbox__label">Shared</span>
+    </label>
+
+    <br />
+
+
+    <div class="mdl-grid">
+        <div class="mdl-cell--12-col">
+            <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+                <select class="mdl-textfield__input" type="text" ng-model="newitem.code" ng-options="o.code as o.label for o in getListSides(rowdata.type)"></select>
+                <label class="mdl-textfield__label">Position</label>
+            </div>
+            <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--7-col">
+                <select class="mdl-textfield__input" type="text" ng-model="newitem.view" ng-change="selViewType(newitem.view,newitem)" ng-options="o.objref as o.name for o in optviews"></select>
+                <label class="mdl-textfield__label">View name</label>
+            </div>
+            <!--<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--2-col">
+                <input class="mdl-textfield__input mdl-cell--12-col" type="number" ng-model="newitem.size" />
+                <label class="mdl-textfield__label">Size</label>
+            </div>-->
+
+            <div ng-switch on="newitem.view.$ref" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label  mdl-cell--2-col" style="display: inline-block;">
+                <input ng-switch-when="View" type="number" class="mdl-textfield__input" style="width:100%" ng-model="newitem.size" string-to-number />
+                <select ng-switch-when="Chart" class="mdl-textfield__input" style="width:100%" type="text"
+                        ng-model="newitem.size" ng-options="o.key as o.name for o in chartratio"></select>
+                <label class="mdl-textfield__label">Size</label>
+            </div>
+
+           
+
+            <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-cell--12-offset mdl-color--teal-50" ng-click="addListItem(newitem,rowdata.position)">
+                <i class="material-icons">add</i>
+            </button>
+
+            <dir class="mdl-grid mdl-color--teal-50" ng-repeat="item in rowdata.position">
+                <select class="mdl-textfield__input mdl-cell--3-col" type="text" ng-model="item.code" ng-options="o.code as o.label for o in getListSides(rowdata.type)"></select>
+                <select ng-disabled="true" class="mdl-textfield__input mdl-cell--7-col" type="text" ng-model="item.view.$id" ng-options="o.objref.$id as o.name for o in optviews"></select>
+                <!--<input class="mdl-textfield__input mdl-cell--2-col" type="number" ng-model="item.size" />-->
+                <div ng-switch on="item.view.$ref" class="mdl-cell--2-col" style="display: inline-block;">
+                    <input ng-switch-when="View" type="number" class="mdl-textfield__input" style="width:100%" ng-model="item.size" string-to-number />
+                    <select ng-switch-when="Chart" class="mdl-textfield__input" style="width:100%" type="text"
+                            ng-model="item.size" ng-options="o.key as o.name for o in chartratio"></select>
+                </div>
+
+                <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-cell--12-offset mdl-color--teal-100" ng-click="delListItem(item,rowdata.position)">
+                    <i class="material-icons">close</i>
+                </button>
+               <!-- <pre>{{item | json}}</pre>-->
+            </dir>
+        </div>
+    </div>
+
+    <!--<pre>{{rowdata | json}}</pre>-->
+    <div datapanel="panel-det2" class="mdl-cell--12-col"></div>
+</form>

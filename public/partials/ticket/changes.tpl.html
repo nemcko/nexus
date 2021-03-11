@@ -1,0 +1,163 @@
+﻿
+<div class="app-content">
+    <div class="app-table mdl-cell--12-col">
+        <div class="app-dlg">
+            <div class="mdl-cell--12-col mdl-color--deep-orange">
+                <h3 class="mdl-cell--12-col">
+                    <span class="mdl-cell--9-col">Change data</span>
+                </h3>
+            </div>
+
+            <div class="app-grid">
+                <div class="mdl-cell--12-col">
+                    <div class="select-wrap drop mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--5-col">
+                        <input class="dropfocus mdl-textfield__input" readonly type="text" id="assignee" name="assignee" ng-model="rowdata.assignee" />
+                        <ul>
+                            <li ng-repeat="itm in optassignee">
+                                <a href="" ng-click="applyDropValue('rowdata.assignee',itm.key)"><i class="material-icons">{{itm.icon}}_outline</i>{{itm.name}}</a>
+                            </li>
+                        </ul>
+                        <label class="mdl-textfield__label" for="service">Assignee</label>
+                    </div>
+
+                    <br class="mdl-cell--hide-desktop mdl-cell--hide-tablet" />
+                    <div class="select-wrap drop mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--2-col">
+                        <input class="dropfocus mdl-textfield__input" readonly type="text" id="statpri" name="statpri" ng-model="rowdata.statpri" />
+                        <ul>
+                            <li ng-repeat="itm in ticstatus">
+                                <a href="" ng-click="applyStatpri('rowdata.statpri',itm.key,itm)">{{itm.name}}</a>
+                            </li>
+                        </ul>
+                        <label class="mdl-textfield__label" for="statpri">State</label>
+                    </div>
+
+                    <br class="mdl-cell--hide-desktop mdl-cell--hide-tablet" />
+                    <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--2-col">
+                        <input type="text" class="mdl-textfield__input" pikaday="TicketsCtrl.rowdata.dueDate" i18n="sk" id="dueDate" name="dueDate" xxxon-select="onPikadaySelect(pikaday)"
+                               ng-model="rowdata.dueDate" pikadayfocus />
+                        <label class="mdl-textfield__label" for="dueDate">Due Date</label>
+                    </div>
+                    <br />
+
+                    <div mass-autocomplete class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--5-col">
+                        <textarea msd-elastic="\n" class="mdl-textfield__input" type="text" id="requester" name="requester"
+                                  ng-model="rowdata.requester" mass-autocomplete-item="autocomplete_options"></textarea>
+                        <label class="mdl-textfield__label" for="requester">Requester</label>
+                    </div>
+                    <br class="mdl-cell--hide-desktop" />
+                    <div mass-autocomplete class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+                        <textarea msd-elastic="\n" class="mdl-textfield__input" type="text" id="requestcc" name="requestcc"
+                                  ng-model="rowdata.requestcc" mass-autocomplete-item="autocomplete_options"></textarea>
+                        <label class="mdl-textfield__label" for="requestcc">CC</label>
+                    </div>
+                    <br class="mdl-cell--hide-desktop mdl-cell--hide-tablet" />
+                    <div mass-autocomplete class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+                        <textarea msd-elastic="\n" class="mdl-textfield__input" type="text" id="requestbc" name="requestbc"
+                                  ng-model="rowdata.requestbc" mass-autocomplete-item="autocomplete_options"></textarea>
+                        <label class="mdl-textfield__label" for="requestbc">BC</label>
+                    </div>
+                    <br />
+
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--10-col">
+                        <input class="dropfocus mdl-textfield__input" type="text" id="subject" name="subject" ng-model="rowdata.subject" />
+                        <label class="mdl-textfield__label" for="subject">Subject</label>
+                    </div>
+                    <br />
+
+                    <div class="select-wrap drop mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--2-col">
+                        <input class="dropfocus mdl-textfield__input" readonly type="text" id="service" name="service" ng-model="rowdata.service" />
+                        <ul>
+                            <li ng-repeat="itm in optservice">
+                                <a href="" ng-click="applyDropValue('rowdata.service',itm.key)">{{itm.name}}</a>
+                            </li>
+                        </ul>
+                        <label class="mdl-textfield__label" for="service">Service</label>
+                    </div>
+
+                    <div class="select-wrap drop mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--1-col">
+                        <input class="dropfocus mdl-textfield__input" pattern="-?[0-9]*(,[0-9]+)?" type="text" id="time" name="time" ng-model="rowdata.time" />
+                        <ul>
+                            <li ng-repeat="itm in opttime | filter:fopttime">
+                                <a href="" ng-click="applyDropValue('rowdata.time',itm.key)">{{itm.name}}</a>
+                            </li>
+                        </ul>
+                        <label class="mdl-textfield__label" for="time">Time (hod.)</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+
+                    <div class="select-wrap drop mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--1-col">
+                        <input class="dropfocus mdl-textfield__input" type="text" pattern="-?[0-9]*(\,[0-9]+)?" id="transport" name="transport" ng-model="rowdata.transport" />
+                        <ul>
+                            <li ng-repeat="itm in opttransp">
+                                <a href="" ng-click="applyDropValue('rowdata.transport',itm.key)">{{itm.name}}</a>
+                            </li>
+                        </ul>
+                        <label class="mdl-textfield__label" for="transport">Transp.</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label  mdl-cell--2-col">
+                        <input class="dropfocus mdl-textfield__input" type="text" pattern="-?[0-9]*(\,[0-9]+)?" id="purchase" name="purchase" ng-model="rowdata.purchase" />
+                        <label class="mdl-textfield__label" for="purchase">Purchase VAT incl.</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label  mdl-cell--2-col">
+                        <input class="dropfocus mdl-textfield__input" type="text" pattern="-?[0-9]*(\,[0-9]+)?" id="price" name="price" ng-model="rowdata.price" />
+                        <label class="mdl-textfield__label" for="price">Price VAT incl.</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+
+                    <div class="select-wrap drop mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--2-col">
+                        <input class="dropfocus mdl-textfield__input" readonly type="text" id="requital" name="requital" ng-model="rowdata.requital" />
+                        <ul>
+                            <li ng-repeat="itm in optrequital">
+                                <a href="" ng-click="applyDropValue('rowdata.requital',itm.key)">{{itm.name}}</a>
+                            </li>
+                        </ul>
+                        <label class="mdl-textfield__label" for="requital">Requital</label>
+                    </div>
+
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-cell--2-col" for="reimburse">
+                        <input class="mdl-checkbox__input" type="checkbox" id="reimburse" name="reimburse" ng-model="rowdata.reimburse" />
+                        <span class="mdl-checkbox__label">Reimburse</span>
+                    </label>
+
+
+                    <br />
+                    <!--<div class="mdl-cell--10-col">
+                <ng-wig source-mode-allowed id="comment" name="comment" ng-model="rowdata.comment"></ng-wig>
+            </div>-->
+                </div>
+
+
+
+
+                <div class="app-panel mdl-cell--10-col-desktop mdl-cell--12-col-tablet mdl-cell--10-col-phone" >
+                    <ng-wig class="app-editor" source-mode-allowed id="comment" name="comment" ng-model="rowdata.comment"></ng-wig>
+                </div>
+            </div>
+
+
+            <div class="mdl-cell--12-col" style="margin:8px;">
+                <b>Ticket(s)</b>:&nbsp;
+                <span ng-repeat="itm in dataMarkers.tickets" repeat-Delimiter>{{itm}}</span>
+            </div>
+
+            <div class="mdl-cell--12-col app-dlgfoot  mdl-color--deep-orange">
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-cell--1-col" slide-up-toggle="changesdetail">
+                    Cancel
+                </button>
+                <div class="rside">
+
+                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect" ng-click="applyTicketChanges()" ng-disabled="!dataMarkers.count">
+                        Apply changes
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+

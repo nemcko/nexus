@@ -1,0 +1,233 @@
+﻿<!doctype html>
+<html lang="sk" ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nexus CRM</title>
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/logo.png">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Nexus CRM">
+    <link rel="apple-touch-icon-precomposed" href="images/logo.png">
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="stylesheet" href="styles/roboto.css">
+    <link rel="stylesheet" href="styles/material-icons.css">
+    <link rel="stylesheet" href="styles/material.min.css">
+    <link rel="stylesheet" href="styles/dialog-polyfill.css">
+    <link rel="stylesheet" href="styles/app.css">
+    <link rel="stylesheet" href="styles/ng-wig.min.css">
+    <link rel="stylesheet" href="styles/ng-animation.css">
+    <link rel="stylesheet" href="styles/pikaday.css">
+    <link rel="stylesheet" href="styles/hotkeys.min.css">
+
+    <link rel="stylesheet" href="javascript/lib/chartist/chartist.css">
+
+    <style>
+        #view-source {
+            position: fixed;
+            display: block;
+            right: 0;
+            bottom: 0;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            z-index: 900;
+        }
+
+        .nw-editor {
+            min-height: 200px;
+        }
+        .nw-editor__res.ng-invalid.ng-touched,
+        .nw-editor__src.ng-invalid{
+          border: 2px solid #FF0000;
+        }
+
+        /*.selectize-control {
+            top: 2px;
+        }
+        .selectize-control > .selectize-dropdown {
+            top: 34px;
+        }
+        .input-group > .selectize-control > .selectize-input {
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+        }*/    
+    </style>
+</head>
+<body data-ng-controller="MainCtrl" data-ng-init="showmessage='';">
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header xxxmdl-layout__header--scroll">
+        <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50" ng-class="{short: !largeMenu}">
+            <header class="demo-drawer-header" ng-class="{short: !largeMenu}" ng-click="largeMenu=!largeMenu">
+                <img xxng-show="largeMenu" src="images/logo.png" class="app-logo">
+                <div ng-show="largeMenu" ng-if="isLogged()" class="mdl-typography--caption-force-preferred-font-color-contrast mdl-color-text--blue-grey-300 app-logo-1">
+                    Name: {{currentUser.fullname}}<br />
+                    User: {{currentUser.username}}<br />
+                    Role: {{currentUser.role}}<br />
+                </div>
+
+                <img ng-srcset="{{currentUser.photo}}" ng-if="isLogged()" class="app-logo-2" ng-class="{short: !largeMenu}">
+            </header>
+
+
+            <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800" ng-class="{short: !largeMenu}">
+                <div ng-if="isLogged()" class="app-menuitem" ng-repeat="submenu in mainmenu">  
+                    <button ng-if="!largeMenu" id="hlmitem{{$index}}" class="mdl-button mdl-js-button mdl-button--icon" ng-click="selectSubmenu(submenu,'hlmitem'+$index)">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">{{submenu.icon}}</i>
+                    </button>
+                    <div ng-if="!largeMenu" class="mdl-tooltip" for="hlmitem{{$index}}">
+                        {{submenu.name}}
+                    </div>
+
+
+                    
+                                                     
+                    <a ng-if="largeMenu" class="mdl-navigation__link" ng-class="{short: !largeMenu}" href="javascript:void(0)" ng-click="selectSubmenu(submenu,'hlmitem'+$index)">
+                        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">{{submenu.icon}}</i>
+                        <span ng-show="largeMenu">{{submenu.name}}</span>
+                    </a>
+
+
+                    <div class="app-submenu" ng-repeat="lnk in submenu.links" ng-if="largeMenu">
+                        <a ng-if="submenu===actsubmenu" class="mdl-navigation__link" ng-href="{{lnk.href}}">
+                            <i class="mdl-color-text--blue-grey-400 material-icons" id="a-panelUsers{{$index}}">{{lnk.icon}}</i>
+                            <span>{{lnk.name}}</span>
+                        </a>
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="mdl-layout-spacer"></div>
+                <a class="mdl-navigation__link" ng-class="{short: !largeMenu}" href="#/login" id="a-login" ng-click="hideDrawer()">
+                    <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">power_settings_new</i>
+                    <span ng-show="largeMenu">LogIn/Out</span>
+                </a>
+                <div ng-hide="largeMenu" class="mdl-tooltip" for="a-login">
+                    LogIn/Out
+                </div>
+
+
+            </nav>
+        </div>
+
+        <ul ng-if="!largeMenu" ng-repeat="submenu in mainmenu" class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect mdl-color--white" for="hlmitem{{$index}}">
+            <li ng-repeat="lnk in submenu.links" class="mdl-menu__item">
+                <a class="mdl-navigation__link mdl-color-text--black" ng-href="{{lnk.href}}">
+                    <i class="mdl-color-text--blue-grey-400 material-icons" id="ul-hlmitem{{submenu.icon}}{{$index}}">{{lnk.icon}}</i>
+                    <span>{{lnk.name}}</span>
+                </a>
+            </li>
+        </ul>
+
+
+
+        <header class="mdl-layout__header mdl-color--grey-50 mdl-color-text--grey-600 hide-largetablet" xxxtyle="box-shadow: none;" xxxng-show="panel.title">
+
+            <div class="mdl-layout__header-row mdl-shadow--2dp xxxmdl-color--grey-50" ng-show="panel.title">
+                <span class="mdl-layout-title">{{panel.title}}</span>
+                <div class="mdl-layout-spacer"></div>
+                <nav class="mdl-navigation">
+                    <a ng-repeat="lnk in panel.links" class="mdl-navigation__link mdl-color-text--grey-600" ng-href="{{lnk.href}}">
+                        <i class="material-icons" id="headicon{{lnk.icon}}">
+                            {{lnk.icon}}
+                        </i>
+                        <div class="mdl-tooltip" for="headicon{{lnk.icon}}">
+                            {{lnk.name}}
+                        </div>
+                    </a>
+
+                    <a class="mdl-navigation__link mdl-color-text--grey-600" href="" ng-click="showDrawer()">
+                        <i id="pgDrawler{{panel.pgId}}" class="material-icons">flip</i>
+                    </a>
+                    <div class="mdl-tooltip" for="pgDrawler{{panel.pgId}}">
+                        Right panel
+                    </div>
+
+                    <a class="mdl-navigation__link mdl-color-text--black" href="/#/login" ng-if="isLogged()" ng-click="logout()" id="pgLogoff1">
+                        <i id="pgLogoff1" class="material-icons">power_settings_new</i>xxx
+                    </a>
+                    <div class="mdl-tooltip" for="pgLogoff1">
+                        Logout
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <div class="mdl-layout__drawer-right">
+            <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+                <header class="mdl-layout__header">
+                    <div class="mdl-layout__header-row app-rheader-title">
+                        <button id="drawerrightclose" class="mdl-button mdl-js-button mdl-button--icon" data-ng-click="showDrawer()">
+                            <i class="material-icons">close</i>
+                        </button>
+                        <div class="mdl-tooltip" for="drawerrightclose">
+                            Close
+                        </div>
+                        <span class="mdl-layout-title">Views</span>
+                    </div>
+                    <div class="app-rheader-tabs">
+                        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+                            <a href="javascript:void(0)" ng-click="selpanelviews = 'read'" class="mdl-layout__tab" ng-class="{'is-active': selpanelviews=='read'}">Shared</a>
+                            <a href="javascript:void(0)" ng-click="selpanelviews = 'created'" class="mdl-layout__tab" ng-class="{'is-active': selpanelviews=='created'}">My views</a>
+                        </div>
+                    </div>
+                </header>
+                <ul class="mdl-list app-rheader-list">
+                    <li class="mdl-list__item app-rheader-item" ng-repeat="item in panelviews | filter:{access: selpanelviews}">
+                        <a class="mdl-navigation__link" ng-href="#/{{item.uri}}" ng-click="hideDrawer()">
+                            {{item.name}}
+                        </a>
+                    </li>
+                </ul>
+                <nav class="mdl-navigation">
+                </nav>
+            </div>
+        </div>
+        <main class="mdl-layout__content mdl-color--blue-grey-50" ng-class="{short: !largeMenu}" style="z-index: inherit;">
+            <div class="xxxmdl-grid xxxdemo-content" ng-view>
+            </div>
+        </main>
+        <div class="mdl-layout__obfusc" data-ng-click="showDrawer()"></div>
+    </div>
+    <div id="message-toast" class="mdl-js-snackbar mdl-snackbar">
+        <div class="mdl-snackbar__text"></div>
+        <button class="mdl-snackbar__action" type="button"></button>
+    </div>
+
+
+
+    <script type="text/javascript" src="javascript/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="javascript/lib/angular/angular-route.min.js"></script>
+    <script type="text/javascript" src="javascript/lib/angular/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="javascript/lib/angular/angular-touch.min.js"></script>
+    <script type="text/javascript" src="javascript/lib/angular/angular-md5.min.js"></script>
+    <script type="text/javascript" src="javascript/lib/angular/angular-resource.js"></script>
+    <script type="text/javascript" src="javascript/lib/angular/angular-animate.min.js"></script>
+    <script type="text/javascript" src="javascript/lib/material.min.js"></script>
+    <script type="text/javascript" src="javascript/lib/ngwig/ng-wig.js"></script>
+    <script type="text/javascript" src="javascript/lib/moment.js"></script>
+    <script type="text/javascript" src="javascript/lib/pikaday.js"></script>
+    <script type="text/javascript" src="javascript/lib/pikaday-angular.js"></script>
+    <script type="text/javascript" src="javascript/lib/hotkeys.js"></script>
+    <script type="text/javascript" src="javascript/lib/socket.io.js"></script>
+    <script type="text/javascript" src="javascript/lib/socket.js"></script>
+    <script type="text/javascript" src="javascript/lib/dialog-polyfill.js"></script>
+    <script type="text/javascript" src="javascript/lib/ng-file-upload-shim.min.js"></script>
+    <script type="text/javascript" src="javascript/lib/ng-file-upload.js"></script>
+    <script type="text/javascript" src="javascript/app.js"></script>
+    <script type="text/javascript" src="javascript/datacache.js"></script>
+    <script type="text/javascript" src="javascript/lib/chartist/chartist.js"></script>
+
+
+</body>
+</html>
+

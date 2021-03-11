@@ -1,0 +1,22 @@
+﻿[
+  {
+    "name": "Group",
+    "key": "group"
+  },
+  {
+    "name": "Agent",
+    "key": "user"
+  },
+  {
+    "name": "Requester",
+    "key": "requester"
+  },
+  {
+    "name": "Requester CC",
+    "key": "requestcc"
+  },
+  {
+    "name": "Requester BC",
+    "key": "requestbc"
+  }
+]

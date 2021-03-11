@@ -1,0 +1,57 @@
+
+
+<div id="btnTicketOpen" class="app-button mdl-color--green-200 app-ticketbtns">
+    <div ng-repeat="itm in ticstatus | filter:{key: 'open-'+rowdata.priority}">
+        <a href="" ng-click="saveTicketData(itm,files)" hotkeyclick="ctrl+alt+o" xxxslide-up-toggle="ticketdetail">{{itm.label}}&nbsp;&nbsp;&nbsp;&nbsp; <p>{{itm.options.open.label}}</p></a>
+        <div class="rside" style="width:24px;">&nbsp;</div>
+    </div>
+</div>
+<div class="mdl-tooltip mdl-tooltip--top" for="btnTicketOpen">
+    Staff is working on the ticket
+</div>
+
+<div id="btnTicketHold" class="app-button mdl-color--yellow-200 app-ticketbtns">
+    <a ng-repeat="itm in ticstatus | filter:{key: 'open-'+rowdata.priority}" href="" class="" ng-click="saveTicketData(itm,files)">On-hold</a>
+    <div class="drop rside">
+        <ul>
+            <li ng-repeat="itm in ticstatus | filter:{type: 'on-hold'}">
+                <a href="" ng-click="saveTicketData(itm,files)" xxxslide-up-toggle="ticketdetail">{{itm.label}} <p>{{itm.options.open.label}}</p></a>
+            </li>
+        </ul>
+        <i class="material-icons app-dimmed">chevron_right</i>
+    </div>
+</div>
+<div class="mdl-tooltip mdl-tooltip--top" for="btnTicketHold">
+    Staff is waiting for a third party
+</div>
+
+
+<div id="btnTicketPending" class="app-button mdl-color--orange-200 app-ticketbtns">
+    <a ng-repeat="itm in ticstatus | filter:{key: 'pending-'+rowdata.priority}" href="" class="" ng-click="saveTicketData(itm,files)">Pending</a>
+    <div class="drop rside">
+        <ul>
+            <li ng-repeat="itm in ticstatus | filter:{type: 'pending'}">
+                <a href="" ng-click="saveTicketData(itm,files)" xxxslide-up-toggle="ticketdetail">{{itm.label}} <p>{{itm.options.notify.label}}<br />{{itm.options.open.label}}</p></a>
+            </li>
+        </ul>
+        <i class="material-icons app-dimmed">chevron_right</i>
+    </div>
+</div>
+<div class="mdl-tooltip mdl-tooltip--top" for="btnTicketPending">
+    Staff is waiting for requester to reply
+</div>
+
+<div id="btnTicketSolved" class="app-button mdl-color--blue-200 app-ticketbtns">
+    <a ng-repeat="itm in ticstatus | filter:{key: 'ok'}" href="" class="" ng-click="saveTicketData(itm,files)">Solved</a>
+    <div class="drop rside">
+        <ul>
+            <li ng-repeat="itm in ticstatus | filter:{type: 'solved'}">
+                <a href="" ng-click="saveTicketData(itm,files)" xxxslide-up-toggle="ticketdetail">{{itm.label}}</a>
+            </li>
+        </ul>
+        <i class="material-icons app-dimmed">chevron_right</i>
+    </div>
+</div>
+<div class="mdl-tooltip mdl-tooltip--top" for="btnTicketSolved">
+    The ticket has been solved
+</div>

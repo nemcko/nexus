@@ -1,0 +1,187 @@
+﻿<form name="updateForm">
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--9-col">
+        <input focusme class="mdl-textfield__input" type="text" id="name" name="name" ng-model="rowdata.name" xxxng-disabled="!expandedNew" ng-required="true" />
+        <label class="mdl-textfield__label" for="user">Panel Name</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="name" ng-show="updateForm.name.$invalid && updateForm.name.$touched">
+            <span ng-show="updateForm.name.$error.required">Required.</span>
+        </span>
+    </div>
+
+    <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+        <select class="mdl-textfield__input" type="text" ng-model="rowdata.accid" ng-options="o._id as o.name for o in accids" required></select>
+        <label class="mdl-textfield__label">Access type</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="name" ng-show="!updateForm.accid">
+            <span>Required.</span>
+        </span>
+    </div>
+
+    <br />
+
+    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--3-col" for="allof">
+        <input type="radio" id="allof" class="mdl-radio__button" name="dataPage" value="allof" ng-model="dataPage" ng-click="$parent.refresh();">
+        <span class="mdl-radio__label">all of conditions</span>
+    </label>
+    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--3-col" for="anyof">
+        <input type="radio" id="anyof" class="mdl-radio__button" name="dataPage" value="anyof" ng-model="dataPage" ng-click="$parent.refresh();">
+        <span class="mdl-radio__label">any of conditions</span>
+    </label>
+    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--3-col" for="selflds">
+        <input type="radio" id="selflds" class="mdl-radio__button" name="dataPage" value="selflds" ng-model="dataPage" ng-click="$parent.refresh();">
+        <span class="mdl-radio__label">for fields</span>
+    </label>
+    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--3-col" for="grpflds">
+        <input type="radio" id="grpflds" class="mdl-radio__button" name="dataPage" value="grpflds" ng-model="dataPage" ng-click="$parent.refresh();">
+        <span class="mdl-radio__label">Group/Sort by</span>
+    </label>
+
+
+    <div class="mdl-grid" ng-switch on="dataPage">
+        <div class="mdl-cell--12-col" ng-switch-when="anyof">
+            <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+                <select class="mdl-textfield__input" type="text" ng-model="newitem.field" ng-options="o.name as (o.label+(o.exlabel?' ('+o.exlabel+')':'') ) group by o.grp for o in vwflds"></select>
+                <label class="mdl-textfield__label">Field</label>
+            </div>
+            <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+                <select class="mdl-textfield__input" type="text" ng-model="newitem.oper" ng-options="o.key as o.name for o in getListOperands(newitem.field)"></select>
+                <label class="mdl-textfield__label">Operator</label>
+            </div>
+            <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+                <div selvalues="newitem" class="mdl-cell--12-col"></div>
+                <label class="mdl-textfield__label">Value</label>
+            </div>
+            <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-cell--12-offset mdl-color--teal-50" ng-click="addListItem(newitem,rowdata.anyof)">
+                <i class="material-icons">add</i>
+            </button>
+
+            <dir class="mdl-grid mdl-color--teal-50" ng-repeat="item in rowdata.anyof">
+                <select class="mdl-textfield__input mdl-cell--4-col" type="text" ng-model="item.field" ng-options="o.name as (o.label+(o.exlabel?' ('+o.exlabel+')':'') ) group by o.grp for o in vwflds"></select>
+                <select class="mdl-textfield__input mdl-cell--4-col" type="text" ng-model="item.oper" ng-options="o.key as o.name for o in getListOperands(item.field)"></select>
+                <div selvalues="item" class="mdl-cell--4-col"></div>
+                <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-cell--12-offset mdl-color--teal-100" ng-click="delListItem(item,rowdata.anyof)">
+                    <i class="material-icons">close</i>
+                </button>
+                <!--<pre>{{item | json}}</pre>-->
+            </dir>
+        </div>
+        <div class="mdl-cell--12-col" ng-switch-when="allof">
+            <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+                <select class="mdl-textfield__input" type="text" ng-model="newitem.field" ng-options="o.name as (o.label+(o.exlabel?' ('+o.exlabel+')':'') ) group by o.grp for o in vwflds"></select>
+                <label class="mdl-textfield__label">Field</label>
+            </div>
+            <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+                <select class="mdl-textfield__input" type="text" ng-model="newitem.oper" ng-options="o.key as o.name for o in getListOperands(newitem.field)"></select>
+                <label class="mdl-textfield__label">Operator</label>
+            </div>
+            <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--4-col">
+                <div selvalues="newitem" class="mdl-cell--12-col"></div>
+                <label class="mdl-textfield__label">Value</label>
+            </div>
+            <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-cell--12-offset mdl-color--teal-50" ng-click="addListItem(newitem,rowdata.allof)">
+                <i class="material-icons">add</i>
+            </button>
+
+            <dir class="mdl-grid mdl-color--teal-50" ng-repeat="item in rowdata.allof">
+                <select class="mdl-textfield__input mdl-cell--4-col" type="text" ng-model="item.field" ng-options="o.name as (o.label+(o.exlabel?' ('+o.exlabel+')':'') ) group by o.grp for o in vwflds"></select>
+                <select class="mdl-textfield__input mdl-cell--4-col" type="text" ng-model="item.oper" ng-options="o.key as o.name for o in getListOperands(item.field)"></select>
+                <div selvalues="item" class="mdl-cell--4-col"></div>
+                <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-cell--12-offset mdl-color--teal-100" ng-click="delListItem(item,rowdata.allof)">
+                    <i class="material-icons">close</i>
+                </button>
+                <!--<pre>{{item | json}}</pre>-->
+            </dir>
+        </div>
+        <div class="mdl-cell--12-col mdl-grid" ng-switch-when="selflds">
+            <div class="mdl-cell--7-col">
+                <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                    <select class="mdl-textfield__input" type="text" ng-model="newitem" ng-options="o.name as (o.label+(o.exlabel?' ('+o.exlabel+')':'') ) group by o.grp for o in vwflds"></select>
+                    <label class="mdl-textfield__label">Field</label>
+                </div>
+                <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-color--teal-50" ng-click="addFieldsItem(newitem,rowdata.fields)">
+                    <i class="material-icons">add</i>
+                </button>
+
+                <dir class="mdl-grid mdl-color--teal-50" ng-repeat="item in rowdata.fields">
+                    <span class="mdl-textfield__input mdl-cell--11-col">{{getFieldsItemLabel(item)}}</span>
+                    <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-color--teal-100" ng-click="delFieldsItem(item,rowdata.fields)">
+                        <i class="material-icons">close</i>
+                    </button>
+                </dir>
+                <br />
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-cell--2-col">
+                    <input type="checkbox" id="" class="mdl-checkbox__input"
+                           ng-model="rowdata.markers">
+                    <span class="mdl-checkbox__label">Markers</span>
+                </label>
+                <br />
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-cell--2-col">
+                    <input type="checkbox" id="" class="mdl-checkbox__input"
+                           ng-model="rowdata.kbcheck">
+                    <span class="mdl-checkbox__label">Knowledge base connection</span>
+                </label>
+                <br /><br />
+                <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--12-col">
+                    <select class="mdl-textfield__input" type="text" ng-model="rowdata.bookmarkfn" ng-options="o.bookfn as o.name for o in bookfntype"></select>
+                    <label class="mdl-textfield__label">Bookmark function</label>
+                </div>
+
+            </div>
+            <div class="mdl-cell--5-col">
+                <br /><br /><br /><br />
+
+            </div>
+        </div>
+        <div class="mdl-cell--12-col mdl-grid" ng-switch-when="grpflds">
+            <div class="mdl-cell--6-col">
+                <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--10-col">
+                    <select class="mdl-textfield__input" type="text" ng-model="newitem.field" ng-options="o.name as (o.label+(o.exlabel?' ('+o.exlabel+')':'') ) group by o.grp for o in vwflds"></select>
+                    <label class="mdl-textfield__label">Group field</label>
+                </div>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-cell--2-col">
+                    <input type="checkbox" id="" class="mdl-checkbox__input"
+                           ng-model="newitem.asc" ng-click="newitem.asc">
+                    <span class="mdl-checkbox__label">A</span>
+                </label>
+
+                <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-color--teal-50" ng-hide="rowdata.grpflds.length" ng-click="addGroupFieldsItem(newitem,rowdata.grpflds)">
+                    <i class="material-icons">add</i>
+                </button>
+
+                <div class="app-grid mdl-color--teal-50 mdl-cell--11-col" ng-repeat="item in rowdata.grpflds">
+                    <span class="mdl-textfield__input mdl-cell--10-col">{{getFieldsItemLabel(item)}}</span>
+                    <span class="mdl-textfield__input mdl-cell--2-col">{{(item.asc?'A':'D')}}</span>
+                    <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-color--teal-100" ng-click="delFieldsItem(item,rowdata.grpflds)">
+                        <i class="material-icons">close</i>
+                    </button>
+                </div>
+            </div>
+            <div class="mdl-cell--6-col">
+                <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--10-col">
+                    <select class="mdl-textfield__input" type="text" ng-model="newitem2.field" ng-options="o.name as (o.label+(o.exlabel?' ('+o.exlabel+')':'') ) group by o.grp for o in vwflds"></select>
+                    <label class="mdl-textfield__label">Sort fields</label>
+                </div>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-cell--2-col">
+                    <input type="checkbox" id="" class="mdl-checkbox__input"
+                           ng-model="newitem2.asc" ng-click="newitem2.asc">
+                    <span class="mdl-checkbox__label">A</span>
+                </label>
+
+                <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-color--teal-50" ng-click="addSortFieldsItem(newitem2,rowdata.srtflds)">
+                    <i class="material-icons">add</i>
+                </button>
+
+                <div class="app-grid mdl-color--teal-50 mdl-cell--11-col" ng-repeat="item in rowdata.srtflds">
+                    <span class="mdl-textfield__input mdl-cell--10-col">{{getFieldsItemLabel(item)}}</span>
+                    <span class="mdl-textfield__input mdl-cell--2-col">{{(item.asc?'A':'D')}}</span>
+                    <button class="app-dimmed mdl-button mdl-js-button mdl-button--icon mdl-color--teal-100" ng-click="delSortFieldsItem(item,rowdata.srtflds)">
+                        <i class="material-icons">close</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--<pre>{{rowdata | json}}</pre>-->
+    <div datapanel="panel-det-check"></div>
+</form>

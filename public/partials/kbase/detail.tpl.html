@@ -1,0 +1,107 @@
+﻿
+<style type="text/css">
+    table td {
+        border-collapse: collapse;
+    }
+
+    .delimiter {
+        color: gainsboro;
+    }
+
+    .photo {
+        width: 32px;
+        display: inline-block;
+        box-sizing: border-box;
+        margin-right: 12px;
+        border-radius: 50%;
+        padding: 4px;
+    }
+
+    .fullname {
+        color: dimgray;
+    }
+
+    .username {
+        color: silver;
+    }
+
+    .attachment {
+        display: block;
+        padding-right: 4px;
+    }
+</style>
+
+<div class="app-content">
+    <form name="updateFormArt">
+        <div class="app-table mdl-cell--12-col" style="margin: 10% auto 0 auto;">
+            <div class="app-dlg">
+                <div class="mdl-cell--12-col mdl-color--lime">
+                    <button id="detCloseArt" class="mdl-button mdl-js-button mdl-button--icon app-dimmed rside" slide-up-toggle="kbdetail">
+                        <i class="material-icons">cancel</i>
+                    </button>
+                    <div class="mdl-tooltip" for="detCloseArt">
+                        Close with no update
+                    </div>
+                    <h3 class="mdl-cell--12-col">
+                        <span class="mdl-cell--9-col">Article</span>
+                    </h3>
+                </div>
+
+                <div class="app-grid mdl-cell--12-col" style="overflow-x:hidden; overflow-y: auto;max-height: 70vh;">
+
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--8-col">
+                        <input class="dropfocus mdl-textfield__input" type="text" id="dettitle" name="dettitle" ng-model="detail.title" ng-required="true" />
+                        <label class="mdl-textfield__label" for="dettitle">Title</label>
+                        <span class="mdl-tooltip mdl-tooltip--validation" for="name" ng-show="detail.title.$invalid && detail.title.$touched">
+                            <span ng-show="detail.title.$error.required">Required.</span>
+                        </span>
+
+                    </div>
+                    <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--3-col">
+                        <select class="mdl-textfield__input" type="text" ng-model="detail.refCateg" ng-options="o._id as o.name for o in catlist" required></select>
+                        <label class="mdl-textfield__label">Category</label>
+                        <span class="mdl-tooltip mdl-tooltip--validation" for="name" ng-show="!updateFormArt.refCateg">
+                            <span>Required.</span>
+                        </span>
+                    </div>
+
+
+                    <ng-wig class="mdl-cell--12-col" source-mode-allowed id="detarticle" name="detarticle" ng-model="detail.article"></ng-wig>
+
+                    <div style="float:left;top:-4px;padding-bottom:14px;" class="mdl-button mdl-button--primary mdl-button--icon">
+                        <div class="mdl-button mdl-button--icon mdl-button--file"
+                             ngf-select="upload(detail._id,$file,updateForm.avatar)" ng-model="files" id="files" name="files"
+                             ngf-pattern="'*/*'" ngf-multiple="true"
+                             ngf-accept="'*/*'" ngf-max-size="10MB">
+                            <i class="material-icons">attach_file</i>
+                        </div>
+                    </div>
+                    <div class="app-attachment" ng-repeat="file in files">
+                        <img ng-src="{{getFileicon(file.name)}}" />
+                        <span>{{file.name}}{{(!$last?',':'')}}</span>
+                    </div>
+
+
+
+                </div>
+
+
+                <div class="mdl-cell--12-col app-dlgfoot  mdl-color--lime">
+                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-cell--2-col" slide-up-toggle="kbdetail">
+                        Cancel
+                    </button>
+                    <div class="rside">
+
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect" ng-click="saveArticle(files)" ng-disabled="updateFormArt.$invalid">
+                            Save data
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!--<pre>{{catlist | json}}-->
+        </div>
+    </form>
+</div>
+
+

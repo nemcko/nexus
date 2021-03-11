@@ -1,0 +1,34 @@
+﻿[
+  {
+    "name": "Is",
+    "key": "s_eq"
+  },
+  {
+    "name": "Is not",
+    "key": "s_ne"
+  },
+  {
+    "name": "Begins",
+    "key": "s_beg"
+  },
+  {
+    "name": "Ends",
+    "key": "s_end"
+  },
+  {
+    "name": "Contains",
+    "key": "s_con"
+  },
+  {
+    "name": "Not contains",
+    "key": "s_ncon"
+  },
+  {
+    "name": "In",
+    "key": "s_in"
+  },
+  {
+    "name": "Not In",
+    "key": "s_nin"
+  }
+]

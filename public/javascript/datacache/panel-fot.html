@@ -1,0 +1,56 @@
+
+<tfoot>
+    <tr>
+        <td colspan="20" class="app-dimmed">
+            <span>Row per page</span>
+            <button id="pageitems{{panel.pgId}}" class="app-pageitems mdl-button mdl-js-button mdl-js-ripple-effect">
+                <span>{{panel.pageLimit}}</span>
+                <i class="material-icons app-dimmed" role="presentation">keyboard_arrow_down</i>
+                <span class="visuallyhidden">Accounts</span>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="pageitems{{panel.pgId}}">
+                <li ng-repeat="itm in panel.pageLimits" class="mdl-menu__item" ng-click="panelCmd('pageLimit',itm)" value="{{itm}}">{{itm}} items</li>
+            </ul>
+
+            <button id="pagenum{{panel.pgId}}" class="app-pagenum mdl-button mdl-js-button mdl-js-ripple-effect">
+                <span>{{panel.pageNumber}}</span>
+                <i class="material-icons app-dimmed" role="presentation">keyboard_arrow_down</i>
+                <span class="visuallyhidden">Accounts</span>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="pagenum{{panel.pgId}}">
+                <li ng-repeat="itm in panel.pageNumbers" class="mdl-menu__item" ng-click="panelCmd('pageNumber',itm)" value="{{itm}}">Page {{itm}}</li>
+            </ul>
+            of
+            <span class="app-pagecount">{{panel.pageCount}}</span>
+
+            <button id="pgFirst{{panel.pgId}}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" ng-click="panelCmd('pgFirst',itm)">
+                <i class="material-icons app-dimmed">first_page</i>
+            </button>
+            <div class="mdl-tooltip" for="pgFirst{{panel.pgId}}">
+                First page
+            </div>
+
+            <button id="pgUp{{panel.pgId}}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" ng-click="panelCmd('pgUp',itm)">
+                <i class="material-icons app-dimmed">chevron_left</i>
+            </button>
+            <div class="mdl-tooltip" for="pgUp{{panel.pgId}}">
+                Prev page
+            </div>
+
+            <button id="pgDn{{panel.pgId}}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" ng-click="panelCmd('pgDn',itm)">
+                <i class="material-icons app-dimmed">chevron_right</i>
+            </button>
+            <div class="mdl-tooltip" for="pgDn{{panel.pgId}}">
+                Next page
+            </div>
+
+            <button id="pgLast{{panel.pgId}}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" ng-click="panelCmd('pgLast',itm)">
+                <i class="material-icons app-dimmed">last_page</i>
+            </button>
+            <div class="mdl-tooltip" for="pgLast{{panel.pgId}}">
+                Last page
+            </div>
+
+        </td>
+    </tr>
+</tfoot>

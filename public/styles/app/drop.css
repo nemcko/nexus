@@ -1,0 +1,70 @@
+﻿.drop {
+  position: relative;
+}
+.drop ul {
+  position: absolute;
+  -webkit-transition: all 1.5s ease;
+  transition: all 0.3s ease;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12);
+  z-index: 999;
+  padding: 0;
+      outline: none;
+    background-color: white;
+    overflow:hidden;
+    /*top:-1px;*/
+}
+.drop ul li {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+}
+.drop li a {
+  width: 100%;
+  padding: 1em 18px;
+  display: inline-block;
+  white-space: pre;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.87);
+  text-decoration:none;
+}
+.drop li {
+  color: rgba(0, 0, 0, 0.87);
+}
+.drop ul li a:hover {
+  background: #ebebeb;
+}
+.drop:hover ul,
+.is-focused ul {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.drop li a p {
+    text-transform: none;
+    line-height: 12px;
+    font-size: 12px;
+    padding:0;
+    margin:0;
+        -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 0px;
+}
+.drop li i {
+    position: relative;
+    top: 4px;
+    left:-4px;
+}
+
+.select-wrap ul {
+    top: 34px;
+    min-width:100%;
+}
+.select-wrap ul a {
+    padding: .5em 12px;
+}

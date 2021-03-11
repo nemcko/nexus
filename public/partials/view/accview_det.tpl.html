@@ -1,0 +1,52 @@
+﻿<form name="updateForm">
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--11-col">
+        <input focusme class="mdl-textfield__input" type="text" id="name" name="name" ng-model="rowdata.name" xxxng-disabled="!expandedNew" ng-required="true" />
+        <label class="mdl-textfield__label" for="user">Access Name</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="name" ng-show="updateForm.name.$invalid && updateForm.name.$touched">
+            <span ng-show="updateForm.name.$error.required">Required.</span>
+        </span>
+    </div>
+
+    <br />
+
+    <!--<div class="mdl-grid" ng-repeat="(index, item) in rowdata.access">
+        <div class="mdl-cell--12-col mdl-typography--body-2-force-preferred-font">{{item.label}}:&nbsp;</div>
+        <div class="mdl-cell--3-col" ng-repeat="utype in userTypes">
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="ch{{item.code}}-{{utype.code}}-{{$index}}">
+                <input type="checkbox" id="ch{{item.code}}-{{utype.code}}-{{$index}}" class="mdl-checkbox__input"
+                        ng-model="can[item.code][utype.code]" ng-click="changeAccess(item,utype.code,can[item.code][utype.code])" ng-checked="item.cando.indexOf(utype.code) >= 0">
+                <span class="mdl-checkbox__label">{{utype.name}}</span>
+            </label>
+        </div>
+    </div>-->
+
+    <div class="mdl-cell--12-col mdl-typography--body-2-force-preferred-font">Clients:&nbsp;</div>
+    <div class="mdl-grid">
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--12-col" ng-repeat="acctype in viewTypes | filter: {type: 'endusers'}" for="acc_{{acctype.code}}">
+            <input type="radio" id="acc_{{acctype.code}}" class="mdl-radio__button" value="{{acctype.code}}"
+                   ng-model="rowdata.access.acclient" name="access.client" ng-click="setUsertype()">
+            <span class="mdl-radio__label">{{acctype.name}}</span>
+        </label>
+    </div>
+
+    <div class="mdl-cell--12-col mdl-typography--body-2-force-preferred-font">Agents:&nbsp;</div>
+    <div class="mdl-grid">
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--12-col" ng-repeat="acctype in viewTypes | filter: {type: 'agents'}" for="acc_{{acctype.code}}">
+            <input type="radio" id="acc_{{acctype.code}}" class="mdl-radio__button" value="{{acctype.code}}"
+                   ng-model="rowdata.access.acagent" name="access.agent" ng-click="setUsertype()">
+            <span class="mdl-radio__label">{{acctype.name}}</span>
+        </label>
+    </div>
+    <div class="mdl-grid">
+        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="chprivcomm">
+            <input type="checkbox" id="chprivcomm" class="mdl-checkbox__input" style="padding-left: 8px;"
+                   ng-model="rowdata.access.privcomm">
+            <span class="mdl-checkbox__label">Private only comments</span>
+        </label>
+    </div>
+    <div style="clear:both"></div>
+        <!--<pre>{{rowdata.access | json}}</pre>-->
+
+        <div datapanel="panel-det"></div>
+</form>

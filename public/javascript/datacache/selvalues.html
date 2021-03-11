@@ -1,0 +1,7 @@
+
+<div ng-switch on="getListType(SELVALUES.field)">
+    <input ng-switch-when="Date" datevalue class="mdl-textfield__input" style="width:100%" type="text" ng-model="SELVALUES.value" value="{{dateStringParse(SELVALUES.value,true)}}" />
+    <select ng-switch-when="" class="mdl-textfield__input" style="width:100%" type="text"
+            ng-model="SELVALUES.value" ng-options="o.key as o.name for o in getListValues(SELVALUES.field)"></select>
+    <input ng-switch-default class="mdl-textfield__input" style="width:100%" type="text" ng-model="SELVALUES.value" />
+</div>

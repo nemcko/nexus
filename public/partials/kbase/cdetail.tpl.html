@@ -1,0 +1,55 @@
+﻿
+<div class="app-content">
+    <form name="updateFormComm">
+        <div class="app-table mdl-cell--12-col" style="margin: 10% auto 0 auto;">
+            <div class="app-dlg">
+                <div class="mdl-cell--12-col mdl-color--lime">
+                    <button id="detCloseComm" class="mdl-button mdl-js-button mdl-button--icon app-dimmed rside" slide-up-toggle="kbcdetail">
+                        <i class="material-icons">cancel</i>
+                    </button>
+                    <div class="mdl-tooltip" for="detCloseComm">
+                        Close with no update
+                    </div>
+                    <h3 class="mdl-cell--12-col">
+                        <span class="mdl-cell--9-col">Comment</span>
+                    </h3>
+                </div>
+
+                <div class="app-grid mdl-cell--12-col">
+                    <ng-wig class="mdl-cell--12-col" source-mode-allowed id="detcomment" name="detcomment" ng-model="detail.comment"></ng-wig>
+                    <div style="float:left;top:-4px;padding-bottom:14px;" class="mdl-button mdl-button--primary mdl-button--icon">
+                        <div class="mdl-button mdl-button--icon mdl-button--file"
+                             ngf-select="upload(detail._id,$file,updateForm.avatar)" ng-model="files" id="files" name="files"
+                             ngf-pattern="'*/*'" ngf-multiple="true"
+                             ngf-accept="'*/*'" ngf-max-size="10MB">
+                            <i class="material-icons">attach_file</i>
+                        </div>
+                    </div>
+                    <div class="app-attachment" ng-repeat="file in files">
+                        <img ng-src="{{getFileicon(file.name)}}" />
+                        <span>{{file.name}}{{(!$last?',':'')}}</span>
+                    </div>
+
+                </div>
+
+
+                <div class="mdl-cell--12-col app-dlgfoot  mdl-color--lime">
+                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-cell--2-col" slide-up-toggle="kbcdetail">
+                        Cancel
+                    </button>
+                    <div class="rside">
+
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect" ng-click="saveComment(files)" ng-disabled="updateFormComm.$invalid">
+                            Save Comment
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </form>
+</div>
+
+

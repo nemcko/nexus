@@ -1,0 +1,95 @@
+﻿<div class="app-page2 md-grid" style="padding:40px; display: table-cell;vertical-align: middle;">   
+
+    <div class="app-table-dlg mdl-color--white" ng-Esc="closeModalView('modalview',searchPanelData)"> 
+        <table>
+            <caption class="mdl-color--purple-400">
+                {{searchPanelData.title}}&nbsp;
+                <!--<span ng-show="searchPanelData.pageTotal">
+                    ({{searchPanelData.pageTotal}}<small ng-show="searchPanelData.pageMarked">/{{searchPanelData.pageMarked}}</small>)
+                </span>-->
+                <div ng-show="searchPanelData.processData" class="mdl-spinner mdl-js-spinner mdl-spinner--single-color is-active"></div>
+
+                <div class="app-searchpanel">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input mdl-color--purple-300" focusme type="text" id="searchpanelInput" ng-model="dashboard.searchPanelText" ng-keydown="pressSearchPanel($event)">
+                        <label class="mdl-textfield__label" for="searchpanelInput">Search...</label>
+                    </div>
+
+                    <button id="bthNextTicket" class="mdl-button mdl-js-button mdl-button--icon app-dimmed" ng-click="getNextTicket(searchPanelData)">
+                        <i class="material-icons">theaters</i>
+                    </button>
+                    <div class="mdl-tooltip" for="bthNextTicket">
+                        Show next ticket
+                    </div>
+                    <button id="btnMarkers" class="app-dimmed mdl-button mdl-js-button mdl-button--icon" ng-click="applyMarkers(searchPanelData.items)" slide-up-toggle="changesdetail">
+                        <i class="material-icons">done_all</i>
+                    </button>
+                    <div class="mdl-tooltip" for="btnMarkers">
+                        Apply to all
+                    </div>
+
+                </div>
+
+                <div class="app-macro">
+                    <!--<i class="material-icons" style="margin-top:10px;position: relative;">search</i>-->
+
+                    
+                    <button id="searchPanelBtnClose" xxshow-hide-toggle="modalview" class="app-dimmed mdl-button mdl-js-button mdl-button--icon xxxmdl-color-text--orange-400" ng-click="closeModalView('modalview',searchPanelData)">
+                        <i class="material-icons">close</i>
+                    </button>
+                    <div class="mdl-tooltip" for="searchPanelBtnClose">
+                        Close
+                    </div>
+                </div>
+            </caption>
+            <thead class="mdl-color--purple-400">
+                <tr>
+                    <th ng-class="getColumnAlign(fld)" ng-repeat="fld in searchPanelData.fields" width="{{getColumnWidth(searchPanelData.fields,fld,searchPanelData.hasbookmarks || searchPanelData.markers)}}%">{{getColumnTitle(fld)}}</th>
+                    <th ng-if="searchPanelData.hasbookmarks || searchPanelData.markers" width="48px">
+                        <i ng-if="searchPanelData.hasbookmarks" class="material-icons app-smalheader4">bookmark_border</i>
+                        <div ng-if="searchPanelData.markers" class="app-smalheader app-bookmark" ng-switch on="getMarkerCount(searchPanelData)>0">
+                            <i ng-switch-when="false" class="material-icons app-smalheader3" ng-click="setMarkers(searchPanelData,true)">check_box_outline_blank</i>
+                            <i ng-switch-when="true" class="material-icons app-smalheader3" ng-click="setMarkers(searchPanelData,false)">check_box</i>
+                        </div>
+                        <i ng-if="searchPanelData.hasbookmarks==='marked' && searchPanelData.pageMarked" class="material-icons app-smalheader4">call_merge</i>
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in searchPanelData.items">
+                    <td ng-if="row._grpfld" class="app-group" colspan="20" ng-bind-html="getGroupRow(searchPanelData,row,$index)"></td>
+                    <td ng-if="!row._grpfld" ng-class="getColumnAlign(fld)"
+                        ng-repeat="fld in searchPanelData.fields"
+                        id="{{searchPanelData.seq}}{{fld}}{{row._id}}"
+                        slide-up-toggle="ticketdetail"
+                        ng-click="loadTicket(row.ticnum)">
+                        <span ng-bind-html="getColumnValue(fld,row[fld])"></span>
+                    </td>
+                    <td ng-if="(searchPanelData.markers||searchPanelData.hasbookmarks) && !row._grpfld">
+                        <div ng-if="searchPanelData.hasbookmarks && !row._grpfld" class="app-bookmark" ng-switch on="row.bookmark">
+                            <i ng-switch-when="false" class="material-icons app-rowmark" ng-click="setBookmark(searchPanelData,row)">bookmark_border</i>
+                            <i ng-switch-when="true" class="material-icons app-rowmark mdl-color-text--purple-500" ng-click="setBookmark(searchPanelData,row)">bookmark</i>
+                        </div>
+                        <input ng-if="searchPanelData.markers && !row._grpfld" type="checkbox" ng-model="row.marker">
+                        <i ng-if="searchPanelData.hasbookmarks==='marked' && searchPanelData.pageMarked" class="material-icons app-smalheader5 app-rowmark" ng-click="doBookmarkFunction(searchPanelData,searchPanelData.hasbookmarks,row._id)">add_circle</i>
+                    </td>
+                    <td ng-if="false && searchPanelData.markers && !row._grpfld" class="app-bookmark">
+                        <input type="checkbox" id="checkbox{{searchPanelData.seq}}{{row._id}}" ng-model="row.bookmark" ng-click="setBookmark(searchPanelData,row)">
+                        <i ng-if="searchPanelData.hasbookmarks==='bookmark' && searchPanelData.pageMarked" id="rowBookmarkbtn{{searchPanelData.seq}}{{row._id}}" class="material-icons app-rowmark" ng-click="doBookmarkFunction(searchPanelData,searchPanelData.hasbookmarks,row._id)">add_circle</i>
+                        <!--<div class="mdl-tooltip" for="rowBookmarkbtn{{searchPanelData.seq}}{{row._id}}">
+                        {{getBookmarkFunName(searchPanelData.hasbookmarks)}}
+                    </div>-->
+                    </td>
+            </tbody>
+
+        </table>
+        <!--<pre>{{searchPanelData | json}}</pre>-->
+
+        <div ng-repeat="row in searchPanelData.items" class="mdl-tooltip" for="{{searchPanelData.seq}}subject{{row._id}}">{{row.txt}}</div>
+
+    </div>
+</div>
+<!--<pre class="mdl-color--grey">{{searchPanelData | json}}</pre>-->
+
+

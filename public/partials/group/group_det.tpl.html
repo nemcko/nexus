@@ -1,0 +1,41 @@
+﻿<form name="updateForm">
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--9-col">
+        <input class="mdl-textfield__input" type="text" id="name" name="name" ng-model="rowdata.name" ng-disabled="!expandedNew" ng-required="true" />
+        <label class="mdl-textfield__label" for="name">Group name*</label>
+        <span class="mdl-tooltip mdl-tooltip--validation" for="name" ng-show="updateForm.name.$invalid && updateForm.name.$touched">
+            <span ng-show="updateForm.name.$error.required">Required.</span>
+        </span>
+    </div>
+    <br />
+    <div class="select-wrap mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--6-col">
+        <select class="mdl-textfield__input" type="text" id="organ" name="organ" ng-model="rowdata.organ" ng-options="o.name as o.name for o in organiz">
+            <option value=""></option>
+        </select>
+        <label class="mdl-textfield__label" for="organ">Organization</label>
+    </div>
+    <br />
+    <div class="mdl-grid">
+        <span class="mdl-typography--body-2-force-preferred-font mdl-cell--12-col">Agents in group:</span>
+        <ul class="demo-list-two mdl-list mdl-cell--6-col">
+            <li ng-repeat="(index, agent) in agents" class="mdl-list__item mdl-list__item--two-line">
+                <span class="mdl-list__item-primary-content">
+                    <img ng-srcset="/api/image/{{agent.id}}" class="material-icons mdl-list__item-avatar" />
+                    <span>{{agent.name}}</span>
+                    <span class="mdl-list__item-sub-title">{{agent.code}}</span>
+                </span>
+                <span class="mdl-list__item-secondary-content">
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-{{$index}}">
+                        <input type="checkbox" id="list-checkbox-{{$index}}" class="mdl-checkbox__input"
+                               ng-checked="rowdata.agents && rowdata.agents.indexOf(agent.code) != -1" ng-click="toggleAgent(agent.code)" />
+                    </label>
+                </span>
+            </li>
+        </ul>
+    </div>
+    <br />
+
+
+    <div style="clear:both"></div>
+    <div datapanel="panel-det"></div>
+</form>
